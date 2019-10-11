@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
+import org.junit.Test;
 import org.mockito.InjectMocks;
 
 import co.com.ceiba.restaurantapp.dominio.FullReservationDto;
@@ -24,11 +25,12 @@ public class FullReservationDtoTest {
 	private static final Date RESERVATIONDATE = new Date(02-02-2019);
 	private static final int NUMBERPEOPLE = 5;
 	private static final boolean DECOR = true;
+
 	
 	@InjectMocks
 	private FullReservationDto fullReservationDto = new FullReservationDto();
 
-	
+	@Test
 	public void createFullReservationTest() {
 	
 
