@@ -11,7 +11,7 @@ import co.com.ceiba.restaurantapp.testdatabuilder.BillDtoTestbuilder;
 
 public class BillDtoTest {
 
-
+	private static final int BILL_ID= 2;
 	private static final float PRICE = 350000;
 	private static final int DISCOUNTFORPEOPLE = 15;
 	private static final int DISCOUNTFORDAYS = 20;
@@ -24,6 +24,7 @@ public class BillDtoTest {
 		
 		// arrange
 		BillDtoTestbuilder billDtoTestbuilder = new BillDtoTestbuilder()
+				.whiteBillid(BILL_ID)
 				.whitePrice(PRICE)
 				.whiteDiscountForPeople(DISCOUNTFORPEOPLE)
 				.whiteDiscountForDays(DISCOUNTFORDAYS);
@@ -32,7 +33,7 @@ public class BillDtoTest {
 		BillDto billDto = billDtoTestbuilder.build();
 		
 		//assert
-	
+		assertEquals(BILL_ID, billDto.getBillId());
 		assertEquals(PRICE, billDto.getPrice(),0);
 		assertEquals(DISCOUNTFORPEOPLE, billDto.getDiscountForPeople());
 		assertEquals(DISCOUNTFORDAYS, billDto.getDiscpuntForDays());

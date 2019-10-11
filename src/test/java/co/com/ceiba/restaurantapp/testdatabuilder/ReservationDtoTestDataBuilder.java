@@ -12,7 +12,7 @@ public class ReservationDtoTestDataBuilder {
 	private static final int NUMBERPEOPLE = 5;
 	private static final boolean DECOR = true;
 	
-	private int idReservation;
+	private int idReservation; 
 	private Date reservationDate;
 	private int numberPeople;
 	private boolean decor;

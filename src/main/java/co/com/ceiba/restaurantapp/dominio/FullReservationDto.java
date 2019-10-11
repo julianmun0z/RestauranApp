@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class FullReservationDto {
 
-	private Integer id;
+	private Integer billId;
 	private Integer clientId;
 	private String firstName;
 	private String lastName;
@@ -22,16 +22,18 @@ public class FullReservationDto {
 	private int discpuntForDays;
 	private ReservationDto reservationDto;
 
+	
 	public FullReservationDto() {
-		super();
+		
 	}
 
-	public FullReservationDto(Integer id, Integer clientId, String firstName, String lastName, String email,
+
+	public FullReservationDto(Integer billId, Integer clientId, String firstName, String lastName, String email,
 			String phoneNumber, Integer idReservation, Date reservationDate, int numberPeople, boolean decor,
-			ClientDto clientDto, float price, int discountForPeople, int discpuntForDays,
-			ReservationDto reservationDto) {
-		super();
-		this.id = id;
+			ClientDto clientDto, float price, int discountForPeople, int discpuntForDays, ReservationDto reservationDto,
+			Date concurenDate) {
+		
+		this.billId = billId;
 		this.clientId = clientId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -46,16 +48,17 @@ public class FullReservationDto {
 		this.discountForPeople = discountForPeople;
 		this.discpuntForDays = discpuntForDays;
 		this.reservationDto = reservationDto;
+		this.concurenDate = concurenDate;
 	}
 
 	Date concurenDate = new Date();
 
 	public Integer getId() {
-		return id;
+		return billId;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.billId = id;
 	}
 
 	public String getFirstName() {
