@@ -27,32 +27,32 @@ import co.com.ceiba.restaurantapp.testdatabuilder.ClientDtoTestDataBuilder;
 @AutoConfigureMockMvc
 public class ClientTestController {
 
-	@Autowired
-	private MockMvc mvc;
-
-	ClientDto client = new ClientDtoTestDataBuilder().whitFirstName("Juan").whitLastName("Gomez")
-			.whiteEmail("juan@g.com").whitePhoneNumber("316-000-3456").build();
-
-	ClientEntity clientEntitiy = new ClientBuilder().convertDtoToEntity(client);
-
-	@Test
-	public void createClient() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.post("/client").content(asJsonString(clientEntitiy))
-				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-	}
-
-	public static String asJsonString(final Object obj) {
-		try {
-			return new ObjectMapper().writeValueAsString(obj);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@Test
-	public void getClient() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/client").accept(MediaType.APPLICATION_JSON)).andDo(print())
-				.andExpect(status().isOk());
-	}
+//	@Autowired
+//	private MockMvc mvc;
+//
+//	ClientDto client = new ClientDtoTestDataBuilder().whitFirstName("Juan").whitLastName("Gomez")
+//			.whiteEmail("juan@g.com").whitePhoneNumber("316-000-3456").build();
+//
+//	ClientEntity clientEntitiy = new ClientBuilder().convertDtoToEntity(client);
+//
+//	@Test
+//	public void createClient() throws Exception {
+//		mvc.perform(MockMvcRequestBuilders.post("/client").content(asJsonString(clientEntitiy))
+//				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+//	}
+//
+//	public static String asJsonString(final Object obj) {
+//		try {
+//			return new ObjectMapper().writeValueAsString(obj);
+//		} catch (Exception e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
+//
+//	@Test
+//	public void getClient() throws Exception {
+//		mvc.perform(MockMvcRequestBuilders.get("/client").accept(MediaType.APPLICATION_JSON)).andDo(print())
+//				.andExpect(status().isOk());
+//	}
 
 }

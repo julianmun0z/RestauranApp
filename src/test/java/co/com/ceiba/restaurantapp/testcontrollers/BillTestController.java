@@ -22,68 +22,68 @@ import co.com.ceiba.restaurantapp.persistencia.entities.BillEntity;
 @AutoConfigureMockMvc
 public class BillTestController {
 	
-	private static final float PRICE = 350000;
-	private static final int DISCOUNTFORPEOPLE = 15;
-	private static final int DISCOUNTFORDAYS = 20;
-	
-	@Autowired
-	private MockMvc mvc;
-	
-	@InjectMocks
-	BillDto billDto = new BillDto();
-	@InjectMocks
-	BillEntity billEntity = new BillEntity();
-
- 	
-	@Test
-	public void createReservation() throws Exception
-	{
-		
-		
-		billDto.setPrice(PRICE);
-		billDto.setDiscountForPeople(DISCOUNTFORPEOPLE);
-		billDto.setDiscpuntForDays(DISCOUNTFORDAYS);
-		billEntity.setPrice(billDto.getPrice());
-		billEntity.setDiscountForPeople(billDto.getDiscountForPeople());
-		billEntity.setDiscpuntForDays(billDto.getDiscpuntForDays());
-		
-		
-	}
-	
-	@Test
-	public void getBill() throws Exception
-	{
-	  mvc.perform( MockMvcRequestBuilders
-	      .get("/bill")
-	      .accept(MediaType.APPLICATION_JSON))
-	      .andDo(print())
-	      .andExpect(status().isOk());  
-	}
-	
-	@Test
-	public void getReservationId() throws Exception
-	{
-	  mvc.perform( MockMvcRequestBuilders
-	      .get("/reservation/{id}", 1)
-	      .accept(MediaType.APPLICATION_JSON))
-	      .andDo(print())
-	      .andExpect(status().isOk());
-	}
-	
-	@Test
-	public void updateBill() throws Exception
-	{
-	  mvc.perform( MockMvcRequestBuilders
-	      .put("/bill/{id}", 2)
-	      .content(asJsonString(billEntity))
-	      .contentType(MediaType.APPLICATION_JSON)
-	      .accept(MediaType.APPLICATION_JSON));
-	      
-	}
-
-	private byte[] asJsonString(BillEntity billEntity2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	private static final float PRICE = 350000;
+//	private static final int DISCOUNTFORPEOPLE = 15;
+//	private static final int DISCOUNTFORDAYS = 20;
+//	
+//	@Autowired
+//	private MockMvc mvc;
+//	
+//	@InjectMocks
+//	BillDto billDto = new BillDto();
+//	@InjectMocks
+//	BillEntity billEntity = new BillEntity();
+//
+// 	
+//	@Test
+//	public void createReservation() throws Exception
+//	{
+//		
+//		
+//		billDto.setPrice(PRICE);
+//		billDto.setDiscountForPeople(DISCOUNTFORPEOPLE);
+//		billDto.setDiscpuntForDays(DISCOUNTFORDAYS);
+//		billEntity.setPrice(billDto.getPrice());
+//		billEntity.setDiscountForPeople(billDto.getDiscountForPeople());
+//		billEntity.setDiscpuntForDays(billDto.getDiscpuntForDays());
+//		
+//		
+//	}
+//	
+//	@Test
+//	public void getBill() throws Exception
+//	{
+//	  mvc.perform( MockMvcRequestBuilders
+//	      .get("/bill")
+//	      .accept(MediaType.APPLICATION_JSON))
+//	      .andDo(print())
+//	      .andExpect(status().isOk());  
+//	}
+//	
+//	@Test
+//	public void getReservationId() throws Exception
+//	{
+//	  mvc.perform( MockMvcRequestBuilders
+//	      .get("/reservation/{id}", 1)
+//	      .accept(MediaType.APPLICATION_JSON))
+//	      .andDo(print())
+//	      .andExpect(status().isOk());
+//	}
+//	
+//	@Test
+//	public void updateBill() throws Exception
+//	{
+//	  mvc.perform( MockMvcRequestBuilders
+//	      .put("/bill/{id}", 2)
+//	      .content(asJsonString(billEntity))
+//	      .contentType(MediaType.APPLICATION_JSON)
+//	      .accept(MediaType.APPLICATION_JSON));
+//	      
+//	}
+//
+//	private byte[] asJsonString(BillEntity billEntity2) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 }
