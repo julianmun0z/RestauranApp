@@ -72,8 +72,8 @@ public class FullReservationStrategy {
 	@Deprecated
 	public float daysWithRestriction(FullReservationDto fullReservationDto, float price) {
 		float restriction = 0;
-		if ((fullReservationDto.getReservationDate().getDay() == 5
-				|| fullReservationDto.getReservationDate().getDay() == 6)
+		if ((fullReservationDto.getReservationDate().getDay() == 4
+				|| fullReservationDto.getReservationDate().getDay() == 5)
 				&& (differenceBetweenCurrentDateAndReservationDate(fullReservationDto) <= 15)) {
 			restriction = 0;
 		} else {
