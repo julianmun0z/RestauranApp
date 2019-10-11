@@ -23,8 +23,8 @@ public class FullReservationStrategyTest {
 	private static final boolean DECOR_IS_FALSE = false;
 	private static final float FIXED_PRICE = 60000;
 	private static final Date DATE_WITH_TUESDAY_AND_WENESDAY = new Date(2019 - 1900, 8, 01);
-	private static final Date DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY= new Date(2019 - 1900, 9, 11);
-	private static final Date DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY= new Date(2019 - 1900, 9, 12);
+	private static final Date DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY= new Date(2019 - 1900, 9, 10);
+	private static final Date DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY= new Date(2019 - 1900, 9, 11);
 	private static final Date DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE= new Date(2019 - 1900, 9, 11);
 	private static final Date DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO = new Date(2019 - 1900, 9, 7);
 	private static final Date DATE_ONE = new Date(2019 - 1900, 9, 8);
@@ -60,7 +60,7 @@ public class FullReservationStrategyTest {
 		//assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
 	}
-	
+	 
 	@Test
 	public void daysWithRestrictioniSZeroSaturday() {
 		//arrange
