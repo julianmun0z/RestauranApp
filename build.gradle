@@ -51,10 +51,3 @@ dependencyManagement {
 
 
 
-test {     
-	jacoco {
-		append = false  
-   }
-} 
- 
-jacocoTestReport.dependsOn(test) 
