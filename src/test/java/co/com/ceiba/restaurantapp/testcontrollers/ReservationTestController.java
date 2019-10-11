@@ -26,67 +26,67 @@ import co.com.ceiba.restaurantapp.persistencia.entities.ReservationEntity;
 @AutoConfigureMockMvc
 public class ReservationTestController {
 
-	@Deprecated
-	private static final Date RESERVATIONDATE = new Date(2019-1900,8,24);
-	private static final int NUMBERPEOPLE = 5;
-	private static final boolean DECOR = false;
-	
-	@Autowired
-	private MockMvc mvc;
-	
-	@InjectMocks
-	ReservationDto reservationDto = new ReservationDto();
-	
-	@InjectMocks
-	ReservationEntity reservationEntity = new ReservationEntity();
-	
-	@Test
-	public void createReservation() throws Exception
-	{
-		
-		reservationDto.setReservationDate(RESERVATIONDATE);
-		reservationDto.setNumberPeople(NUMBERPEOPLE);
-		reservationDto.setDecor(DECOR);
-		reservationEntity.setReservationDate(reservationDto.getReservationDate());
-		reservationEntity.setNumberPeople(reservationDto.getNumberPeople());
-		reservationEntity.setDecor(reservationDto.isDecor());
-		
-		
-	}
-	
-	@Test
-	public void getReservation() throws Exception
-	{
-	  mvc.perform( MockMvcRequestBuilders
-	      .get("/reservation")
-	      .accept(MediaType.APPLICATION_JSON))
-	      .andDo(print())
-	      .andExpect(status().isOk());  
-	}
-	
-	
-	@Test
-	public void getReservationId() throws Exception
-	{
-	  mvc.perform( MockMvcRequestBuilders
-	      .get("/reservation/{id}", 1)
-	      .accept(MediaType.APPLICATION_JSON))
-	      .andDo(print())
-	      .andExpect(status().isOk());
-	}
-	
-	@Test
-	public void updateBill() throws Exception
-	{
-	  mvc.perform( MockMvcRequestBuilders
-	      .put("/reservation/{id}", 2)
-	      .content(asJsonString(reservationEntity))
-	      .contentType(MediaType.APPLICATION_JSON)
-	      .accept(MediaType.APPLICATION_JSON));
-}
-
-	private byte[] asJsonString(ReservationEntity reservationEntity2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Deprecated
+//	private static final Date RESERVATIONDATE = new Date(2019-1900,8,24);
+//	private static final int NUMBERPEOPLE = 5;
+//	private static final boolean DECOR = false;
+//	
+//	@Autowired
+//	private MockMvc mvc;
+//	
+//	@InjectMocks
+//	ReservationDto reservationDto = new ReservationDto();
+//	
+//	@InjectMocks
+//	ReservationEntity reservationEntity = new ReservationEntity();
+//	
+//	@Test
+//	public void createReservation() throws Exception
+//	{
+//		
+//		reservationDto.setReservationDate(RESERVATIONDATE);
+//		reservationDto.setNumberPeople(NUMBERPEOPLE);
+//		reservationDto.setDecor(DECOR);
+//		reservationEntity.setReservationDate(reservationDto.getReservationDate());
+//		reservationEntity.setNumberPeople(reservationDto.getNumberPeople());
+//		reservationEntity.setDecor(reservationDto.isDecor());
+//		
+//		
+//	}
+//	
+//	@Test
+//	public void getReservation() throws Exception
+//	{
+//	  mvc.perform( MockMvcRequestBuilders
+//	      .get("/reservation")
+//	      .accept(MediaType.APPLICATION_JSON))
+//	      .andDo(print())
+//	      .andExpect(status().isOk());  
+//	}
+//	
+//	
+//	@Test
+//	public void getReservationId() throws Exception
+//	{
+//	  mvc.perform( MockMvcRequestBuilders
+//	      .get("/reservation/{id}", 1)
+//	      .accept(MediaType.APPLICATION_JSON))
+//	      .andDo(print())
+//	      .andExpect(status().isOk());
+//	}
+//	
+//	@Test
+//	public void updateBill() throws Exception
+//	{
+//	  mvc.perform( MockMvcRequestBuilders
+//	      .put("/reservation/{id}", 2)
+//	      .content(asJsonString(reservationEntity))
+//	      .contentType(MediaType.APPLICATION_JSON)
+//	      .accept(MediaType.APPLICATION_JSON));
+//}
+//
+//	private byte[] asJsonString(ReservationEntity reservationEntity2) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }
