@@ -54,7 +54,6 @@ dependencyManagement {
 test {     
 	jacoco {
 		append = false  
-		destinationFile = file("jacoco/jacocoTest.exec") 
    }
 } 
  
