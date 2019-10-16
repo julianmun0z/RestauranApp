@@ -66,7 +66,7 @@ public class ReservationResquestBuilder {
 		price += getExtraPerson(reservationRequest);
 		price -= getDiscuontPerPeople(reservationRequest, price);
 		price -= getDiscuntForSpecialDays(reservationRequest, price);
-		price += FixedDecor(reservationRequest);
+		price += fixedDecor(reservationRequest);
 		price = daysWithRestriction(reservationRequest, price);
 		bill.setDiscountForPeople((int) getDiscuontPerPeople(reservationRequest, price));
 		bill.setDiscpuntForDays((int) getDiscuntForSpecialDays(reservationRequest, price));
@@ -143,9 +143,9 @@ public class ReservationResquestBuilder {
 	/*
 	 * method to give value if decoration is desired
 	 */
-	public float FixedDecor(ReservationRequest reservationRequest) {
+	public float fixedDecor(ReservationRequest reservationRequest) {
 		float valueDecor = 0;
-		if (reservationRequest.isDecor() == true) {
+		if (reservationRequest.isDecor()) {
 			valueDecor = FIXED_DECOR;
 		}
 		return valueDecor;
