@@ -12,7 +12,7 @@ import co.com.ceiba.restaurantapp.dominio.exception.ExceptionsForRstrictions;
 
 public class ErrorHandler extends ResponseEntityExceptionHandler {
 
-	private static final Logger LOGGER_ERROR = LoggerFactory.getLogger(ErrorHandler.class);
+	private static final Logger LOGGERERROR = LoggerFactory.getLogger(ErrorHandler.class);
 	private static final String OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR = "Ocurrió un error favor contactar al administrador.";
 	private static final ConcurrentHashMap<String, Integer> CODIGOS_ESTADO = new ConcurrentHashMap<>();
 
@@ -34,7 +34,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 			resultado = new ResponseEntity<>(error, HttpStatus.valueOf(codigo));
 
 		} else {
-			LOGGER_ERROR.error(excepcionName, exception);
+			LOGGERERROR.error(excepcionName, exception);
 			Error error = new Error(excepcionName, OCURRIO_UN_ERROR_FAVOR_CONTACTAR_AL_ADMINISTRADOR);
 			resultado = new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 
