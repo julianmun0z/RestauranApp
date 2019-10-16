@@ -5,10 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "bill")
@@ -27,10 +24,8 @@ public class BillEntity {
 
 	@Column(name = "discpuntfordays")
 	private int discpuntForDays;
-
-	@ManyToOne
-	@JoinColumn(name = "idreservation", nullable = false)
-	private ReservationEntity reservationEntity ;
+	
+	
 
 	public int getBillId() {
 		return billId;
@@ -62,14 +57,6 @@ public class BillEntity {
 
 	public void setDiscpuntForDays(int discpuntForDays) {
 		this.discpuntForDays = discpuntForDays;
-	}
-
-	public ReservationEntity getReservationEntity() {
-		return reservationEntity;
-	}
-
-	public void setReservationEntity(ReservationEntity reservationEntity) {
-		this.reservationEntity = reservationEntity;
 	}
 
 }

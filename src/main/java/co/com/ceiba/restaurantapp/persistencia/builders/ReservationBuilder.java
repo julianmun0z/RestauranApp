@@ -3,47 +3,42 @@ package co.com.ceiba.restaurantapp.persistencia.builders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import co.com.ceiba.restaurantapp.dominio.ClientDto;
-import co.com.ceiba.restaurantapp.dominio.ReservationDto;
-import co.com.ceiba.restaurantapp.persistencia.entities.ClientEntity;
+import co.com.ceiba.restaurantapp.dominio.Bill;
+import co.com.ceiba.restaurantapp.dominio.Reservation;
+import co.com.ceiba.restaurantapp.persistencia.entities.BillEntity;
 import co.com.ceiba.restaurantapp.persistencia.entities.ReservationEntity;
-
-
 
 @Configuration
 public class ReservationBuilder {
 
 	@Autowired
-	ClientBuilder clientBuilder;
+	BillBuilder billBuilder;
 
-	public ReservationEntity convertDtoToEntity(ReservationDto reservationDto) {
+	public ReservationEntity convertDtoToEntity(Reservation reservation) {
 
 		ReservationEntity reservationEntity = new ReservationEntity();
 
-		ClientEntity clientEntity = clientBuilder.convertDtoToEntity(reservationDto.getClientDto());
+		BillEntity billEntity = new BillBuilder().converDtoToEntity(reservation.getBill());
 
-		reservationEntity.setIdReservation(reservationDto.getIdReservation());
-		reservationEntity.setReservationDate(reservationDto.getReservationDate());
-		reservationEntity.setNumberPeople(reservationDto.getNumberPeople());
-		reservationEntity.setDecor(reservationDto.isDecor());
-		reservationEntity.setClientEntity(clientEntity);
-
+		reservationEntity.setReservationDate(reservation.getReservationDate());
+		reservationEntity.setNumberPeople(reservation.getNumberPeople());
+		reservationEntity.setDecor(reservation.isDecor());
+		reservationEntity.setBillEntity(billEntity);
 		return reservationEntity;
 	}
 
-	public ReservationDto convertEntityToDto(ReservationEntity reservationEntity) {
+	public Reservation convertEntityToDto(ReservationEntity reservationEntity) {
 
-		ReservationDto reservationDto = new ReservationDto();
+		Reservation reservation = new Reservation();
 
-		ClientDto clientDto = clientBuilder.convertEntityToDto(reservationEntity.getClientEntity());
+		Bill bill = new BillBuilder().convertEntityToDto(reservationEntity.getBillEntity());
 
-		reservationDto.setIdReservation(reservationEntity.getIdReservation());
-		reservationDto.setReservationDate(reservationEntity.getReservationDate());
-		reservationDto.setNumberPeople(reservationEntity.getNumberPeople());
-		reservationDto.setDecor(reservationEntity.isDecor());
-		reservationDto.setClientDto(clientDto);
+		reservation.setReservationDate(reservationEntity.getReservationDate());
+		reservation.setNumberPeople(reservationEntity.getNumberPeople());
+		reservation.setDecor(reservationEntity.isDecor());
+		reservation.setBill(bill);
 
-		return reservationDto;
+		return reservation;
 	}
 
 }

@@ -2,6 +2,7 @@ package co.com.ceiba.restaurantapp.persistencia.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -23,16 +23,19 @@ public class ReservationEntity {
 	private Integer idReservation;
 
 	@Column(name = "reservationdate")
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-mm-dd+1")
 	private Date reservationDate;
 
 	@Column(name = "numberpeople")
 	private int numberPeople;
 
 	private boolean decor;
-	@ManyToOne
-	@JoinColumn(name = "idclient", nullable = false)
-	private ClientEntity clientEntity;
+
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "idbill", nullable = false)
+	private BillEntity billEntity;
+	
+
 
 	public Integer getIdReservation() {
 		return idReservation;
@@ -66,12 +69,12 @@ public class ReservationEntity {
 		this.decor = decor;
 	}
 
-	public ClientEntity getClientEntity() {
-		return clientEntity;
+	public BillEntity getBillEntity() {
+		return billEntity;
 	}
 
-	public void setClientEntity(ClientEntity clientEntity) {
-		this.clientEntity = clientEntity;
+	public void setBillEntity(BillEntity billEntity) {
+		this.billEntity = billEntity;
 	}
 
 }

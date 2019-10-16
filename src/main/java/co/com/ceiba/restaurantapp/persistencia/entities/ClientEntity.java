@@ -1,10 +1,13 @@
 package co.com.ceiba.restaurantapp.persistencia.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +30,13 @@ public class ClientEntity {
 
 	@Column(name = "clientphonenumber")
 	private String phoneNumber;
+
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "idreservation", nullable = false )
+	private ReservationEntity reservationEntity;
+
+	
+	
 
 	public Integer getClientId() {
 		return clientId;
@@ -66,6 +76,14 @@ public class ClientEntity {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public ReservationEntity getReservationEntity() {
+		return reservationEntity;
+	}
+
+	public void setReservationEntity(ReservationEntity reservationEntity) {
+		this.reservationEntity = reservationEntity;
 	}
 
 }

@@ -1,6 +1,5 @@
 package co.com.ceiba.restaurantapp.dominio.exception.error;
 
-
 public class Error {
 
 	private String exceptionName;
