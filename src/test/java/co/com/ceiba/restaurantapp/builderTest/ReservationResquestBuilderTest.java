@@ -226,7 +226,7 @@ public class ReservationResquestBuilderTest {
 		float newFixedDecor = 0;
 
 		// act
-		float expectantFixedDecor = fullReservationStrategy.FixedDecor(reservationRequest);
+		float expectantFixedDecor = fullReservationStrategy.fixedDecor(reservationRequest);
 
 		// assert
 
@@ -240,7 +240,7 @@ public class ReservationResquestBuilderTest {
 		float newFixedDecor = 30000;
 
 		// act
-		float expectantFixedDecor = fullReservationStrategy.FixedDecor(reservationRequest);
+		float expectantFixedDecor = fullReservationStrategy.fixedDecor(reservationRequest);
 
 		// assert
 
