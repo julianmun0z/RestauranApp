@@ -1,7 +1,7 @@
 package co.com.ceiba.restaurantapp.dominio;
 
 import java.util.Calendar;
-import java.util.Date;
+
 
 public class Reservation {
 
@@ -11,13 +11,7 @@ public class Reservation {
 	private Bill bill;
 
 	
-//	public Date getReservationDate() {
-//		return reservationDate;
-//	}
-//
-//	public void setReservationDate(Date reservationDate) {
-//		this.reservationDate = reservationDate;
-//	}
+
 
 	public Calendar getReservationDate() {
 		return reservationDate;

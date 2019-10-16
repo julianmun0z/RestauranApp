@@ -1,7 +1,6 @@
 package co.com.ceiba.restaurantapp.persistencia.entities;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
