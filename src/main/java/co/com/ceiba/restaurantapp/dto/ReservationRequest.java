@@ -45,16 +45,6 @@ public class ReservationRequest {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	
-	
-
-//	public Date getReservationDate() {
-//		return reservationDate;
-//	}
-//
-//	public void setReservationDate(Date reservationDate) {
-//		this.reservationDate = reservationDate;
-//	}
 
 	public Calendar getReservationDate() {
 		return reservationDate;
