@@ -50,9 +50,10 @@ public class ClientService {
 		Client client = clientBuilder.convertEntityToDto(clientEntity);
 		if (client != null) {
 			clientDao.delete(clientEntity);
-			
-		}return client;
-		
+
+		}
+		return client;
+
 	}
 
 }

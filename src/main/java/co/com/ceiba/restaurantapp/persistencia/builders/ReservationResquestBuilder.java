@@ -1,5 +1,6 @@
 package co.com.ceiba.restaurantapp.persistencia.builders;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 @Configuration
 public class ReservationResquestBuilder {
 
-	Date CurrentDate = new Date();
+	Calendar CurrentDate =  Calendar.getInstance();
 
 	private static final int PERCENT_DAYS = 20;
 	private static final int PERCENT_FOR_PEOPLE = 15;
@@ -89,11 +90,13 @@ public class ReservationResquestBuilder {
 	 * method to place a 15-day restriction for reservations made on Saturdays or
 	 * Sundays.
 	 */
-	@Deprecated
+	
+	
+
 	public float daysWithRestriction(ReservationRequest reservationRequest, float price) {
 		float restriction = 0;
-		int day = reservationRequest.getReservationDate().getDay();
-		if ((day == 5 || day == 6) && (differenceBetweenCurrentDateAndReservationDate(reservationRequest) <= 15)) {
+		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
+		if ((day == 6 || day == 7) && (differenceBetweenCurrentDateAndReservationDate(reservationRequest) <= 15)) {
 			restriction = 0;
 		} else {
 			restriction = price;
@@ -105,12 +108,12 @@ public class ReservationResquestBuilder {
 	/*
 	 * method to get a 20% discount for Tuesday and Wednesday.
 	 */
-	@Deprecated
+	
 	public float getDiscuntForSpecialDays(ReservationRequest reservationRequest, float price) {
 		float discountDay = 0;
-		int day = reservationRequest.getReservationDate().getDay();
+		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
 
-		if (day == 2 || day == 3) {
+		if (day == 3 || day == 4) {
 			discountDay = price * PERCENT_DAYS / DISCOUNT_SPLITTER;
 
 		}
@@ -152,15 +155,13 @@ public class ReservationResquestBuilder {
 	 * method to calculate difference between the current date and the reservation
 	 * date for restrictions
 	 */
-	@Deprecated
 	public long differenceBetweenCurrentDateAndReservationDate(ReservationRequest reservationRequest) {
 		long daysDifference = 0;
-		daysDifference = (reservationRequest.getReservationDate().getTime() - CurrentDate.getTime()) / 86400000;
+		Date fechaEntrada =reservationRequest.getReservationDate().getTime();
+		Date fechaHoy = CurrentDate.getTime();
+		daysDifference = (fechaEntrada.getTime() - fechaHoy.getTime()) / 86400000;
 		return daysDifference;
 	}
-	
-	
-	
 
 	/*
 	 * method to validate the fields

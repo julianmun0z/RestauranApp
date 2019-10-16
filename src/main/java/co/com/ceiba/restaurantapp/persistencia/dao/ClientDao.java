@@ -16,7 +16,6 @@ public interface ClientDao extends Repository<ClientEntity, Integer> {
 
 	ClientEntity findById(int id);
 
-	
 	void delete(ClientEntity clientEntity);
 
 }

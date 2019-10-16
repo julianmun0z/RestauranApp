@@ -1,6 +1,7 @@
 package co.com.ceiba.restaurantapp.dto;
 
-import java.util.Date;
+import java.util.Calendar;
+
 
 public class ReservationRequest {
 
@@ -8,11 +9,10 @@ public class ReservationRequest {
 	private String lastName;
 	private String email;
 	private String phoneNumber;
-	private Date reservationDate;
+	private Calendar reservationDate;
 	private boolean decor;
 	private int numberPeople;
 
-	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -44,12 +44,23 @@ public class ReservationRequest {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+	
+	
+	
 
-	public Date getReservationDate() {
+//	public Date getReservationDate() {
+//		return reservationDate;
+//	}
+//
+//	public void setReservationDate(Date reservationDate) {
+//		this.reservationDate = reservationDate;
+//	}
+
+	public Calendar getReservationDate() {
 		return reservationDate;
 	}
 
-	public void setReservationDate(Date reservationDate) {
+	public void setReservationDate(Calendar reservationDate) {
 		this.reservationDate = reservationDate;
 	}
 

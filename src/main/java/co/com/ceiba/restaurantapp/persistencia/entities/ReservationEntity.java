@@ -1,5 +1,6 @@
 package co.com.ceiba.restaurantapp.persistencia.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class ReservationEntity {
 
 	@Column(name = "reservationdate")
 	@DateTimeFormat(pattern = "yyyy-mm-dd+1")
-	private Date reservationDate;
+	private Calendar reservationDate;
 
 	@Column(name = "numberpeople")
 	private int numberPeople;
@@ -45,11 +46,13 @@ public class ReservationEntity {
 		this.idReservation = idReservation;
 	}
 
-	public Date getReservationDate() {
+
+
+	public Calendar getReservationDate() {
 		return reservationDate;
 	}
 
-	public void setReservationDate(Date reservationDate) {
+	public void setReservationDate(Calendar reservationDate) {
 		this.reservationDate = reservationDate;
 	}
 

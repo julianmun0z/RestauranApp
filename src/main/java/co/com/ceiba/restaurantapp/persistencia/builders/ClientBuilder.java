@@ -12,9 +12,7 @@ public class ClientBuilder {
 
 	@Autowired
 	ReservationBuilder reservationBuilder;
-	
 
-	
 	public ClientEntity convertDtoToEntity(Client client) {
 
 		ClientEntity clientEntity = new ClientEntity();
@@ -35,7 +33,7 @@ public class ClientBuilder {
 		Client client = new Client();
 
 		Reservation reservation = new ReservationBuilder().convertEntityToDto(clientEntity.getReservationEntity());
-	
+
 		client.setClientId(clientEntity.getClientId());
 		client.setFirstName(clientEntity.getFirstName());
 		client.setLastName(clientEntity.getLastName());
