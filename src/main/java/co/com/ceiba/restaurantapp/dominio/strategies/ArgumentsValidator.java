@@ -4,6 +4,12 @@ import co.com.ceiba.restaurantapp.dominio.exception.ExceptionsForRstrictions;
 
 public class ArgumentsValidator {
 
+	
+	private ArgumentsValidator() {
+		
+	}
+	
+	
 	public static void restrictionForNull(Object valor, String mensaje) {
 		if (valor == null) {
 			throw new ExceptionsForRstrictions(mensaje);
