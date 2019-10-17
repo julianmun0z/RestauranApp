@@ -53,13 +53,15 @@ public class ReservationResquestBuilderTest {
 	private Bill bill = new Bill();
 	
 	@InjectMocks
-	private ReservationResquestBuilder fullReservationStrategy;
-
+	private ReservationResquestBuilder reservationResquestBuilder;
+	
+	
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 
 	}
+	
 	
 	@Test
 	public void daysWithRestrictioniSMoreGreaterThanFifteenDays() {
@@ -69,7 +71,7 @@ public class ReservationResquestBuilderTest {
 		float price = 60000;
 	
 		//act
-		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
 		System.out.println(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
 		//assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
@@ -82,7 +84,7 @@ public class ReservationResquestBuilderTest {
 		float newDaysWithRestriction = 0;
 		float price = 60000;
 		//act
-		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
 		//assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
 	}
@@ -94,7 +96,7 @@ public class ReservationResquestBuilderTest {
 		float newDaysWithRestriction = 0;
 		float price = 60000;
 		//act
-		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
 		//assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
 	}
@@ -110,7 +112,7 @@ public class ReservationResquestBuilderTest {
 		float newDaysWithRestriction = 60000;
 		float price = 60000;
 		//act
-		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
 		//assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
 	}
@@ -122,7 +124,7 @@ public class ReservationResquestBuilderTest {
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
 		//act
-		float expectangetDiscuntForSpecialDays = fullReservationStrategy.getDiscuntForSpecialDays(reservationRequest, price); 
+		float expectangetDiscuntForSpecialDays = reservationResquestBuilder.getDiscuntForSpecialDays(reservationRequest, price); 
 		
 		//assert
 		assertEquals(newGetDiscuntForSpecialDays, expectangetDiscuntForSpecialDays,0);
@@ -136,7 +138,7 @@ public class ReservationResquestBuilderTest {
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
 		//act
-		float expectangetDiscuntForSpecialDays = fullReservationStrategy.getDiscuntForSpecialDays(reservationRequest, price); 
+		float expectangetDiscuntForSpecialDays = reservationResquestBuilder.getDiscuntForSpecialDays(reservationRequest, price); 
 		
 		//assert
 		assertEquals(newGetDiscuntForSpecialDays, expectangetDiscuntForSpecialDays,0);
@@ -149,7 +151,7 @@ public class ReservationResquestBuilderTest {
 		float newGetDiscuntForSpecialDays = 0;
 		float price = 60000;
 		//act
-		float expectangetDiscuntForSpecialDays = fullReservationStrategy.getDiscuntForSpecialDays(reservationRequest, price); 
+		float expectangetDiscuntForSpecialDays = reservationResquestBuilder.getDiscuntForSpecialDays(reservationRequest, price); 
 		
 		//assert
 		assertEquals(newGetDiscuntForSpecialDays, expectangetDiscuntForSpecialDays,0);
@@ -164,7 +166,7 @@ public class ReservationResquestBuilderTest {
 		float price = 50000;
 		//act
 		
-		float expectangetDiscuontPerPeople = fullReservationStrategy.getDiscuontPerPeople(reservationRequest, price);
+		float expectangetDiscuontPerPeople = reservationResquestBuilder.getDiscuontPerPeople(reservationRequest, price);
 		
 		//assert
 		assertEquals(newgetDiscuontPerPeople, expectangetDiscuontPerPeople,0);
@@ -179,7 +181,7 @@ public class ReservationResquestBuilderTest {
 		float price = 50000;
 		//act
 		
-		float expectangetDiscuontPerPeople = fullReservationStrategy.getDiscuontPerPeople(reservationRequest, price);
+		float expectangetDiscuontPerPeople = reservationResquestBuilder.getDiscuontPerPeople(reservationRequest, price);
 		
 		//assert
 		assertEquals(newgetDiscuontPerPeople, expectangetDiscuontPerPeople,0);
@@ -193,7 +195,7 @@ public class ReservationResquestBuilderTest {
 		reservationRequest.setNumberPeople(NUMBER_PEOPLE);
 		float newExtraPerson = 250000;
 		// act
-		float expectanExtraPersona = fullReservationStrategy.getExtraPerson(reservationRequest);
+		float expectanExtraPersona = reservationResquestBuilder.getExtraPerson(reservationRequest);
 
 		// assert
 		assertEquals(newExtraPerson, expectanExtraPersona, 0);
@@ -206,7 +208,7 @@ public class ReservationResquestBuilderTest {
 		bill.setPrice(FIXED_PRICE);
 		float newSetFixedPrice = 60000;
 		// act
-		float expectanSetFixedPrice = fullReservationStrategy.giveValueToThePrice(reservationRequest);
+		float expectanSetFixedPrice = reservationResquestBuilder.giveValueToThePrice(reservationRequest);
 
 		// assert
 		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
@@ -218,7 +220,7 @@ public class ReservationResquestBuilderTest {
 		bill.setPrice(FIXED_PRICE);
 		float newSetFixedPrice = 0;
 		// act
-		float expectanSetFixedPrice = fullReservationStrategy.giveValueToThePrice(reservationRequest);
+		float expectanSetFixedPrice = reservationResquestBuilder.giveValueToThePrice(reservationRequest);
 
 		// assert
 		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
@@ -233,7 +235,7 @@ public class ReservationResquestBuilderTest {
 		float newFixedDecor = 0;
 
 		// act
-		float expectantFixedDecor = fullReservationStrategy.fixedDecor(reservationRequest);
+		float expectantFixedDecor = reservationResquestBuilder.fixedDecor(reservationRequest);
 
 		// assert
 
@@ -247,7 +249,7 @@ public class ReservationResquestBuilderTest {
 		float newFixedDecor = 30000;
 
 		// act
-		float expectantFixedDecor = fullReservationStrategy.fixedDecor(reservationRequest);
+		float expectantFixedDecor = reservationResquestBuilder.fixedDecor(reservationRequest);
 
 		// assert
 
@@ -260,11 +262,11 @@ public class ReservationResquestBuilderTest {
 //
 //		// arrange
 //		reservationRequest.setReservationDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE);
-//		reservationRequest.setConcurenDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
+//		reservationResquestBuilder.setConcurenDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
 //
 //		long newDifferenceDays = 4;
 //		// act
-//		long newDiferens = fullReservationStrategy.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
+//		long newDiferens = reservationResquestBuilder.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
 //		// assert
 //		assertEquals(newDifferenceDays, newDiferens);
 //
