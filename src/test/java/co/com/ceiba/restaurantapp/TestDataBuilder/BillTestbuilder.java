@@ -45,9 +45,5 @@ public class BillTestbuilder {
 		return this;
 
 	}
-	
-	public Bill build() {
-		return new Bill();
-
-	}
+	 
 }
