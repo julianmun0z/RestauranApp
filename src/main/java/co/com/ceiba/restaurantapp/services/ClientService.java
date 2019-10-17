@@ -35,7 +35,7 @@ public class ClientService {
 
 	public Client getClientById(int id) {
 		ClientEntity clientEntity = clientDao.findById(id);
-		Client client = clientBuilder.convertEntityToDto(clientEntity);
+		 Client client = clientBuilder.convertEntityToDto(clientEntity);
 		return client;
 	}
 

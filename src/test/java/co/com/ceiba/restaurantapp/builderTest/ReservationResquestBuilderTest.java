@@ -23,35 +23,28 @@ public class ReservationResquestBuilderTest {
 //	private static final int DISCOUNT_FOR_DAYS = 20;
 	private static final boolean DECOR = true;
 	private static final boolean DECOR_IS_FALSE = false;
-
-//	private static final float FIXED_PRICE = 60000;
-//	private static final int VALUE_FOR_PERSON = 50000;
-//	private static final int PERCENT_DAYS = 20;
-//	private static final int PERCENT_FOR_PEOPLE = 15;
-//	private static final int DISCOUNT_SPLITTER = 100;
-//	private static final int FIXED_DECOR = 30000;
+	private static final String NAME_FIXED_PRICE= "Julian";
+	private static final float FIXED_PRICE = 60000;
+	private static final int VALUE_FOR_PERSON = 50000;
+	private static final int PERCENT_DAYS = 20;
+	private static final int PERCENT_FOR_PEOPLE = 15;
+	private static final int DISCOUNT_SPLITTER = 100;
+	private static final int FIXED_DECOR = 30000;
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY = new GregorianCalendar(2019 - 1900, 8, 01);
-	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY= new GregorianCalendar(2019 - 1900, 9, 11);
-	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY=  new GregorianCalendar(2019 - 1900, 9, 12);
-
-//	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE= new GregorianCalendar(2019 - 1900, 9, 11);
-//	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO = new GregorianCalendar(2019 - 1900, 9, 7);
-	private static final Calendar DATE_ONE = new GregorianCalendar(2019 - 1900, 9, 8);
-	private static final Calendar DATE_TWO = new GregorianCalendar(2019 - 1900, 9, 9);
-
-	
-//	private static final String EL_NOMBRE_ES_OBLIGATORIO = "EL NOMBRE ES OBLIGATORIO";
-//	private static final String EL_APELLIDO_ES_OBLIGATORIO = "EL APELLIDO ES OBLIGATORIO";
-//	private static final String EL_EMAIL_ES_OBLIGATORIO = "EL EMAIL ES OBLIGATORIO";
-//	private static final String LA_FECHA_ES_OBLIGATORIA = "LA FECHA ES OBLIGATORIA";
-//	private static final String EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO = "EL NUMERO DE PERSONAS PARA LA RESERVA ES OBLIGATORIO";
-//	private static final String LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
-
-	
-	//private static final String FIRST_NAME_IS_NULL = "";
-	
-	
-	//private static final Calendar DATE_WITH_FRIDAY_AND_SATURDAY = new GregorianCalendar(2019 - 1900, 8, 16);
+	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY= new GregorianCalendar(2019, 9, 11);
+	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY=  new GregorianCalendar(2019, 9, 12);
+	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE= new GregorianCalendar(2019 - 1900, 9, 11);
+	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO = new GregorianCalendar(2019 - 1900, 9, 7);
+	private static final Calendar DATE_ONE = new GregorianCalendar(2019 , 9, 8);
+	private static final Calendar DATE_TWO = new GregorianCalendar(2019, 9, 9);	
+	private static final String EL_NOMBRE_ES_OBLIGATORIO = "EL NOMBRE ES OBLIGATORIO";
+	private static final String EL_APELLIDO_ES_OBLIGATORIO = "EL APELLIDO ES OBLIGATORIO";
+	private static final String EL_EMAIL_ES_OBLIGATORIO = "EL EMAIL ES OBLIGATORIO";
+	private static final String LA_FECHA_ES_OBLIGATORIA = "LA FECHA ES OBLIGATORIA";
+	private static final String EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO = "EL NUMERO DE PERSONAS PARA LA RESERVA ES OBLIGATORIO";
+	private static final String LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
+	private static final String FIRST_NAME_IS_NULL = "";	
+	private static final Calendar DATE_WITH_FRIDAY_AND_SATURDAY = new GregorianCalendar(2019 - 1900, 8, 16);
 
 	@InjectMocks
 	private ReservationRequest reservationRequest = new ReservationRequest();
@@ -68,43 +61,44 @@ public class ReservationResquestBuilderTest {
 
 	}
 	
-//	@Test
-//	public void daysWithRestrictioniSMoreGreaterThanFifteenDays() {
-//		//arrange
-//		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
-//		float newDaysWithRestriction = 0;
-//		float price = 60000;
-//	
-//		//act
-//		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
-//		//assert
-//		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
-//	}
+	@Test
+	public void daysWithRestrictioniSMoreGreaterThanFifteenDays() {
+		//arrange
+		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+		float newDaysWithRestriction = 0;
+		float price = 60000;
 	
-//	@Test
-//	public void daysWithRestrictioniSZeroSaturday() {
-//		//arrange
-//		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
-//		float newDaysWithRestriction = 0;
-//		float price = 60000;
-//		//act
-//		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
-//		//assert
-//		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
-//	}
+		//act
+		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
+		System.out.println(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+		//assert
+		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
+	}
 	
-//	@Test
-//	public void daysWithRestrictioniSZeroFriday() {
-//		//arrange
-//		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY);
-//		float newDaysWithRestriction = 0;
-//		float price = 60000;
-//		//act
-//		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
-//		//assert
-//		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
-//	}
-//	
+	@Test
+	public void daysWithRestrictioniSZeroSaturday() {
+		//arrange
+		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+		float newDaysWithRestriction = 0;
+		float price = 60000;
+		//act
+		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
+		//assert
+		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
+	}
+	
+	@Test
+	public void daysWithRestrictioniSZeroFriday() {
+		//arrange
+		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY);
+		float newDaysWithRestriction = 0;
+		float price = 60000;
+		//act
+		float expectanDaysWithRestriction = fullReservationStrategy.daysWithRestriction(reservationRequest, price);
+		//assert
+		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
+	}
+	
 	
 
 
@@ -121,32 +115,32 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
 	}
 	
-//	@Test
-//	public void getDiscuntForSpecialDaysWednesdayTest() {
-//		//arrange
-//		reservationRequest.setReservationDate(DATE_TWO);
-//		float newGetDiscuntForSpecialDays = 12000;
-//		float price = 60000;
-//		//act
-//		float expectangetDiscuntForSpecialDays = fullReservationStrategy.getDiscuntForSpecialDays(reservationRequest, price); 
-//		
-//		//assert
-//		assertEquals(newGetDiscuntForSpecialDays, expectangetDiscuntForSpecialDays,0);
-//	}
+	@Test
+	public void getDiscuntForSpecialDaysWednesdayTest() {
+		//arrange
+		reservationRequest.setReservationDate(DATE_TWO);
+		float newGetDiscuntForSpecialDays = 12000;
+		float price = 60000;
+		//act
+		float expectangetDiscuntForSpecialDays = fullReservationStrategy.getDiscuntForSpecialDays(reservationRequest, price); 
+		
+		//assert
+		assertEquals(newGetDiscuntForSpecialDays, expectangetDiscuntForSpecialDays,0);
+	}
 	
 	
-//	@Test
-//	public void getDiscuntForSpecialDaysTuesdayTest() {
-//		//arrange
-//		reservationRequest.setReservationDate(DATE_ONE);
-//		float newGetDiscuntForSpecialDays = 12000;
-//		float price = 60000;
-//		//act
-//		float expectangetDiscuntForSpecialDays = fullReservationStrategy.getDiscuntForSpecialDays(reservationRequest, price); 
-//		
-//		//assert
-//		assertEquals(newGetDiscuntForSpecialDays, expectangetDiscuntForSpecialDays,0);
-//	}
+	@Test
+	public void getDiscuntForSpecialDaysTuesdayTest() {
+		//arrange
+		reservationRequest.setReservationDate(DATE_ONE);
+		float newGetDiscuntForSpecialDays = 12000;
+		float price = 60000;
+		//act
+		float expectangetDiscuntForSpecialDays = fullReservationStrategy.getDiscuntForSpecialDays(reservationRequest, price); 
+		
+		//assert
+		assertEquals(newGetDiscuntForSpecialDays, expectangetDiscuntForSpecialDays,0);
+	}
 	
 	@Test
 	public void getDiscuntForSpecialDaysTestIsZero() {
@@ -205,17 +199,30 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newExtraPerson, expectanExtraPersona, 0);
 	}
 
-//	@Test
-//	public void setFixedPriceTest() {
-//		// arrange
-//		bill.setPrice(FIXED_PRICE);
-//		float newSetFixedPrice = 60000;
-//		// act
-//		float expectanSetFixedPrice = fullReservationStrategy.setFixedPrice(reservationRequest);
-//
-//		// assert
-//		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
-//	}
+	@Test
+	public void setFixedPriceTest() {
+		// arrange
+		reservationRequest.setFirstName(NAME_FIXED_PRICE);;
+		bill.setPrice(FIXED_PRICE);
+		float newSetFixedPrice = 60000;
+		// act
+		float expectanSetFixedPrice = fullReservationStrategy.giveValueToThePrice(reservationRequest);
+
+		// assert
+		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
+	}
+	@Test
+	public void setFixedPriceValueZeroTest() {
+		// arrange
+		reservationRequest.getFirstName();
+		bill.setPrice(FIXED_PRICE);
+		float newSetFixedPrice = 0;
+		// act
+		float expectanSetFixedPrice = fullReservationStrategy.giveValueToThePrice(reservationRequest);
+
+		// assert
+		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
+	}
 
 	
 	
