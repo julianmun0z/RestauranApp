@@ -9,13 +9,7 @@ public class Client {
 	private String phoneNumber;
 	private Reservation reservation;
 
-	public Integer getClientId() {
-		return clientId;
-	}
 
-	public void setClientId(Integer clientId) {
-		this.clientId = clientId;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -23,6 +17,14 @@ public class Client {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	
+	public Integer getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
 
 	public String getLastName() {
