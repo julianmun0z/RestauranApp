@@ -15,7 +15,7 @@ import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 @Configuration
 public class ReservationResquestBuilder {
 
-	Calendar currentDate =  Calendar.getInstance();
+	
 
 	private static final int PERCENT_DAYS = 20;
 	private static final int PERCENT_FOR_PEOPLE = 15;
@@ -50,7 +50,7 @@ public class ReservationResquestBuilder {
 
 		client.setFirstName(reservationRequest.getFirstName());
 		client.setLastName(reservationRequest.getLastName());
-		client.setEmail(reservationRequest.getEmail());
+		client.setEmail(reservationRequest.getEmail()); 
 		client.setPhoneNumber(reservationRequest.getPhoneNumber());
 		client.setReservation(reservation);
 
@@ -158,7 +158,7 @@ public class ReservationResquestBuilder {
 	public long differenceBetweenCurrentDateAndReservationDate(ReservationRequest reservationRequest) {
 		long daysDifference = 0;
 		Date fechaEntrada =reservationRequest.getReservationDate().getTime();
-		Date fechaHoy = currentDate.getTime();
+		Date fechaHoy = reservationRequest.getCurrentDate().getTime();
 		daysDifference = (fechaEntrada.getTime() - fechaHoy.getTime()) / 86400000;
 		return daysDifference;
 	}

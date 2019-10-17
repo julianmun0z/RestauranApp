@@ -257,35 +257,35 @@ public class ReservationResquestBuilderTest {
 
 	}
 	
-//	@Test
-//	public void TestForLessThanFifteenDays() { 
-//
-//		// arrange
-//		reservationRequest.setReservationDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE);
-//		reservationResquestBuilder.setConcurenDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
-//
-//		long newDifferenceDays = 4;
-//		// act
-//		long newDiferens = reservationResquestBuilder.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
-//		// assert
-//		assertEquals(newDifferenceDays, newDiferens);
-//
-//	}
-//
-//	@Test
-//	public void differenceBetweenCurrentDateAndReservationDateTest() {
-//
-//		// arrange
-//		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY);
-//		reservationRequest.setConcurenDate(DATE_WITH_FRIDAY_AND_SATURDAY);
-//
-//		long newDifferenceDays = -15;
-//		// act
-//		long newDiferens = fullReservationStrategy.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
-//		// assert
-//		assertEquals(newDifferenceDays, newDiferens);
-//
-//	}
+	@Test
+	public void TestForLessThanFifteenDays() { 
+
+		// arrange
+		reservationRequest.setReservationDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE);
+		reservationRequest.setCurrentDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
+
+		long newDifferenceDays = 4;
+		// act
+		long newDiferens = reservationResquestBuilder.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
+		// assert
+		assertEquals(newDifferenceDays, newDiferens);
+
+	}
+
+	@Test
+	public void differenceBetweenCurrentDateAndReservationDateTest() {
+
+		// arrange
+		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY);
+		reservationRequest.setCurrentDate(DATE_WITH_FRIDAY_AND_SATURDAY);;
+
+		long newDifferenceDays = -15;
+		// act
+		long newDiferens = reservationResquestBuilder.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
+		// assert
+		assertEquals(newDifferenceDays, newDiferens);
+
+	}
 //	@Test
 //	public void validationsTest ( ) {
 //		//arrange

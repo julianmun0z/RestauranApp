@@ -74,4 +74,16 @@ public class ReservationRequest {
 		this.numberPeople = numberPeople;
 	}
 
+	
+	Calendar currentDate =  Calendar.getInstance();
+
+	public Calendar getCurrentDate() {
+		return currentDate;
+	}
+
+	public void setCurrentDate(Calendar currentDate) {
+		this.currentDate = currentDate;
+	}
+	
+	
 }
