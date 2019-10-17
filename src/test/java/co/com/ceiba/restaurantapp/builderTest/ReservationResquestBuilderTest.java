@@ -12,7 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 import co.com.ceiba.restaurantapp.persistencia.builders.ReservationResquestBuilder;
+import junit.framework.Assert;
 import co.com.ceiba.restaurantapp.dominio.Bill;
+import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 public class ReservationResquestBuilderTest {
 
@@ -30,7 +32,7 @@ public class ReservationResquestBuilderTest {
 	private static final int PERCENT_FOR_PEOPLE = 15;
 	private static final int DISCOUNT_SPLITTER = 100;
 	private static final int FIXED_DECOR = 30000;
-	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY = new GregorianCalendar(2019 - 1900, 8, 01);
+	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY = new GregorianCalendar(2019, 8, 01);
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY= new GregorianCalendar(2019, 9, 11);
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY=  new GregorianCalendar(2019, 9, 12);
 	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE= new GregorianCalendar(2019 - 1900, 9, 11);
@@ -44,7 +46,7 @@ public class ReservationResquestBuilderTest {
 	private static final String EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO = "EL NUMERO DE PERSONAS PARA LA RESERVA ES OBLIGATORIO";
 	private static final String LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
 	private static final String FIRST_NAME_IS_NULL = "";	
-	private static final Calendar DATE_WITH_FRIDAY_AND_SATURDAY = new GregorianCalendar(2019 - 1900, 8, 16);
+	private static final Calendar DATE_WITH_FRIDAY_AND_SATURDAY = new GregorianCalendar(2019, 8, 16);
 
 	@InjectMocks
 	private ReservationRequest reservationRequest = new ReservationRequest();
@@ -276,27 +278,31 @@ public class ReservationResquestBuilderTest {
 	public void differenceBetweenCurrentDateAndReservationDateTest() {
 
 		// arrange
-		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY);
-		reservationRequest.setCurrentDate(DATE_WITH_FRIDAY_AND_SATURDAY);;
-
-		long newDifferenceDays = -15;
+		reservationRequest.setReservationDate(DATE_WITH_FRIDAY_AND_SATURDAY);
+		reservationRequest.setCurrentDate(DATE_WITH_TUESDAY_AND_WENESDAY);;
+		
+		long newDifferenceDays = 15;
 		// act
 		long newDiferens = reservationResquestBuilder.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
 		// assert
 		assertEquals(newDifferenceDays, newDiferens);
 
 	}
+	
 //	@Test
-//	public void validationsTest ( ) {
+//	public void firstNameFieldValidationIsValueNullTest ( ) {
 //		//arrange
-//		fullReservationDto.setFirstName("");
-//		String newMenssageForNull = EL_NOMBRE_ES_OBLIGATORIO;
+//		reservationRequest.setFirstName(null);
+//		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
 //		//act
-//	void expectanMnesaggeForNull= ArgumentsValidator.restrictionForNull(fullReservationDto.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
-//	//assert
-//		assertEquals(newMenssageForNull, expectanMnesaggeForNull);
+//	void obj =	 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+//		
+//		 //assert
+//		
 //	
 //	}
+
+
 
 }
 

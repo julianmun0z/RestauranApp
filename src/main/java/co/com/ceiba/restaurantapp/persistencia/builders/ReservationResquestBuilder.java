@@ -174,10 +174,10 @@ public class ReservationResquestBuilder {
 		numberPeopleFieldValidation(reservationRequest);
 	}
 
-	/*
+	/* 
 	 * firstName field validation is not empty
 	 */
-	private void firstNameFieldValidation(ReservationRequest reservationRequest) {
+	public void firstNameFieldValidation(ReservationRequest reservationRequest) {
 		ArgumentsValidator.restrictionForNull(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
 		ArgumentsValidator.restrictionForNulle(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
 	}
