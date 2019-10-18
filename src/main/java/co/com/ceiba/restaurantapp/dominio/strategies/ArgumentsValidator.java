@@ -22,7 +22,7 @@ public class ArgumentsValidator {
 		if (valor == 0) {
 			throw new ExceptionsForRstrictions(mensaje);
 		}
-	}
+	} 
 
 	public static void restrictionForValueZero(float valor, String mensaje) {
 		if (valor == 0) {

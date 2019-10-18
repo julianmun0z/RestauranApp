@@ -19,6 +19,7 @@ import co.com.ceiba.restaurantapp.persistencia.builders.ReservationResquestBuild
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
+import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 public class ReservationResquestBuilderTest {
 
@@ -338,12 +339,37 @@ public class ReservationResquestBuilderTest {
 		  String other="";
 		//act
 		 try {
-			 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+				ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
 			}
 			catch(Exception e) {
 			  other=e.getMessage();
 			}
+	 	
 		
+		
+		 //assert
+		assertEquals(newMenssageForNull, other);
+	
+	}
+	
+	/*
+	 * metodo para dieferente de vacio
+	 */
+	
+	@Test
+	public void firstNameFieldValidationForDiferentIsValueVoidTest ( ) {
+		//arrange
+		when(reservationRequest.getFirstName()).thenReturn("julian");
+		 String newMenssageForNull =  "julian";
+		  String other="julian";
+		//act
+		 try {
+				ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
+			}
+			catch(Exception e) {
+			  other=e.getMessage();
+			}
+	 	
 		
 		
 		 //assert
@@ -411,6 +437,8 @@ public class ReservationResquestBuilderTest {
 public void validationsTest() {
 	
 	when(reservationRequest.getFirstName()).thenReturn(null);
+	when(reservationRequest.getFirstName()).thenReturn("");
+
 	 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
 	  String other="";
 	//act
@@ -424,6 +452,7 @@ public void validationsTest() {
 	
 	
 	 //assert
+	 assertEquals(newMenssageForNull, other);
 	assertEquals(newMenssageForNull, other);
 }
 
