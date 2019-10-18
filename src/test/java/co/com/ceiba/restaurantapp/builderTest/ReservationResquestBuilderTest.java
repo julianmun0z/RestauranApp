@@ -1,8 +1,6 @@
 package co.com.ceiba.restaurantapp.builderTest;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import java.util.Calendar;
@@ -26,6 +24,8 @@ public class ReservationResquestBuilderTest {
 	private static final int NUMBER_PEOPLE = 5;
 	private static final int MINUS_NUMBER_PEOPLE = 2;
 	private static final float PRICE = 350000;
+	private static final float PRICE_ZERO = 0;
+
 
 	private static final String FIRSTNAME = "juan";
 	private static final String LASTNAME = "gomez";
@@ -36,11 +36,7 @@ public class ReservationResquestBuilderTest {
 	private static final boolean DECOR_IS_FALSE = false;
 	private static final String NAME_FIXED_PRICE = "Julian";
 	private static final float FIXED_PRICE = 60000;
-	private static final int VALUE_FOR_PERSON = 50000;
-	private static final int PERCENT_DAYS = 20;
-	private static final int PERCENT_FOR_PEOPLE = 15;
-	private static final int DISCOUNT_SPLITTER = 100;
-	private static final int FIXED_DECOR = 30000;
+
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY = new GregorianCalendar(2019, 8, 01);
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY = new GregorianCalendar(2019,
 			9, 11);
@@ -55,8 +51,7 @@ public class ReservationResquestBuilderTest {
 	private static final String EL_EMAIL_ES_OBLIGATORIO = "EL EMAIL ES OBLIGATORIO";
 	private static final String LA_FECHA_ES_OBLIGATORIA = "LA FECHA ES OBLIGATORIA";
 	private static final String EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO = "EL NUMERO DE PERSONAS PARA LA RESERVA ES OBLIGATORIO";
-	private static final String LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
-	private static final String FIRST_NAME_IS_NULL = "";
+
 	private static final Calendar DATE_WITH_FRIDAY_AND_SATURDAY = new GregorianCalendar(2019, 8, 16);
 
 	@Mock
@@ -78,14 +73,14 @@ public class ReservationResquestBuilderTest {
 		reservationResquestBuilder = new ReservationResquestBuilder();
 
 	}
-	
+
 	/*
 	 * meotod de prueba sobre prueba
 	 *
 	 */
 	@Test
 	public void divisionDtoTest() {
-		//arrange
+		// arrange
 		when(reservationRequest.getFirstName()).thenReturn(FIRSTNAME);
 		when(reservationRequest.getLastName()).thenReturn(LASTNAME);
 		when(reservationRequest.getEmail()).thenReturn(EMAIL);
@@ -98,22 +93,21 @@ public class ReservationResquestBuilderTest {
 		when(reservationRequest.getReservationDate())
 				.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
 		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
-	
-		
-		//act
+
+		// act
 		Client result = reservationResquestBuilder.divisionDto(reservationRequest);
 
-		//assert
+		// assert
 		assertEquals(result, result);
 	}
 
 	/*
 	 * metodo por corregir
 	 */
-	
+
 	@Test
 	public void getCaculatePriceAndDiscountsTest() {
-		//arrange
+		// arrange
 		when(reservationRequest.getFirstName()).thenReturn(FIRSTNAME);
 		when(reservationRequest.getLastName()).thenReturn(LASTNAME);
 		when(reservationRequest.getEmail()).thenReturn(EMAIL);
@@ -127,10 +121,10 @@ public class ReservationResquestBuilderTest {
 				.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
 		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
 
-		//act
+		// act
 		Bill result = reservationResquestBuilder.getCaculatePriceAndDiscounts(reservationRequest, bill);
 
-		//assert
+		// assert
 		assertEquals(result, result);
 	}
 
@@ -581,8 +575,6 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newMenssagerForNull, other);
 	}
 
-
-
 	@Test
 	public void validationForFridatAndSaturdayIsDiferentZeroTest() {
 		// arrange
@@ -595,6 +587,22 @@ public class ReservationResquestBuilderTest {
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
+		assertEquals(newMenssagerForNull, other);
+	}
+
+	@Test
+	public void validationForFridatAndSaturdayTest() {
+		// arrange
+		when(bill.getPrice()).thenReturn((float) PRICE_ZERO);
+		String newMenssagerForNull ="LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
+		String other = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
+		//act
+		try {
+			reservationResquestBuilder.validationForFridatAndSaturday(PRICE_ZERO);
+		} catch (Exception e) {
+			other = e.getMessage();
+		}
+		//assert
 		assertEquals(newMenssagerForNull, other);
 	}
 
