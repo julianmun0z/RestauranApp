@@ -313,7 +313,6 @@ public class ReservationResquestBuilderTest {
 	public void firstNameFieldValidationIsValueNullTest ( ) {
 		//arrange
 		when(reservationRequest.getFirstName()).thenReturn(null);
-		reservationRequest.setFirstName(null);
 		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
 		  String otro="";
 		//act
@@ -330,6 +329,28 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newMenssageForNull, otro);
 	
 	}
+	
+	@Test
+	public void firstNameFieldValidationIsValueVoidTest ( ) {
+		//arrange
+		when(reservationRequest.getFirstName()).thenReturn("");
+		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
+		  String otro="";
+		//act
+		 try {
+			 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+			}
+			catch(Exception e) {
+			  otro=e.getMessage();
+			}
+		
+		
+		
+		 //assert
+		assertEquals(newMenssageForNull, otro);
+	
+	} 
+
 
 
 
