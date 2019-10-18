@@ -309,7 +309,9 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newDifferenceDays, newDiferens);
 
 	}
-	
+	/*
+	 * validate of null first name
+	 */
 	@Test
 	public void firstNameFieldValidationIsValueNullTest ( ) {
 		//arrange
@@ -329,7 +331,7 @@ public class ReservationResquestBuilderTest {
 		 //assert
 		assertEquals(newMenssageForNull, other);
 	
-	}
+	} 
 	
 	@Test
 	public void firstNameFieldValidationIsValueVoidTest ( ) {
@@ -377,6 +379,10 @@ public class ReservationResquestBuilderTest {
 	
 	}
 	
+	/*
+	 *  method that validates the last name null
+	 */
+	
 	@Test
 	public void lastNameFieldValidationIsValueNull() {
 		//arrange
@@ -421,6 +427,23 @@ public class ReservationResquestBuilderTest {
 		when(reservationRequest.getNumberPeople()).thenReturn(0);
 		String newMenssagerForNull = EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO;
 		String other = "";
+		
+		//act
+		try {
+			reservationResquestBuilder.numberPeopleFieldValidation(reservationRequest);
+		} catch (Exception e) {
+			other = e.getMessage();
+		}
+		
+		assertEquals(newMenssagerForNull, other);
+	}
+	
+	@Test
+	public void numberPeopleFieldValidationDiferentForValueForZeroTest() {
+		//arrange
+		when(reservationRequest.getNumberPeople()).thenReturn(3);
+		String newMenssagerForNull = "hay numeros";
+		String other = "hay numeros";
 		
 		//act
 		try {
