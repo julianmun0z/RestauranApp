@@ -24,8 +24,6 @@ public class ReservationResquestBuilderTest {
 	private static final int NUMBER_PEOPLE = 5;
 	private static final int MINUS_NUMBER_PEOPLE = 2;
 	private static final float PRICE = 350000;
-	private static final float PRICE_ZERO = 0;
-
 
 	private static final String FIRSTNAME = "juan";
 	private static final String LASTNAME = "gomez";
@@ -99,7 +97,7 @@ public class ReservationResquestBuilderTest {
 
 		// assert
 		assertEquals(result, result);
-	}
+	} 
 
 	/*
 	 * metodo por corregir
@@ -121,11 +119,12 @@ public class ReservationResquestBuilderTest {
 				.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
 		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
 
+		Bill expectedresult = reservationResquestBuilder.getCaculatePriceAndDiscounts(reservationRequest, bill);
 		// act
 		Bill result = reservationResquestBuilder.getCaculatePriceAndDiscounts(reservationRequest, bill);
 
 		// assert
-		assertEquals(result, result);
+		assertEquals(expectedresult, result);
 	}
 
 	@Test
@@ -590,20 +589,6 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newMenssagerForNull, other);
 	}
 
-	@Test
-	public void validationForFridatAndSaturdayTest() {
-		// arrange
-		when(bill.getPrice()).thenReturn((float) PRICE_ZERO);
-		String newMenssagerForNull ="LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
-		String other = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
-		//act
-		try {
-			reservationResquestBuilder.validationForFridatAndSaturday(PRICE_ZERO);
-		} catch (Exception e) {
-			other = e.getMessage();
-		}
-		//assert
-		assertEquals(newMenssagerForNull, other);
-	}
+
 
 }
