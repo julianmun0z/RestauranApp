@@ -211,7 +211,7 @@ public class ReservationResquestBuilder {
 	/*
 	 * The validation of the numberPeople field is not empty
 	 */
-	private void numberPeopleFieldValidation(ReservationRequest reservationRequest) {
+	public void numberPeopleFieldValidation(ReservationRequest reservationRequest) {
 		ArgumentsValidator.restrictionForValueZero(reservationRequest.getNumberPeople(),
 				EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO);
 	}

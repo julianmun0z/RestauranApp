@@ -388,6 +388,24 @@ public class ReservationResquestBuilderTest {
 		
 	}
 	
+	
+	@Test
+	public void numberPeopleFieldValidationValueForZeroTest() {
+		//arrange
+		when(reservationRequest.getNumberPeople()).thenReturn(0);
+		String newMenssagerForNull = EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO;
+		String other = "";
+		
+		//act
+		try {
+			reservationResquestBuilder.numberPeopleFieldValidation(reservationRequest);
+		} catch (Exception e) {
+			other = e.getMessage();
+		}
+		
+		assertEquals(newMenssagerForNull, other);
+	}
+	
 
 
 
