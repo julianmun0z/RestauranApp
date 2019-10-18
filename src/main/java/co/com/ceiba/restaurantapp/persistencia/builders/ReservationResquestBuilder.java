@@ -36,7 +36,7 @@ public class ReservationResquestBuilder {
 	 */
 	 
 	public Client divisionDto(ReservationRequest reservationRequest) {
-
+ 
 		Bill bill = new Bill(0, 0, 0);
 
 		getCaculatePriceAndDiscounts(reservationRequest, bill);
@@ -63,7 +63,7 @@ public class ReservationResquestBuilder {
 	 * method to define the price and discounts per day and people
 	 */
 
-	public void getCaculatePriceAndDiscounts(ReservationRequest reservationRequest, Bill bill) {
+	public Bill getCaculatePriceAndDiscounts(ReservationRequest reservationRequest, Bill bill) {
 		float price = 0;
 
 		validations(reservationRequest);
@@ -77,6 +77,7 @@ public class ReservationResquestBuilder {
 		bill.setDiscpuntForDays((int) getDiscuntForSpecialDays(reservationRequest, price));
 		validationForFridatAndSaturday(price);
 		bill.setPrice(price);
+		return bill;
 	}
 
 	/*
