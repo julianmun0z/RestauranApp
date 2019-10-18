@@ -11,7 +11,6 @@ import co.com.ceiba.restaurantapp.dominio.Bill;
 
 public class BillTest {
 
-
 	private static final float PRICE = 350000;
 	private static final int DISCOUNTFORPEOPLE = 15;
 	private static final int DISCOUNTFORDAYS = 20;
