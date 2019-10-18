@@ -22,8 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import co.com.ceiba.restaurantapp.controllers.ClientController;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 @WebMvcTest(ClientController.class)
 public class ClientControllerTest {
 
