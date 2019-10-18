@@ -19,7 +19,6 @@ import co.com.ceiba.restaurantapp.TestDataBuilder.ReservationRequestTestDataBuil
 import co.com.ceiba.restaurantapp.controllers.ReservationRequestController;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 @RunWith(SpringRunner.class)
-@SpringBootTest
 @WebMvcTest(ReservationRequestController.class)
 public class ReservationRequestControllerTest {
 	
