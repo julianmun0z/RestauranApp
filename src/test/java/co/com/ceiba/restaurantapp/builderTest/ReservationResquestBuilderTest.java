@@ -314,19 +314,19 @@ public class ReservationResquestBuilderTest {
 		//arrange
 		when(reservationRequest.getFirstName()).thenReturn(null);
 		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
-		  String otro="";
+		  String other="";
 		//act
 		 try {
 			 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
 			}
 			catch(Exception e) {
-			  otro=e.getMessage();
+			  other=e.getMessage();
 			}
 		
 		
 		
 		 //assert
-		assertEquals(newMenssageForNull, otro);
+		assertEquals(newMenssageForNull, other);
 	
 	}
 	
@@ -335,21 +335,59 @@ public class ReservationResquestBuilderTest {
 		//arrange
 		when(reservationRequest.getFirstName()).thenReturn("");
 		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
-		  String otro="";
+		  String other="";
 		//act
 		 try {
 			 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
 			}
 			catch(Exception e) {
-			  otro=e.getMessage();
+			  other=e.getMessage();
 			}
 		
 		
 		
 		 //assert
-		assertEquals(newMenssageForNull, otro);
+		assertEquals(newMenssageForNull, other);
 	
-	} 
+	}
+	
+	@Test
+	public void lastNameFieldValidationIsValueNull() {
+		//arrange
+		when(reservationRequest.getLastName()).thenReturn(null);
+		String newMenssagerForNull = EL_APELLIDO_ES_OBLIGATORIO;
+		String other = "";
+		//act
+		try {
+			reservationResquestBuilder.lastNameFieldValidation(reservationRequest);
+		} catch (Exception e) {
+			other=e.getMessage();
+		}
+		
+	//assert
+		assertEquals(newMenssagerForNull, other);
+		
+	}
+	
+	@Test
+	public void lastNameFieldValidationIsValueEmptyTest() {
+		//arrange
+		when(reservationRequest.getLastName()).thenReturn("");
+		String newMenssagerForNull = EL_APELLIDO_ES_OBLIGATORIO;
+		String other = "";
+		
+		//act
+		try {
+			reservationResquestBuilder.lastNameFieldValidation(reservationRequest);
+		} catch (Exception e) {
+			other=e.getMessage();
+		}
+		
+		//assert
+		assertEquals(newMenssagerForNull, other);
+		
+	}
+	
 
 
 

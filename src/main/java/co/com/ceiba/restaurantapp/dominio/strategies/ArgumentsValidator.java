@@ -10,9 +10,9 @@ public class ArgumentsValidator {
 		if (valor == null) {
 			throw new ExceptionsForRstrictions(mensaje);
 		}
-	}
+	} 
 
-	public static void restrictionForNulle(Object valor, String mensaje) {
+	public static void restrictionForValueEmpty(Object valor, String mensaje) {
 		if (valor == "") {
 			throw new ExceptionsForRstrictions(mensaje);
 		}

@@ -181,15 +181,15 @@ public class ReservationResquestBuilder {
 	 */
 	public void firstNameFieldValidation(ReservationRequest reservationRequest) {
 		ArgumentsValidator.restrictionForNull(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
-		ArgumentsValidator.restrictionForNulle(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
 	}
 
 	/*
 	 * The validation of the lastName field is not empty
 	 */
-	private void lastNameFieldValidation(ReservationRequest reservationRequest) {
+	public void lastNameFieldValidation(ReservationRequest reservationRequest) {
 		ArgumentsValidator.restrictionForNull(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
-		ArgumentsValidator.restrictionForNulle(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
 	}
 
 	/*
@@ -197,7 +197,7 @@ public class ReservationResquestBuilder {
 	 */
 	private void emailFieldValidation(ReservationRequest reservationRequest) {
 		ArgumentsValidator.restrictionForNull(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
-		ArgumentsValidator.restrictionForNulle(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
 	}
 
 	/*
@@ -205,7 +205,7 @@ public class ReservationResquestBuilder {
 	 */
 	private void reservationDateFieldValidation(ReservationRequest reservationRequest) {
 		ArgumentsValidator.restrictionForNull(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
-		ArgumentsValidator.restrictionForNulle(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
 	}
 
 	/*
