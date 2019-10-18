@@ -37,18 +37,18 @@ public class ReservationResquestBuilder {
 	 
 	public Client divisionDto(ReservationRequest reservationRequest) {
 
-		Bill bill = new Bill();
+		Bill bill = new Bill(0, 0, 0);
 
 		getCaculatePriceAndDiscounts(reservationRequest, bill);
 
-		Reservation reservation = new Reservation();
+		Reservation reservation = new Reservation(null, 0, false, bill);
 
 		reservation.setReservationDate(reservationRequest.getReservationDate());
 		reservation.setNumberPeople(reservationRequest.getNumberPeople());
 		reservation.setDecor(reservationRequest.isDecor());
 		reservation.setBill(bill);
 
-		Client client = new Client();
+		Client client = new Client(null, null, null, null, null, reservation);
 
 		client.setFirstName(reservationRequest.getFirstName());
 		client.setLastName(reservationRequest.getLastName());
@@ -75,7 +75,7 @@ public class ReservationResquestBuilder {
 		price = daysWithRestriction(reservationRequest, price);
 		bill.setDiscountForPeople((int) getDiscuontPerPeople(reservationRequest, price));
 		bill.setDiscpuntForDays((int) getDiscuntForSpecialDays(reservationRequest, price));
-		validationForFridatAndSaturday(bill);
+		validationForFridatAndSaturday(price);
 		bill.setPrice(price);
 	}
 
@@ -191,7 +191,7 @@ public class ReservationResquestBuilder {
 		ArgumentsValidator.restrictionForNull(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
 		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
 	}
-
+ 
 	/*
 	 * The validation of the email field is not empty
 	 */
@@ -219,8 +219,8 @@ public class ReservationResquestBuilder {
 	/*
 	 * method that evaluates if the price ends in zero
 	 */
-	public void validationForFridatAndSaturday(Bill bill) {
-		ArgumentsValidator.restrictionForValueZero(bill.getPrice(),
+	public void validationForFridatAndSaturday(float price) {
+		ArgumentsValidator.restrictionForValueZero(price,
 				LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION);
 	}
 }

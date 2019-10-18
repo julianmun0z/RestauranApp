@@ -30,4 +30,13 @@ public class Bill {
 		this.discpuntForDays = discpuntForDays;
 	}
 
+	public Bill(float price, int discountForPeople, int discpuntForDays) {
+		super();
+		this.price = price;
+		this.discountForPeople = discountForPeople;
+		this.discpuntForDays = discpuntForDays;
+	}
+ 
+	
+	
 }

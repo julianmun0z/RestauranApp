@@ -30,7 +30,7 @@ public class ClientBuilder {
 
 	public Client convertEntityToDto(ClientEntity clientEntity) {
 
-		Client client = new Client();
+		Client client = new Client(null, null, null, null, null, null);
 
 		Reservation reservation = new ReservationBuilder().convertEntityToDto(clientEntity.getReservationEntity());
 

@@ -57,4 +57,17 @@ public class Client {
 		return reservation;
 	}
 
+	public Client(Integer clientId, String firstName, String lastName, String email, String phoneNumber,
+			Reservation reservation) {
+		super();
+		this.clientId = clientId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.reservation = reservation;
+	}
+
+	
+	
 }

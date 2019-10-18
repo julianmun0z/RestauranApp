@@ -39,8 +39,6 @@ public class ReservationDtoTestDataBuilder {
 		return this;
 	}
 
-	public Reservation buil() {
-		return new Reservation();
-	}
+
 
 }

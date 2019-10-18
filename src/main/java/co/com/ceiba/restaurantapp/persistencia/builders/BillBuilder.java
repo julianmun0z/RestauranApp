@@ -24,7 +24,7 @@ public class BillBuilder {
 
 	public Bill convertEntityToDto(BillEntity billEntity) {
 
-		Bill bill = new Bill();
+		Bill bill = new Bill(0, 0, 0);
 
 		bill.setPrice(billEntity.getPrice());
 		bill.setDiscountForPeople(billEntity.getDiscountForPeople());

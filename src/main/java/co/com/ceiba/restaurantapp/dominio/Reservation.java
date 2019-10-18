@@ -18,7 +18,7 @@ public class Reservation {
 	public void setBill(Bill bill) {
 		this.bill = bill;
 	}
-	
+	 
 	public void setReservationDate(Calendar reservationDate) {
 		this.reservationDate = reservationDate;
 	}
@@ -45,5 +45,15 @@ public class Reservation {
 	public boolean isDecor() {
 		return decor;
 	}
+
+	public Reservation(Calendar reservationDate, int numberPeople, boolean decor, Bill bill) {
+		super();
+		this.reservationDate = reservationDate;
+		this.numberPeople = numberPeople;
+		this.decor = decor;
+		this.bill = bill;
+	} 
+	
+	
 
 }

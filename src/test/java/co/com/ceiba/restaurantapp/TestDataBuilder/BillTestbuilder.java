@@ -48,7 +48,7 @@ public class BillTestbuilder {
 	}
 	
 	public Bill build() {
-		return new Bill();
+		return new Bill(price, discountForPeople, discpuntForDays);
 }
 	 
 }

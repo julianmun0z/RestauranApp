@@ -45,8 +45,5 @@ public class ClientDtoTestDataBuilder {
 
 	}
 
-	public Client build() {
-		return new Client();
 
-	}
 }
