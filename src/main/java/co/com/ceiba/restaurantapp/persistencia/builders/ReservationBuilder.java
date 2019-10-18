@@ -38,7 +38,7 @@ public class ReservationBuilder {
 		reservation.setDecor(reservationEntity.isDecor());
 		reservation.setBill(bill);
 
-		return reservation;
+		return reservation; 
 	}
 
 }

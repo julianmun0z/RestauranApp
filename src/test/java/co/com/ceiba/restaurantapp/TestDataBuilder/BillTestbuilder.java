@@ -1,6 +1,7 @@
 package co.com.ceiba.restaurantapp.TestDataBuilder;
 
 import co.com.ceiba.restaurantapp.dominio.Bill;
+import co.com.ceiba.restaurantapp.dominio.Client;
 
 public class BillTestbuilder {
 
@@ -45,5 +46,9 @@ public class BillTestbuilder {
 		return this;
 
 	}
+	
+	public Bill build() {
+		return new Bill();
+}
 	 
 }

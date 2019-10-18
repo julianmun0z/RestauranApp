@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "client")
 public class ClientEntity {
-
+ 
 	@Id
 	@Column(name = "idclient")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +34,6 @@ public class ClientEntity {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "idreservation", nullable = false )
 	private ReservationEntity reservationEntity;
-
-	
 	
 
 	public Integer getClientId() {

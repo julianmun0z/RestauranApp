@@ -10,7 +10,6 @@ public class Reservation {
 	private boolean decor;
 	private Bill bill;
 
-	
 
 	public Bill getBill() {
 		return bill;
@@ -43,8 +42,6 @@ public class Reservation {
 		this.decor = decor;
 	}
 
-	
-	
 	public boolean isDecor() {
 		return decor;
 	}

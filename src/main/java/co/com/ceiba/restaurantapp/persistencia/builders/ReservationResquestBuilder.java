@@ -15,8 +15,6 @@ import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 @Configuration
 public class ReservationResquestBuilder {
 
-	
-
 	private static final int PERCENT_DAYS = 20;
 	private static final int PERCENT_FOR_PEOPLE = 15;
 	private static final int DISCOUNT_SPLITTER = 100;
@@ -33,11 +31,15 @@ public class ReservationResquestBuilder {
 
 	ErrorHandler errorHandler;
 
+	/*
+	 * sending parameters from the Dto to the objects 
+	 */
+	 
 	public Client divisionDto(ReservationRequest reservationRequest) {
 
 		Bill bill = new Bill();
 
-		getCaculatePrice(reservationRequest, bill, null);
+		getCaculatePriceAndDiscounts(reservationRequest, bill, null);
 
 		Reservation reservation = new Reservation();
 
@@ -50,15 +52,18 @@ public class ReservationResquestBuilder {
 
 		client.setFirstName(reservationRequest.getFirstName());
 		client.setLastName(reservationRequest.getLastName());
-		client.setEmail(reservationRequest.getEmail()); 
+		client.setEmail(reservationRequest.getEmail());
 		client.setPhoneNumber(reservationRequest.getPhoneNumber());
 		client.setReservation(reservation);
 
 		return client;
 
 	}
+	/*
+	 * method to define the price and discounts per day and people
+	 */
 
-	public void getCaculatePrice(ReservationRequest reservationRequest, Bill bill, Exception exception) {
+	public void getCaculatePriceAndDiscounts(ReservationRequest reservationRequest, Bill bill, Exception exception) {
 		float price = 0;
 
 		validations(reservationRequest);
@@ -70,7 +75,6 @@ public class ReservationResquestBuilder {
 		price = daysWithRestriction(reservationRequest, price);
 		bill.setDiscountForPeople((int) getDiscuontPerPeople(reservationRequest, price));
 		bill.setDiscpuntForDays((int) getDiscuntForSpecialDays(reservationRequest, price));
-
 		validationForFridatAndSaturday(price);
 		bill.setPrice(price);
 	}
@@ -90,11 +94,9 @@ public class ReservationResquestBuilder {
 	 * method to place a 15-day restriction for reservations made on Saturdays or
 	 * Sundays.
 	 */
-	
-	
 
 	public float daysWithRestriction(ReservationRequest reservationRequest, float price) {
-		float restriction = 0;
+		float restriction = 0; 
 		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
 		if ((day == 6 || day == 7) && (differenceBetweenCurrentDateAndReservationDate(reservationRequest) <= 15)) {
 			restriction = 0;
@@ -108,7 +110,7 @@ public class ReservationResquestBuilder {
 	/*
 	 * method to get a 20% discount for Tuesday and Wednesday.
 	 */
-	
+
 	public float getDiscuntForSpecialDays(ReservationRequest reservationRequest, float price) {
 		float discountDay = 0;
 		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
@@ -157,7 +159,7 @@ public class ReservationResquestBuilder {
 	 */
 	public long differenceBetweenCurrentDateAndReservationDate(ReservationRequest reservationRequest) {
 		long daysDifference = 0;
-		Date fechaEntrada =reservationRequest.getReservationDate().getTime();
+		Date fechaEntrada = reservationRequest.getReservationDate().getTime();
 		Date fechaHoy = reservationRequest.getCurrentDate().getTime();
 		daysDifference = (fechaEntrada.getTime() - fechaHoy.getTime()) / 86400000;
 		return daysDifference;
@@ -174,7 +176,7 @@ public class ReservationResquestBuilder {
 		numberPeopleFieldValidation(reservationRequest);
 	}
 
-	/* 
+	/*
 	 * firstName field validation is not empty
 	 */
 	public void firstNameFieldValidation(ReservationRequest reservationRequest) {

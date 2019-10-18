@@ -19,7 +19,7 @@ public class BillBuilder {
 		billEntity.setDiscountForPeople(bill.getDiscountForPeople());
 		billEntity.setDiscpuntForDays(bill.getDiscpuntForDays());
 
-		return billEntity;
+		return billEntity; 
 	}
 
 	public Bill convertEntityToDto(BillEntity billEntity) {

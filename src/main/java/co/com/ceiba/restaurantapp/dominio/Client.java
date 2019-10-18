@@ -12,11 +12,10 @@ public class Client {
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
-	
+
 	public Integer getClientId() {
 		return clientId;
 	}
-
 
 	public String getFirstName() {
 		return firstName;
@@ -29,20 +28,18 @@ public class Client {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
 
-	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getEmail() {
 		return email;
 	}
-
-	
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -52,12 +49,10 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 	}
 
-
-
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
 	}
-	
+
 	public Reservation getReservation() {
 		return reservation;
 	}

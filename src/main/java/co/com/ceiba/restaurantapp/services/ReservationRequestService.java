@@ -41,7 +41,6 @@ public class ReservationRequestService {
 		billDao.save(clientEntity.getReservationEntity().getBillEntity());
 		reservationDao.save(clientEntity.getReservationEntity());
 		clientDao.save(clientEntity);
-
 	}
 
 }

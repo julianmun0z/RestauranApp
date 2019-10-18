@@ -26,7 +26,7 @@ public class ClientController {
 
 	@GetMapping
 	public List<Client> getClient() {
-		return clientService.getClients();
+		return clientService.getClients(); 
 	}
 
 	@PostMapping

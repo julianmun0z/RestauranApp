@@ -2,7 +2,6 @@ package co.com.ceiba.restaurantapp.dto;
 
 import java.util.Calendar;
 
-
 public class ReservationRequest {
 
 	private String firstName;
@@ -29,8 +28,6 @@ public class ReservationRequest {
 		this.lastName = lastName;
 	}
 
-
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -38,17 +35,14 @@ public class ReservationRequest {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
-
-	
 
 	public Calendar getReservationDate() {
 		return reservationDate;
@@ -74,8 +68,7 @@ public class ReservationRequest {
 		this.numberPeople = numberPeople;
 	}
 
-	
-	Calendar currentDate =  Calendar.getInstance();
+	Calendar currentDate = Calendar.getInstance();
 
 	public Calendar getCurrentDate() {
 		return currentDate;
@@ -84,6 +77,5 @@ public class ReservationRequest {
 	public void setCurrentDate(Calendar currentDate) {
 		this.currentDate = currentDate;
 	}
-	
-	
+
 }

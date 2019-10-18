@@ -1,7 +1,10 @@
 package co.com.ceiba.restaurantapp.builderTest;
 
-
+ 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -9,12 +12,13 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import co.com.ceiba.restaurantapp.persistencia.builders.ReservationResquestBuilder;
-import junit.framework.Assert;
 import co.com.ceiba.restaurantapp.dominio.Bill;
-import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
+import co.com.ceiba.restaurantapp.dominio.Client;
+import co.com.ceiba.restaurantapp.dominio.Reservation;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 public class ReservationResquestBuilderTest {
 
@@ -35,8 +39,8 @@ public class ReservationResquestBuilderTest {
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY = new GregorianCalendar(2019, 8, 01);
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY= new GregorianCalendar(2019, 9, 11);
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY=  new GregorianCalendar(2019, 9, 12);
-	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE= new GregorianCalendar(2019 - 1900, 9, 11);
-	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO = new GregorianCalendar(2019 - 1900, 9, 7);
+	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE= new GregorianCalendar(2019, 9, 11);
+	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO = new GregorianCalendar(2019, 9, 7);
 	private static final Calendar DATE_ONE = new GregorianCalendar(2019 , 9, 8);
 	private static final Calendar DATE_TWO = new GregorianCalendar(2019, 9, 9);	
 	private static final String EL_NOMBRE_ES_OBLIGATORIO = "EL NOMBRE ES OBLIGATORIO";
@@ -48,11 +52,15 @@ public class ReservationResquestBuilderTest {
 	private static final String FIRST_NAME_IS_NULL = "";	
 	private static final Calendar DATE_WITH_FRIDAY_AND_SATURDAY = new GregorianCalendar(2019, 8, 16);
 
-	@InjectMocks
-	private ReservationRequest reservationRequest = new ReservationRequest();
+	@Mock
+	private ReservationRequest reservationRequest;
 
-	@InjectMocks
-	private Bill bill = new Bill();
+	@Mock
+	private Bill bill;
+	@Mock
+	private Client client;
+	@Mock
+	private Reservation reservation;
 	
 	@InjectMocks
 	private ReservationResquestBuilder reservationResquestBuilder;
@@ -61,20 +69,23 @@ public class ReservationResquestBuilderTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-
+		reservationResquestBuilder = new ReservationResquestBuilder();
+		
 	}
 	
-	
+	/*
+	 * por corregir
+	 */
 	@Test
 	public void daysWithRestrictioniSMoreGreaterThanFifteenDays() {
 		//arrange
-		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
-		float newDaysWithRestriction = 0;
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+		float newDaysWithRestriction = 60000;
 		float price = 60000;
 	
 		//act
 		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
-		System.out.println(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
 		//assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction,0);
 	}
@@ -82,7 +93,10 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void daysWithRestrictioniSZeroSaturday() {
 		//arrange
-		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+		
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+		when(reservationRequest.getCurrentDate()).thenReturn(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
+
 		float newDaysWithRestriction = 0;
 		float price = 60000;
 		//act
@@ -94,7 +108,10 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void daysWithRestrictioniSZeroFriday() {
 		//arrange
-		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY);
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY);
+		when(reservationRequest.getCurrentDate()).thenReturn(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE);
+
+		//reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY);
 		float newDaysWithRestriction = 0;
 		float price = 60000;
 		//act
@@ -110,7 +127,8 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void daysWithRestriction() {
 		//arrange
-		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY);
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+		//reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY);
 		float newDaysWithRestriction = 60000;
 		float price = 60000;
 		//act
@@ -122,6 +140,7 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void getDiscuntForSpecialDaysWednesdayTest() {
 		//arrange
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_TWO);
 		reservationRequest.setReservationDate(DATE_TWO);
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
@@ -136,6 +155,7 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void getDiscuntForSpecialDaysTuesdayTest() {
 		//arrange
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_ONE);
 		reservationRequest.setReservationDate(DATE_ONE);
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
@@ -149,6 +169,7 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void getDiscuntForSpecialDaysTestIsZero() {
 		//arrange
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
 		reservationRequest.setReservationDate(DATE_WITH_TUESDAY_AND_WENESDAY);
 		float newGetDiscuntForSpecialDays = 0;
 		float price = 60000;
@@ -177,7 +198,9 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void getDiscuontPerPeopleTest() {
 		//arrange
+		when(bill.getPrice()).thenReturn(PRICE);
 		bill.setPrice(PRICE);
+		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
 		reservationRequest.setNumberPeople(NUMBER_PEOPLE);
 		float newgetDiscuontPerPeople = 7500;
 		float price = 50000;
@@ -189,12 +212,11 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newgetDiscuontPerPeople, expectangetDiscuontPerPeople,0);
 	}
 	
-	
-	
 	@Test
 	public void getExtraPersonTest() {
 		// arrange
-		reservationRequest.setNumberPeople(NUMBER_PEOPLE);
+		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
+		//reservationRequest.setNumberPeople(NUMBER_PEOPLE);
 		float newExtraPerson = 250000;
 		// act
 		float expectanExtraPersona = reservationResquestBuilder.getExtraPerson(reservationRequest);
@@ -206,8 +228,8 @@ public class ReservationResquestBuilderTest {
 	@Test
 	public void setFixedPriceTest() {
 		// arrange
-		reservationRequest.setFirstName(NAME_FIXED_PRICE);;
-		bill.setPrice(FIXED_PRICE);
+		when(reservationRequest.getFirstName()).thenReturn(NAME_FIXED_PRICE);
+		when(bill.getPrice()).thenReturn(FIXED_PRICE);
 		float newSetFixedPrice = 60000;
 		// act
 		float expectanSetFixedPrice = reservationResquestBuilder.giveValueToThePrice(reservationRequest);
@@ -215,6 +237,7 @@ public class ReservationResquestBuilderTest {
 		// assert
 		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
 	}
+	
 	@Test
 	public void setFixedPriceValueZeroTest() {
 		// arrange
@@ -227,8 +250,6 @@ public class ReservationResquestBuilderTest {
 		// assert
 		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
 	}
-
-	
 	
 	@Test
 	public void FixedDecorFalseTest() {
@@ -244,10 +265,11 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newFixedDecor, expectantFixedDecor, 0);
 
 	}
+	
 	@Test
 	public void FixedDecorTest() {
 		// arrange
-		reservationRequest.setDecor(DECOR);
+		when(reservationRequest.isDecor()).thenReturn(DECOR);
 		float newFixedDecor = 30000;
 
 		// act
@@ -263,9 +285,8 @@ public class ReservationResquestBuilderTest {
 	public void TestForLessThanFifteenDays() { 
 
 		// arrange
-		reservationRequest.setReservationDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE);
-		reservationRequest.setCurrentDate(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
-
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE);
+		when(reservationRequest.getCurrentDate()).thenReturn(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
 		long newDifferenceDays = 4;
 		// act
 		long newDiferens = reservationResquestBuilder.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
@@ -278,9 +299,8 @@ public class ReservationResquestBuilderTest {
 	public void differenceBetweenCurrentDateAndReservationDateTest() {
 
 		// arrange
-		reservationRequest.setReservationDate(DATE_WITH_FRIDAY_AND_SATURDAY);
-		reservationRequest.setCurrentDate(DATE_WITH_TUESDAY_AND_WENESDAY);;
-		
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_FRIDAY_AND_SATURDAY);
+		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);		
 		long newDifferenceDays = 15;
 		// act
 		long newDiferens = reservationResquestBuilder.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
@@ -289,18 +309,27 @@ public class ReservationResquestBuilderTest {
 
 	}
 	
-//	@Test
-//	public void firstNameFieldValidationIsValueNullTest ( ) {
-//		//arrange
-//		reservationRequest.setFirstName(null);
-//		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
-//		//act
-//	void obj =	 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
-//		
-//		 //assert
-//		
-//	
-//	}
+	@Test
+	public void firstNameFieldValidationIsValueNullTest ( ) {
+		//arrange
+		when(reservationRequest.getFirstName()).thenReturn(null);
+		reservationRequest.setFirstName(null);
+		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
+		  String otro="";
+		//act
+		 try {
+			 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+			}
+			catch(Exception e) {
+			  otro=e.getMessage();
+			}
+		
+		
+		
+		 //assert
+		assertEquals(newMenssageForNull, otro);
+	
+	}
 
 
 
