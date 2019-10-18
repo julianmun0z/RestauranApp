@@ -98,7 +98,8 @@ public class ReservationResquestBuilderTest {
 		when(reservationRequest.getReservationDate())
 				.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
 		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
-
+	
+		
 		//act
 		Client result = reservationResquestBuilder.divisionDto(reservationRequest);
 
@@ -580,20 +581,7 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newMenssagerForNull, other);
 	}
 
-//@Test
-//public void validationForFridatAndSaturdayTest() {
-//	//arrange
-//	when(price).thenReturn((float) 0);
-//	String newMenssagerForNull = LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION;
-//	String other = "";
-//	
-//	try {
-//		reservationResquestBuilder.validationForFridatAndSaturday(PRICE);
-//	} catch (Exception e) {
-//		other = e.getMessage();
-//	}
-//	assertEquals(newMenssagerForNull, other);
-//}
+
 
 	@Test
 	public void validationForFridatAndSaturdayIsDiferentZeroTest() {
