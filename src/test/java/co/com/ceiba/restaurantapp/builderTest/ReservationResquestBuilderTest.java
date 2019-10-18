@@ -321,6 +321,7 @@ public class ReservationResquestBuilderTest {
 		//act
 		 try {
 			 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+
 			}
 			catch(Exception e) {
 			  other=e.getMessage();
@@ -338,11 +339,11 @@ public class ReservationResquestBuilderTest {
 		//arrange
 		when(reservationRequest.getFirstName()).thenReturn("");
 		 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
-		  String other="";
+		  String other=" ";
 		//act
 		 try {
-				ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
-			}
+			 reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+ 			}
 			catch(Exception e) {
 			  other=e.getMessage();
 			}
@@ -419,6 +420,91 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newMenssagerForNull, other);
 		
 	}
+	
+	/*
+	 * The validation of the email field is not empty
+	 */
+	
+	@Test
+	public void emailFieldValidationIsNullTest() {
+		//arrange
+		when(reservationRequest.getLastName()).thenReturn(null);
+		String newMenssagerForNull = EL_EMAIL_ES_OBLIGATORIO;
+		String other = "";
+		
+		//act
+		try {
+			reservationResquestBuilder.emailFieldValidation(reservationRequest);
+		} catch (Exception e) {
+			other=e.getMessage();
+		}
+		
+		//assert
+		assertEquals(newMenssagerForNull, other);
+		
+	}
+	
+	@Test
+	public void emailFieldValidationIsValueEmptyTest() {
+		//arrange
+		when(reservationRequest.getLastName()).thenReturn("");
+		String newMenssagerForNull = EL_EMAIL_ES_OBLIGATORIO;
+		String other = "";
+		
+		//act
+		try {
+			reservationResquestBuilder.emailFieldValidation(reservationRequest);
+		} catch (Exception e) {
+			other=e.getMessage();
+		}
+		
+		//assert
+		assertEquals(newMenssagerForNull, other);
+		
+	}
+	
+	/*
+	 * The validation of the reservationDate field is not empty
+	 */
+	
+	@Test
+	public void reservationDateFieldValidationIsNullTest() {
+		//arrange
+				when(reservationRequest.getLastName()).thenReturn(null);
+				String newMenssagerForNull = LA_FECHA_ES_OBLIGATORIA;
+				String other = "";
+				
+				//act
+				try {
+					reservationResquestBuilder.reservationDateFieldValidation(reservationRequest);
+				} catch (Exception e) {
+					other=e.getMessage();
+				}
+				
+				//assert
+				assertEquals(newMenssagerForNull, other);
+	}
+		
+		
+	@Test
+	public void reservationDateFieldValidationIsValueEmptyTest() {
+		//arrange
+		when(reservationRequest.getLastName()).thenReturn("");
+		String newMenssagerForNull = LA_FECHA_ES_OBLIGATORIA;
+		String other = "";
+		
+		//act
+		try {
+			reservationResquestBuilder.reservationDateFieldValidation(reservationRequest);
+		} catch (Exception e) {
+			other=e.getMessage();
+		}
+		
+		//assert
+		assertEquals(newMenssagerForNull, other);
+		
+	}
+	
 	 
 	
 	@Test
