@@ -39,8 +39,7 @@ public class ClientController {
 		return clientService.getClientById(id);
 
 	}
-
-
+ 
 	@PutMapping(path = {"/{id}"})
 	public void editar(@RequestBody Client client, @PathVariable("id") int id) {
 		clientService.edit(client);
