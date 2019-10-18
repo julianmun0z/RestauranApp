@@ -75,7 +75,7 @@ public class ReservationResquestBuilder {
 		price = daysWithRestriction(reservationRequest, price);
 		bill.setDiscountForPeople((int) getDiscuontPerPeople(reservationRequest, price));
 		bill.setDiscpuntForDays((int) getDiscuntForSpecialDays(reservationRequest, price));
-		validationForFridatAndSaturday(price);
+		validationForFridatAndSaturday(bill);
 		bill.setPrice(price);
 	}
 
@@ -219,8 +219,8 @@ public class ReservationResquestBuilder {
 	/*
 	 * method that evaluates if the price ends in zero
 	 */
-	public void validationForFridatAndSaturday(float price) {
-		ArgumentsValidator.restrictionForValueZero(price,
+	public void validationForFridatAndSaturday(Bill bill) {
+		ArgumentsValidator.restrictionForValueZero(bill.getPrice(),
 				LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION);
 	}
 }

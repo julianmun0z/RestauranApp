@@ -419,7 +419,7 @@ public class ReservationResquestBuilderTest {
 		assertEquals(newMenssagerForNull, other);
 		
 	}
-	
+	 
 	
 	@Test
 	public void numberPeopleFieldValidationValueForZeroTest() {
@@ -457,26 +457,33 @@ public class ReservationResquestBuilderTest {
 	
 
 @Test
-public void validationsTest() {
+public void validationForFridatAndSaturdayTest() {
+	//arrange
+	when(bill.getPrice()).thenReturn((float) 0);
+	String newMenssagerForNull = LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION;
+	String other = "";
 	
-	when(reservationRequest.getFirstName()).thenReturn(null);
-	when(reservationRequest.getFirstName()).thenReturn("");
+	try {
+		reservationResquestBuilder.validationForFridatAndSaturday(bill);
+	} catch (Exception e) {
+		other = e.getMessage();
+	}
+	assertEquals(newMenssagerForNull, other);
+}
 
-	 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
-	  String other="";
-	//act
-	 try {
-		 reservationResquestBuilder.validations(reservationRequest);
-		}
-		catch(Exception e) {
-		  other=e.getMessage();
-		}
+@Test
+public void validationForFridatAndSaturdayIsDiferentZeroTest() {
+	//arrange
+	when(bill.getPrice()).thenReturn((float) 2);
+	String newMenssagerForNull = "hay precio";
+	String other = "hay precio";
 	
-	
-	
-	 //assert
-	 assertEquals(newMenssageForNull, other);
-	assertEquals(newMenssageForNull, other);
+	try {
+		reservationResquestBuilder.validationForFridatAndSaturday(bill);
+	} catch (Exception e) {
+		other = e.getMessage();
+	}
+	assertEquals(newMenssagerForNull, other);
 }
 
 
