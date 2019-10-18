@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
 public class ClientControllerTest {
 
 	
@@ -30,7 +29,7 @@ public class ClientControllerTest {
 	private MockMvc mvc;
 	 
 	@Test
-	public void getAllEmployeesAPI() throws Exception
+	public void getAllClientAPI() throws Exception
 	{
 	  mvc.perform( MockMvcRequestBuilders
 	      .get("/client")
@@ -41,7 +40,7 @@ public class ClientControllerTest {
 	}
 	 
 	@Test
-	public void getEmployeeByIdAPI() throws Exception
+	public void getClientByIdAPI() throws Exception
 	{
 	  mvc.perform( MockMvcRequestBuilders
 	      .get("/client/{id}", 1)
