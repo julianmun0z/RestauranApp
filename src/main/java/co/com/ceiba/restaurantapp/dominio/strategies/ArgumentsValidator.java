@@ -29,5 +29,9 @@ public class ArgumentsValidator {
 			throw new ExceptionsForRstrictions(mensaje);
 		}
 	}
+	
+	
+	public ArgumentsValidator() {
+	}
 
 }
