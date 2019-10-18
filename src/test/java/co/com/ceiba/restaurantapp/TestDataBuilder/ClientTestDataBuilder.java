@@ -1,6 +1,5 @@
 package co.com.ceiba.restaurantapp.TestDataBuilder;
 
-import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
 
 public class ClientTestDataBuilder {
@@ -16,6 +15,8 @@ public class ClientTestDataBuilder {
 	private String lastName;
 	private String Email;
 	private String phoneNumber;
+	
+	
 
 	public ClientTestDataBuilder() {
 		this.firstName = FIRSTNAME;

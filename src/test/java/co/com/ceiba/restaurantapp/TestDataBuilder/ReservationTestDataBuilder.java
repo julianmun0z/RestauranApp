@@ -3,7 +3,6 @@ package co.com.ceiba.restaurantapp.TestDataBuilder;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
 
 public class ReservationTestDataBuilder {
@@ -38,6 +37,8 @@ public class ReservationTestDataBuilder {
 		this.decor = decor;
 		return this;
 	}
+	
+	
 
 	public Reservation build() {
 		return new Reservation(reservationDate, numberPeople, decor, null);

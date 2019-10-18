@@ -12,6 +12,8 @@ public class Client {
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
+	
+	
 
 	public Integer getClientId() {
 		return clientId;
@@ -67,6 +69,11 @@ public class Client {
 		this.phoneNumber = phoneNumber;
 		this.reservation = reservation;
 	}
+
+	public Client() {
+	}
+	
+
 
 	
 	

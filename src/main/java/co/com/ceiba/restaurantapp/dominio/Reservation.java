@@ -52,7 +52,12 @@ public class Reservation {
 		this.numberPeople = numberPeople;
 		this.decor = decor;
 		this.bill = bill;
+	}
+
+	
+	public Reservation() {
 	} 
+	
 	
 	
 
