@@ -39,7 +39,7 @@ public class ReservationResquestBuilder {
 
 		Bill bill = new Bill();
 
-		getCaculatePriceAndDiscounts(reservationRequest, bill, null);
+		getCaculatePriceAndDiscounts(reservationRequest, bill);
 
 		Reservation reservation = new Reservation();
 
@@ -63,7 +63,7 @@ public class ReservationResquestBuilder {
 	 * method to define the price and discounts per day and people
 	 */
 
-	public void getCaculatePriceAndDiscounts(ReservationRequest reservationRequest, Bill bill, Exception exception) {
+	public void getCaculatePriceAndDiscounts(ReservationRequest reservationRequest, Bill bill) {
 		float price = 0;
 
 		validations(reservationRequest);

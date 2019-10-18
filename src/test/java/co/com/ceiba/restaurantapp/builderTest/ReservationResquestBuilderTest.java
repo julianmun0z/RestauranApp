@@ -407,7 +407,25 @@ public class ReservationResquestBuilderTest {
 	}
 	
 
-
+@Test
+public void validationsTest() {
+	
+	when(reservationRequest.getFirstName()).thenReturn(null);
+	 String newMenssageForNull =  EL_NOMBRE_ES_OBLIGATORIO;
+	  String other="";
+	//act
+	 try {
+		 reservationResquestBuilder.validations(reservationRequest);
+		}
+		catch(Exception e) {
+		  other=e.getMessage();
+		}
+	
+	
+	
+	 //assert
+	assertEquals(newMenssageForNull, other);
+}
 
 
 }
