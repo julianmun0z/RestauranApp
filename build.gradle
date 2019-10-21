@@ -37,8 +37,7 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 		testCompile group: 'org.mockito', name: 'mockito-core', version: '3.0.0'
-	// https://mvnrepository.com/artifact/hsqldb/hsqldb
-testCompile group: 'hsqldb', name: 'hsqldb', version: '1.8.0.7'
+	
 	
 
 }
