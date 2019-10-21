@@ -61,7 +61,6 @@ public class Client {
 
 	public Client(Integer clientId, String firstName, String lastName, String email, String phoneNumber,
 			Reservation reservation) {
-		super();
 		this.clientId = clientId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -70,8 +69,7 @@ public class Client {
 		this.reservation = reservation;
 	}
 
-	public Client() {
-	}
+
 	
 
 

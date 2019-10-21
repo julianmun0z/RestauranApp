@@ -25,10 +25,7 @@ public class ReservationResquestBuilderTest {
 	private static final int MINUS_NUMBER_PEOPLE = 2;
 	private static final float PRICE = 350000;
 
-	private static final String FIRSTNAME = "juan";
-	private static final String LASTNAME = "gomez";
-	private static final String EMAIL = "J@J.COM";
-	private static final String PHONENUMBER = "123456789";
+
 
 	private static final boolean DECOR = true;
 	private static final boolean DECOR_IS_FALSE = false;
@@ -71,61 +68,6 @@ public class ReservationResquestBuilderTest {
 		reservationResquestBuilder = new ReservationResquestBuilder();
 
 	}
-
-	/*
-	 * meotod de prueba sobre prueba
-	 *
-	 */
-//	@Test
-//	public void divisionDtoTest() {
-//		// arrange
-//		when(reservationRequest.getFirstName()).thenReturn(FIRSTNAME);
-//		when(reservationRequest.getLastName()).thenReturn(LASTNAME);
-//		when(reservationRequest.getEmail()).thenReturn(EMAIL);
-//		when(reservationRequest.getPhoneNumber()).thenReturn(PHONENUMBER);
-//		when(bill.getPrice()).thenReturn(PRICE);
-//		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
-//		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
-//		when(reservationRequest.isDecor()).thenReturn(DECOR);
-//		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
-//		when(reservationRequest.getReservationDate())
-//				.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
-//		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
-//
-//		// act
-//		Client result = reservationResquestBuilder.divisionDto(reservationRequest);
-//
-//		// assert
-//		assertEquals(result, result);
-//	} 
-
-	/*
-	 * metodo por corregir
-	 */
-
-//	@Test
-//	public void getCaculatePriceAndDiscountsTest() {
-//		// arrange
-//		when(reservationRequest.getFirstName()).thenReturn(FIRSTNAME);
-//		when(reservationRequest.getLastName()).thenReturn(LASTNAME);
-//		when(reservationRequest.getEmail()).thenReturn(EMAIL);
-//		when(reservationRequest.getPhoneNumber()).thenReturn(PHONENUMBER);
-//		when(bill.getPrice()).thenReturn(PRICE);
-//		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
-//		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
-//		when(reservationRequest.isDecor()).thenReturn(DECOR);
-//		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
-//		when(reservationRequest.getReservationDate())
-//				.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
-//		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
-//
-//		Bill expectedresult = reservationResquestBuilder.getCaculatePriceAndDiscounts(reservationRequest, bill);
-//		// act
-//		Bill result = reservationResquestBuilder.getCaculatePriceAndDiscounts(reservationRequest, bill);
-//
-//		// assert
-//		assertEquals(expectedresult, result);
-//	}
 
 	@Test
 	public void daysWithRestrictioniSMoreGreaterThanFifteenDays() {
@@ -588,7 +530,5 @@ public class ReservationResquestBuilderTest {
 		}
 		assertEquals(newMenssagerForNull, other);
 	}
-
-
 
 }

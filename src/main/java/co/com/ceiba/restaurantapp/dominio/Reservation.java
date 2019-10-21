@@ -47,18 +47,12 @@ public class Reservation {
 	}
 
 	public Reservation(Calendar reservationDate, int numberPeople, boolean decor, Bill bill) {
-		super();
 		this.reservationDate = reservationDate;
 		this.numberPeople = numberPeople;
 		this.decor = decor;
 		this.bill = bill;
 	}
 
-	
-	public Reservation() {
-	} 
-	
-	
-	
+
 
 }

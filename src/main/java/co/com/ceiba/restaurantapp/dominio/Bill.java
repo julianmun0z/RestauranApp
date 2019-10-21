@@ -13,8 +13,7 @@ public class Bill {
 		this.discpuntForDays = discpuntForDays;
 	}
 	
-	public Bill( ) {
-	}
+
 	
 	public void setPrice(float price) {
 		this.price = price;
