@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import co.com.ceiba.restaurantapp.controllers.ClientController;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 ;
 
@@ -26,7 +27,7 @@ import co.com.ceiba.restaurantapp.controllers.ClientController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@WebMvcTest(ClientController.class)
+@AutoConfigureMockMvc
 public class ClientControllerTest {
 
 	
