@@ -1,13 +1,13 @@
 buildscript {
-	ext {
+	/*ext {
 		springBootVersion = '2.0.5.RELEASE'
-	}
+	}*/
 	repositories {
 		mavenCentral()
-	}
+	}/*
 	  dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
-    }
+    }*/
 }
 
 
@@ -24,14 +24,23 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 ext {
+springBootVersion = '2.1.6.RELEASE'
 	set('springCloudVersion', 'Greenwich.RELEASE')
+}
+bootJar {
+    baseName = 'gs-testing-web'
+    version =  '0.1.0'
 }
 
 repositories {
 	mavenCentral()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 dependencies {
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
@@ -41,15 +50,15 @@ dependencies {
 testCompile group: 'hsqldb', name: 'hsqldb', version: '1.8.0.7'
 	
 
+
+
 }
 
 
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}
 
 
 
