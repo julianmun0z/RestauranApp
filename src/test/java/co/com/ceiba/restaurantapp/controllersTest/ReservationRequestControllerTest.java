@@ -19,8 +19,8 @@ import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@SpringBootTest()
+@AutoConfigureMockMvc()
 public class ReservationRequestControllerTest {
 	
 	@Autowired
