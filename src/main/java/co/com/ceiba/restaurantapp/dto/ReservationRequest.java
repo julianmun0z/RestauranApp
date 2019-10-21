@@ -12,8 +12,11 @@ public class ReservationRequest {
 	private boolean decor;
 	private int numberPeople;
 
+
+
+	
 	public ReservationRequest(String firstName, String lastName, String email, String phoneNumber,
-			Calendar reservationDate, int numberPeople, boolean decor) {
+			Calendar reservationDate, boolean decor, int numberPeople) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -89,10 +92,13 @@ public class ReservationRequest {
 	public void setCurrentDate(Calendar currentDate) {
 		this.currentDate = currentDate;
 	}
-	
+
+
 	public ReservationRequest() {
+		super();
 	}
 	
+
 	
 
 }

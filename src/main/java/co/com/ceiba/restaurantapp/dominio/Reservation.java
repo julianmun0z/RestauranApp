@@ -53,6 +53,13 @@ public class Reservation {
 		this.bill = bill;
 	}
 
+	/**
+	 * 
+	 */
+	public Reservation() {
+		super();
+	}
+
 
 
 }

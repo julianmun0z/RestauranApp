@@ -22,7 +22,6 @@ public class ReservationRequestTestDataBuilder {
 	private String lastName;
 	private String Email;
 	private String phoneNumber;
-	
 	private Calendar reservationDate;
 	private int numberPeople;
 	private boolean decor;
@@ -98,9 +97,10 @@ public class ReservationRequestTestDataBuilder {
 	}
 	
 	public ReservationRequest build() {
-		return new ReservationRequest(firstName, lastName, Email, phoneNumber, reservationDate, numberPeople, decor);
+		return new ReservationRequest(firstName,lastName , Email, phoneNumber, reservationDate, decor, numberPeople);
 }
 	
+
 	
 	
 	
