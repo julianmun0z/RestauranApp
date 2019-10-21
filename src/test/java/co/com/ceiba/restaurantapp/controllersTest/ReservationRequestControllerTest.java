@@ -30,23 +30,28 @@ public class ReservationRequestControllerTest {
 	@Autowired
 	private MockMvc mvc;
 	
+	
 	@MockBean
 	private  ReservationRequestController reservationRequestController;
 	
-	@Autowired
-    private ObjectMapper objectMapper;
-	
 	ReservationRequest reservationRequest = new ReservationRequestTestDataBuilder().build();
 	
-	@Test 
+	@Test
 	public void createReservationAPI() throws Exception
 	{
 	  mvc.perform( MockMvcRequestBuilders
 	      .post("/fullreservation")
-	      .contentType(MediaType.APPLICATION_JSON_UTF8)
-          .content(objectMapper.writeValueAsString(reservationRequest)))
-  		.andExpect(status().isOk());
+	      .content(asJsonString(reservationRequest))
+	      .contentType(MediaType.APPLICATION_JSON)
+	      .accept(MediaType.APPLICATION_JSON))
+	      .andExpect(status().isOk());
 	}
 	 
-
+	public static String asJsonString(final Object obj) {
+	    try {
+	        return new ObjectMapper().writeValueAsString(obj);
+	    } catch (Exception e) {
+	        throw new RuntimeException(e);
+	    }
+	}
 }

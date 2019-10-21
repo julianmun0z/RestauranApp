@@ -31,7 +31,5 @@ public class ArgumentsValidator {
 	}
 	
 	
-	public ArgumentsValidator() {
-	}
 
 }
