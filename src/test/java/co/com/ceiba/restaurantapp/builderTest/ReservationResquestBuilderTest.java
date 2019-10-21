@@ -12,7 +12,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import co.com.ceiba.restaurantapp.persistencia.builders.BillBuilder;
 import co.com.ceiba.restaurantapp.persistencia.builders.ReservationResquestBuilder;
+import co.com.ceiba.restaurantapp.persistencia.entities.BillEntity;
+import co.com.ceiba.restaurantapp.TestDataBuilder.BillTestbuilder;
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
@@ -24,17 +27,23 @@ public class ReservationResquestBuilderTest {
 	private static final int NUMBER_PEOPLE = 5;
 	private static final int MINUS_NUMBER_PEOPLE = 2;
 	private static final float PRICE = 350000;
+	private static final float EXPECTED_PRICE = 293500;
 
-
+	private static final String FIRSTNAME = "juan";
+	private static final String LASTNAME = "gomez";
+	private static final String EMAIL = "J@J.COM";
+	private static final String PHONENUMBER = "123456789";
 
 	private static final boolean DECOR = true;
 	private static final boolean DECOR_IS_FALSE = false;
 	private static final String NAME_FIXED_PRICE = "Julian";
 	private static final float FIXED_PRICE = 60000;
-
+	private static final int EXPECTED_DISCOUNT = 0;
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY = new GregorianCalendar(2019, 8, 01);
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_FRIDAY = new GregorianCalendar(2019,
 			9, 11);
+	private static final Calendar DATE_FOR_DIVISION_DTO  = new GregorianCalendar(
+			2019, 9, 12);
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY = new GregorianCalendar(
 			2019, 9, 12);
 	private static final Calendar DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_ONE = new GregorianCalendar(2019, 9, 11);
@@ -54,6 +63,7 @@ public class ReservationResquestBuilderTest {
 
 	@Mock
 	private Bill bill;
+
 	@Mock
 	private Client client;
 	@Mock
@@ -66,6 +76,75 @@ public class ReservationResquestBuilderTest {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		reservationResquestBuilder = new ReservationResquestBuilder();
+
+	}
+
+	@Test
+	public void divisionDtoTest() {
+		// arrange
+
+		when(reservationRequest.getFirstName()).thenReturn(FIRSTNAME);
+		when(reservationRequest.getLastName()).thenReturn(LASTNAME);
+		when(reservationRequest.getEmail()).thenReturn(EMAIL);
+		when(reservationRequest.getPhoneNumber()).thenReturn(PHONENUMBER);
+		when(bill.getPrice()).thenReturn(PRICE);
+		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
+		when(reservationRequest.isDecor()).thenReturn(DECOR);
+		when(reservationRequest.getReservationDate())
+				.thenReturn(DATE_FOR_DIVISION_DTO);
+		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+
+		String expectedFisrtName = FIRSTNAME;
+		String expectedLastName = LASTNAME;
+		String expectedEmail = EMAIL;
+		String expectedPhoneNumber = PHONENUMBER;
+		Calendar expectedReservationDate = DATE_FOR_DIVISION_DTO;
+		int expecteNumberPeople = NUMBER_PEOPLE;
+		boolean expedtedDecor = DECOR;
+		float expectedPrice = EXPECTED_PRICE;
+		// act
+
+		Client result = reservationResquestBuilder.divisionDto(reservationRequest);
+
+		// assert
+		assertEquals(expectedFisrtName, result.getFirstName());
+		assertEquals(expectedLastName, result.getLastName());
+		assertEquals(expectedEmail, result.getEmail());
+		assertEquals(expectedPhoneNumber, result.getPhoneNumber());
+		assertEquals(expectedReservationDate, result.getReservation().getReservationDate());
+		assertEquals(expecteNumberPeople, result.getReservation().getNumberPeople());
+		assertEquals(expedtedDecor, result.getReservation().isDecor());
+		assertEquals(expectedPrice, result.getReservation().getBill().getPrice(), 0);
+
+	}
+
+	@Test
+	public void getCaculatePriceAndDiscountsTest() {
+		// arrange
+		when(reservationRequest.getFirstName()).thenReturn(FIRSTNAME);
+		when(reservationRequest.getLastName()).thenReturn(LASTNAME);
+		when(reservationRequest.getEmail()).thenReturn(EMAIL);
+		when(reservationRequest.getPhoneNumber()).thenReturn(PHONENUMBER);
+		when(bill.getPrice()).thenReturn(PRICE);
+		when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
+		when(reservationRequest.isDecor()).thenReturn(DECOR);
+		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
+		when(reservationRequest.getReservationDate())
+				.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+
+		float expectedPrice = PRICE;
+		int expectedDiscountForPeople = EXPECTED_DISCOUNT;
+		int expectedDiscounForDays = EXPECTED_DISCOUNT;
+
+		// act
+		Bill result = reservationResquestBuilder.getCaculatePriceAndDiscounts(reservationRequest, bill);
+
+		// assert
+		assertEquals(expectedPrice, result.getPrice(), 0);
+		assertEquals(expectedDiscountForPeople, result.getDiscountForPeople(), 0);
+		assertEquals(expectedDiscounForDays, result.getDiscpuntForDays(), 0);
 
 	}
 

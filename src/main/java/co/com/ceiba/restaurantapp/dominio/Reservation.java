@@ -2,6 +2,7 @@ package co.com.ceiba.restaurantapp.dominio;
 
 import java.util.Calendar;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class Reservation {
 
@@ -10,6 +11,12 @@ public class Reservation {
 	private boolean decor;
 	private Bill bill;
 
+	public Reservation(Calendar reservationDate, int numberPeople, boolean decor, Bill bill) {
+		this.reservationDate = reservationDate;
+		this.numberPeople = numberPeople;
+		this.decor = decor;
+		this.bill = bill;
+	}
 
 	public Bill getBill() {
 		return bill;
@@ -18,7 +25,7 @@ public class Reservation {
 	public void setBill(Bill bill) {
 		this.bill = bill;
 	}
-	 
+
 	public void setReservationDate(Calendar reservationDate) {
 		this.reservationDate = reservationDate;
 	}
@@ -26,7 +33,6 @@ public class Reservation {
 	public Calendar getReservationDate() {
 		return reservationDate;
 	}
-
 
 	public int getNumberPeople() {
 		return numberPeople;
@@ -36,8 +42,6 @@ public class Reservation {
 		this.numberPeople = numberPeople;
 	}
 
-	
-
 	public void setDecor(boolean decor) {
 		this.decor = decor;
 	}
@@ -46,20 +50,7 @@ public class Reservation {
 		return decor;
 	}
 
-	public Reservation(Calendar reservationDate, int numberPeople, boolean decor, Bill bill) {
-		this.reservationDate = reservationDate;
-		this.numberPeople = numberPeople;
-		this.decor = decor;
-		this.bill = bill;
-	}
-
-	/**
-	 * 
-	 */
 	public Reservation() {
-		super();
 	}
-
-
 
 }

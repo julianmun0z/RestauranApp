@@ -9,11 +9,19 @@ public class Client {
 	private String phoneNumber;
 	private Reservation reservation;
 
+	public Client(Integer clientId, String firstName, String lastName, String email, String phoneNumber,
+			Reservation reservation) {
+		this.clientId = clientId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.reservation = reservation;
+	}
+
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
-	
-	
 
 	public Integer getClientId() {
 		return clientId;
@@ -59,29 +67,7 @@ public class Client {
 		return reservation;
 	}
 
-	public Client(Integer clientId, String firstName, String lastName, String email, String phoneNumber,
-			Reservation reservation) {
-		this.clientId = clientId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.reservation = reservation;
-	}
-
-
-
-	/**
-	 * 
-	 */
 	public Client() {
-		super();
 	}
 
-
-	
-
-
-	
-	
 }

@@ -12,12 +12,8 @@ public class ReservationRequest {
 	private boolean decor;
 	private int numberPeople;
 
-
-
-	
 	public ReservationRequest(String firstName, String lastName, String email, String phoneNumber,
 			Calendar reservationDate, boolean decor, int numberPeople) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -93,12 +89,7 @@ public class ReservationRequest {
 		this.currentDate = currentDate;
 	}
 
-
 	public ReservationRequest() {
-		super();
 	}
-	
-
-	
 
 }

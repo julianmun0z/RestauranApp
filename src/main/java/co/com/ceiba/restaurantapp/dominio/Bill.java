@@ -41,12 +41,11 @@ public class Bill {
 
 
 
-	/**
-	 * 
-	 */
 	public Bill() {
-		super();
 	}
+
+
+
 
 
 	
