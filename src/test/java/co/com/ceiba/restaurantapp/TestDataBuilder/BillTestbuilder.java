@@ -1,9 +1,7 @@
 package co.com.ceiba.restaurantapp.TestDataBuilder;
 
-import java.util.Calendar;
 
 import co.com.ceiba.restaurantapp.dominio.Bill;
-import co.com.ceiba.restaurantapp.dominio.Client;
 
 public class BillTestbuilder {
 
@@ -15,9 +13,7 @@ public class BillTestbuilder {
 	private float price;
 	private int discountForPeople;
 	private int discpuntForDays;
-	private Calendar reservationDate;
-	private int numberPeople;
-	private boolean decor;
+
 
 
 

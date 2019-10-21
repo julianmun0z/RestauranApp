@@ -93,6 +93,8 @@ public class ReservationResquestBuilderTest {
 		when(reservationRequest.getReservationDate())
 				.thenReturn(DATE_FOR_DIVISION_DTO);
 		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+		when(bill.getDiscountForPeople()).thenReturn(15);
+		when(bill.getDiscpuntForDays()).thenReturn(15);
 
 		String expectedFisrtName = FIRSTNAME;
 		String expectedLastName = LASTNAME;
@@ -102,6 +104,8 @@ public class ReservationResquestBuilderTest {
 		int expecteNumberPeople = NUMBER_PEOPLE;
 		boolean expedtedDecor = DECOR;
 		float expectedPrice = EXPECTED_PRICE;
+		int expetedDiscountPeople = 44025;
+		int expetedDiscountDays = 44025;
 		// act
 
 		Client result = reservationResquestBuilder.divisionDto(reservationRequest);
@@ -115,6 +119,8 @@ public class ReservationResquestBuilderTest {
 		assertEquals(expecteNumberPeople, result.getReservation().getNumberPeople());
 		assertEquals(expedtedDecor, result.getReservation().isDecor());
 		assertEquals(expectedPrice, result.getReservation().getBill().getPrice(), 0);
+		assertEquals(expetedDiscountPeople,result.getReservation().getBill().getDiscountForPeople());
+		assertEquals(expetedDiscountDays,result.getReservation().getBill().getDiscountForPeople());
 
 	}
 

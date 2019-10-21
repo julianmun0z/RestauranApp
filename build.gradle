@@ -37,9 +37,6 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 		testCompile group: 'org.mockito', name: 'mockito-core', version: '3.0.0'
-
-	
-
 }
 
 
