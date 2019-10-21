@@ -42,11 +42,11 @@ dependencies {
 }
 
 
-dependencyManagement {
+/*dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
-}
+}*/
 
 
 

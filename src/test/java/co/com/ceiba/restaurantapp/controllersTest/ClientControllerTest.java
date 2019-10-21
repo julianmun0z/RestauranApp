@@ -26,8 +26,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(ClientController.class)
 public class ClientControllerTest {
 
 	
