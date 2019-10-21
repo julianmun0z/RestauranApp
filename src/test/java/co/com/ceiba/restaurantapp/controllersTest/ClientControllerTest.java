@@ -69,29 +69,25 @@ public class ClientControllerTest {
 	  }
 	
 	
-//	@Test
-//	public void updateClient() throws Exception
-//	{
-//	  mvc.perform( MockMvcRequestBuilders
-//	      .put("/client/{id}", 2)
-//	      .content(asJsonString(client))
-//	      .contentType(MediaType.APPLICATION_JSON)
-//	      .accept(MediaType.APPLICATION_JSON))
-//	      .andExpect(status().isOk())
-//	      .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("Juan"))
-//	      .andExpect(MockMvcResultMatchers.jsonPath("$.lastName").value("Gomez"))
-//	      .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("juan@g.com"))
-//	      .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("316-000-3456"));
-//	  
-//	  
-//	}
-//	public static String asJsonString(final Object obj) {
-//	    try {
-//	        return new ObjectMapper().writeValueAsString(obj);
-//	    } catch (Exception e) {
-//	        throw new RuntimeException(e);
-//	    }
-//	}
+	@Test
+	public void updateClient() throws Exception
+	{
+	  mvc.perform( MockMvcRequestBuilders
+	      .put("/client/{id}", 2)
+	      .content(asJsonString(client))
+	      .contentType(MediaType.APPLICATION_JSON)
+	      .accept(MediaType.APPLICATION_JSON))
+	      .andExpect(status().isOk());
+	  
+	  
+	}
+	public static String asJsonString(final Object obj) {
+	    try {
+	        return new ObjectMapper().writeValueAsString(obj);
+	    } catch (Exception e) {
+	        throw new RuntimeException(e);
+	    }
+	}
 	
 	@Test
 	public void deleteClient() throws Exception
