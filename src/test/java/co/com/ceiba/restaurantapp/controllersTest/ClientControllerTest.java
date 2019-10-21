@@ -29,7 +29,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(ClientController.class)
 public class ClientControllerTest {
 
 	
