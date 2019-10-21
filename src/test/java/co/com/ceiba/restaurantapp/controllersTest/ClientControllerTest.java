@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@ComponentScan("co.com.ceiba")
+@ComponentScan("co.com.ceiba.restaurantapp")
 public class ClientControllerTest {
 
 	
