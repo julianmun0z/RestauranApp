@@ -25,8 +25,7 @@ import co.com.ceiba.restaurantapp.controllers.ClientController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@WebMvcTest(ClientController.class)
-@ComponentScan("co.com.ceiba")
+@AutoConfigureMockMvc
 public class ClientControllerTest {
 
 	
