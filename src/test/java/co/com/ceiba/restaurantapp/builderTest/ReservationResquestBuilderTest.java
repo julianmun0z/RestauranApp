@@ -12,10 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import co.com.ceiba.restaurantapp.persistencia.builders.BillBuilder;
 import co.com.ceiba.restaurantapp.persistencia.builders.ReservationResquestBuilder;
-import co.com.ceiba.restaurantapp.persistencia.entities.BillEntity;
-import co.com.ceiba.restaurantapp.TestDataBuilder.BillTestbuilder;
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
