@@ -121,6 +121,9 @@ public class ClientBuilderTest {
 		String expectedFiLastName = LASTNAME;
 		String expectedEmail = EMAIL;
 		String expectedPhoneNumber = PHONENUMBER;
+		Calendar expectedReservationDay = DATE_FOR_DIVISION_DTO;
+		boolean expectedDecor = DECOR;
+		int expectedPeople = NUMBER_PEOPLE;
 		
 		//act
 		Client resultClient = clientBuilder.convertEntityToDto(clientEntity);
@@ -130,7 +133,7 @@ public class ClientBuilderTest {
 		assertEquals(expectedFiLastName, resultClient.getLastName());
 		assertEquals(expectedEmail, resultClient.getEmail());
 		assertEquals(expectedPhoneNumber, resultClient.getPhoneNumber());
-
+		assertEquals(expectedReservationDay, resultClient.getReservation().getReservationDate());
 	}
 
 }
