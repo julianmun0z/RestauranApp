@@ -27,8 +27,9 @@ public class ReservationBuilder {
 		return reservationEntity;
 	}
 
-	public Reservation convertEntityToDto(ReservationEntity reservationEntity) {
+	public Reservation convertReservationEntityToReservation(ReservationEntity reservationEntity) {
 
+	
 		Reservation reservation = new Reservation(null, 0, false, null);
 
 		Bill bill = new BillBuilder().convertEntityToDto(reservationEntity.getBillEntity());

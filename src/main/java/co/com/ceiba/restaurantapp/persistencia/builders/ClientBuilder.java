@@ -32,7 +32,7 @@ public class ClientBuilder {
 
 		Client client = new Client(null, null, null, null, null, null);
 
-		Reservation reservation = new ReservationBuilder().convertEntityToDto(clientEntity.getReservationEntity());
+		Reservation reservation = new ReservationBuilder().convertReservationEntityToReservation(clientEntity.getReservationEntity());
 
 		client.setClientId(clientEntity.getClientId());
 		client.setFirstName(clientEntity.getFirstName());
