@@ -7,7 +7,7 @@ import org.junit.Test;
 import co.com.ceiba.restaurantapp.TestDataBuilder.ClientTestDataBuilder;
 import co.com.ceiba.restaurantapp.dominio.Client;
 
-public class ClientDtoTest {
+public class ClientTest {
 
 	private static final String FIRSTNAME = "juan";
 	private static final String LASTNAME = "gomez";
