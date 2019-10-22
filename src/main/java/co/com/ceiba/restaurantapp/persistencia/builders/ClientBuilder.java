@@ -8,8 +8,8 @@ import co.com.ceiba.restaurantapp.persistencia.entities.ClientEntity;
 import co.com.ceiba.restaurantapp.persistencia.entities.ReservationEntity;
 
 @Configuration
-public class ClientBuilder { 
-  
+public class ClientBuilder {
+
 	@Autowired
 	ReservationBuilder reservationBuilder;
 
@@ -22,7 +22,7 @@ public class ClientBuilder {
 		clientEntity.setFirstName(client.getFirstName());
 		clientEntity.setLastName(client.getLastName());
 		clientEntity.setEmail(client.getEmail());
-		clientEntity.setPhoneNumber(client.getPhoneNumber()); 
+		clientEntity.setPhoneNumber(client.getPhoneNumber());
 		clientEntity.setReservationEntity(reservationEntity);
 
 		return clientEntity;
@@ -32,7 +32,8 @@ public class ClientBuilder {
 
 		Client client = new Client(null, null, null, null, null, null);
 
-		Reservation reservation = new ReservationBuilder().convertReservationEntityToReservation(clientEntity.getReservationEntity());
+		Reservation reservation = new ReservationBuilder()
+				.convertReservationEntityToReservation(clientEntity.getReservationEntity());
 
 		client.setClientId(clientEntity.getClientId());
 		client.setFirstName(clientEntity.getFirstName());

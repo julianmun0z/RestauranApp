@@ -6,18 +6,15 @@ public class Bill {
 	private int discountForPeople;
 	private int discpuntForDays;
 
-	
 	public Bill(float price, int discountForPeople, int discpuntForDays) {
 		this.price = price;
 		this.discountForPeople = discountForPeople;
 		this.discpuntForDays = discpuntForDays;
 	}
-	
 
-	
 	public void setPrice(float price) {
 		this.price = price;
-	} 
+	}
 
 	public float getPrice() {
 		return price;
@@ -39,14 +36,7 @@ public class Bill {
 		this.discpuntForDays = discpuntForDays;
 	}
 
-
-
 	public Bill() {
 	}
 
-
-
-
-
-	
 }

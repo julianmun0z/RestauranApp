@@ -31,11 +31,9 @@ public class ReservationEntity {
 
 	private boolean decor;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idbill", nullable = false)
 	private BillEntity billEntity;
-	
-
 
 	public Integer getIdReservation() {
 		return idReservation;
@@ -44,8 +42,6 @@ public class ReservationEntity {
 	public void setIdReservation(Integer idReservation) {
 		this.idReservation = idReservation;
 	}
-
-
 
 	public Calendar getReservationDate() {
 		return reservationDate;

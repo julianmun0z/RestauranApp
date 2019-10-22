@@ -29,7 +29,6 @@ public class ReservationBuilder {
 
 	public Reservation convertReservationEntityToReservation(ReservationEntity reservationEntity) {
 
-	
 		Reservation reservation = new Reservation(null, 0, false, null);
 
 		Bill bill = new BillBuilder().convertBillEntityToBill(reservationEntity.getBillEntity());
@@ -39,7 +38,7 @@ public class ReservationBuilder {
 		reservation.setDecor(reservationEntity.isDecor());
 		reservation.setBill(bill);
 
-		return reservation; 
+		return reservation;
 	}
 
 }

@@ -32,11 +32,11 @@ public class ReservationResquestBuilder {
 	ErrorHandler errorHandler;
 
 	/*
-	 * sending parameters from the Dto to the objects 
+	 * sending parameters from the Dto to the objects
 	 */
-	 
+
 	public Client divisionDto(ReservationRequest reservationRequest) {
- 
+
 		Bill bill = new Bill(0, 0, 0);
 
 		getCaculatePriceAndDiscounts(reservationRequest, bill);
@@ -97,7 +97,7 @@ public class ReservationResquestBuilder {
 	 */
 
 	public float daysWithRestriction(ReservationRequest reservationRequest, float price) {
-		float restriction = 0; 
+		float restriction = 0;
 		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
 		if ((day == 6 || day == 7) && (differenceBetweenCurrentDateAndReservationDate(reservationRequest) <= 15)) {
 			restriction = 0;
@@ -185,14 +185,14 @@ public class ReservationResquestBuilder {
 		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
 	}
 
-	/* 
+	/*
 	 * The validation of the lastName field is not empty
 	 */
 	public void lastNameFieldValidation(ReservationRequest reservationRequest) {
 		ArgumentsValidator.restrictionForNull(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
 		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
 	}
- 
+
 	/*
 	 * The validation of the email field is not empty
 	 */
@@ -225,4 +225,3 @@ public class ReservationResquestBuilder {
 				LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION);
 	}
 }
- 

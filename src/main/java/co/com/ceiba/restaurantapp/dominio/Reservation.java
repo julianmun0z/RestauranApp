@@ -2,8 +2,6 @@ package co.com.ceiba.restaurantapp.dominio;
 
 import java.util.Calendar;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 public class Reservation {
 
 	private Calendar reservationDate;

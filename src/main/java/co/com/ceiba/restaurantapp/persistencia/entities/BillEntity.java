@@ -24,8 +24,6 @@ public class BillEntity {
 
 	@Column(name = "discpuntfordays")
 	private int discpuntForDays;
-	
-	
 
 	public int getBillId() {
 		return billId;
