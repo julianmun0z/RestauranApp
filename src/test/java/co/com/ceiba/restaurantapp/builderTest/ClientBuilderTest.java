@@ -83,20 +83,20 @@ public class ClientBuilderTest {
 		when(bill.getDiscountForPeople()).thenReturn(DISCOUNT_FOR_PEOPLE);
 		when(bill.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);
 
-		int expectedClientId = 1;
+		int expectedClientId = 2;
 		String expectedFirstname = FIRSTNAME;
 		String expectedFiLastName = LASTNAME;
 		String expectedEmail = EMAIL;
 		String expectedPhoneNumber = PHONENUMBER;
 		Calendar expectedReservationDay = DATE_FOR_DIVISION_DTO;
-		boolean expectedDecor = DECOR;
-		int expectedPeople = NUMBER_PEOPLE;
+
 		
 		//act
 		
 		ClientEntity resultClientEntity = clientBuilder.convertDtoToEntity(client);
 		
 		//assert
+		assertEquals(expectedClientId, resultClientEntity.getClientId(),0);
 		assertEquals(expectedFirstname, resultClientEntity.getFirstName());
 		assertEquals(expectedFiLastName, resultClientEntity.getLastName());
 		assertEquals(expectedEmail, resultClientEntity.getEmail());
@@ -128,19 +128,19 @@ public class ClientBuilderTest {
 		when(bill.getDiscountForPeople()).thenReturn(DISCOUNT_FOR_PEOPLE);
 		when(bill.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);
 
-		int expectedClientId = 1;
+		int expectedClientId = 2;
 		String expectedFirstname = FIRSTNAME;
 		String expectedFiLastName = LASTNAME;
 		String expectedEmail = EMAIL;
 		String expectedPhoneNumber = PHONENUMBER;
 		Calendar expectedReservationDay = DATE_FOR_DIVISION_DTO;
-		boolean expectedDecor = DECOR;
-		int expectedPeople = NUMBER_PEOPLE;
 		
 		//act
 		Client resultClient = clientBuilder.convertEntityToDto(clientEntity);
 		
 		//assert
+		assertEquals(expectedClientId, resultClient.getClientId(),0);
+
 		assertEquals(expectedFirstname, resultClient.getFirstName());
 		assertEquals(expectedFiLastName, resultClient.getLastName());
 		assertEquals(expectedEmail, resultClient.getEmail());
