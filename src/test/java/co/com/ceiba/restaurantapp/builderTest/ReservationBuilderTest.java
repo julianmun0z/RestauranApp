@@ -80,7 +80,7 @@ public class ReservationBuilderTest {
 		assertEquals(expectedReservationDay, resultReservationEntity.getReservationDate());
 		assertEquals(expectedDecor, resultReservationEntity.isDecor());
 		assertEquals(expectedPeople, resultReservationEntity.getNumberPeople());
-
+ 
 	}
 
 	@Test
