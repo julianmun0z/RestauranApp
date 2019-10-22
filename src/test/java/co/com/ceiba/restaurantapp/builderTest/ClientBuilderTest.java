@@ -79,6 +79,7 @@ public class ClientBuilderTest {
 		when(reservation.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
 		when(reservation.isDecor()).thenReturn(DECOR);
 		when(reservation.getBill()).thenReturn(bill);
+		
 		when(bill.getPrice()).thenReturn(PRICE);
 		when(bill.getDiscountForPeople()).thenReturn(DISCOUNT_FOR_PEOPLE);
 		when(bill.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);
@@ -113,10 +114,12 @@ public class ClientBuilderTest {
 		when(clientEntity.getLastName()).thenReturn(LASTNAME);
 		when(clientEntity.getEmail()).thenReturn(EMAIL);
 		when(clientEntity.getPhoneNumber()).thenReturn(PHONENUMBER);
+		when(clientEntity.getReservationEntity().getIdReservation()).thenReturn(4);
 		when(reservationEntity.getReservationDate()).thenReturn(DATE_FOR_DIVISION_DTO);
 		when(reservationEntity.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
 		when(reservationEntity.isDecor()).thenReturn(DECOR);
 		when(reservationEntity.getBillEntity()).thenReturn(billEntity);
+		when(reservationEntity.getBillEntity().getBillId()).thenReturn(4);
 		when(billEntity.getPrice()).thenReturn(PRICE);
 		when(billEntity.getDiscountForPeople()).thenReturn(DISCOUNT_FOR_PEOPLE);
 		when(billEntity.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);

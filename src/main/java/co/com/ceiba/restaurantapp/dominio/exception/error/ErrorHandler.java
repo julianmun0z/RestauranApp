@@ -40,7 +40,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 
 		}
 
-		return resultado;
+		return resultado; 
 	}
 
 }
