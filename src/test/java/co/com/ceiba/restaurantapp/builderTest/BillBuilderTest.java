@@ -49,7 +49,7 @@ public class BillBuilderTest {
 		int expectedDiscountDay = DISCOUNT_FOR_DAY;
 
 		//act
-		Bill result = billBuilder.convertEntityToDto(billEntity);
+		Bill result = billBuilder.convertBillEntityToBill(billEntity);
 
 		//assert
 		assertEquals(expected, result.getPrice(), 0);
@@ -69,7 +69,7 @@ public class BillBuilderTest {
 		int expectedDiscountPeople = DISCOUNT_FOR_PEOPLE;
 		int expectedDiscountDay = DISCOUNT_FOR_DAY;
 		//act
-		BillEntity result = billBuilder.converDtoToEntity(bill);
+		BillEntity result = billBuilder.converBillToBillEntity(bill);
 
 		//assert
 		assertEquals(expected, result.getPrice(), 0);

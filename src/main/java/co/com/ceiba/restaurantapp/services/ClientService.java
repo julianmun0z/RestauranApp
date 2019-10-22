@@ -19,7 +19,7 @@ public class ClientService {
 	private ClientDao clientDao;
 
 	public void addClient(Client client) {
-		ClientEntity clientEntity = clientBuilder.convertDtoToEntity(client);
+		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
 		clientDao.save(clientEntity);
 	}
 
@@ -27,7 +27,7 @@ public class ClientService {
 		List<Client> clients = new ArrayList<>();
 		List<ClientEntity> entities = clientDao.findAll();
 		for (ClientEntity clientEntity : entities) {
-			Client clientDto = clientBuilder.convertEntityToDto(clientEntity);
+			Client clientDto = clientBuilder.convertClientEntityToClient(clientEntity);
 			clients.add(clientDto);
 		}
 		return clients;
@@ -35,19 +35,19 @@ public class ClientService {
 
 	public Client getClientById(int id) {
 		ClientEntity clientEntity = clientDao.findById(id);
-		 Client client = clientBuilder.convertEntityToDto(clientEntity);
+		 Client client = clientBuilder.convertClientEntityToClient(clientEntity);
 		return client;
 	}
 
 	public void edit(Client client) {
-		ClientEntity clientEntity = clientBuilder.convertDtoToEntity(client);
+		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
 		clientDao.save(clientEntity);
 
 	}
 
 	public Client delete(int id) {
 		ClientEntity clientEntity = clientDao.findById(id);
-		Client client = clientBuilder.convertEntityToDto(clientEntity);
+		Client client = clientBuilder.convertClientEntityToClient(clientEntity);
 		if (client != null) {
 			clientDao.delete(clientEntity);
 

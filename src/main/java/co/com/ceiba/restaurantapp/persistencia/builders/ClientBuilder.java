@@ -13,7 +13,7 @@ public class ClientBuilder {
 	@Autowired
 	ReservationBuilder reservationBuilder;
 
-	public ClientEntity convertDtoToEntity(Client client) {
+	public ClientEntity convertClientToRClientEntity(Client client) {
 
 		ClientEntity clientEntity = new ClientEntity();
 
@@ -28,7 +28,7 @@ public class ClientBuilder {
 		return clientEntity;
 	}
 
-	public Client convertEntityToDto(ClientEntity clientEntity) {
+	public Client convertClientEntityToClient(ClientEntity clientEntity) {
 
 		Client client = new Client(null, null, null, null, null, null);
 

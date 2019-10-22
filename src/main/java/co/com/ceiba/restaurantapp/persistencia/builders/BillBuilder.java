@@ -11,7 +11,7 @@ public class BillBuilder {
 	@Autowired
 	ReservationBuilder reservationBuilder;
 
-	public BillEntity converDtoToEntity(Bill bill) {
+	public BillEntity converBillToBillEntity(Bill bill) {
 
 		BillEntity billEntity = new BillEntity();
 
@@ -19,10 +19,10 @@ public class BillBuilder {
 		billEntity.setDiscountForPeople(bill.getDiscountForPeople());
 		billEntity.setDiscpuntForDays(bill.getDiscpuntForDays());
 
-		return billEntity; 
+		return billEntity;
 	}
 
-	public Bill convertEntityToDto(BillEntity billEntity) {
+	public Bill convertBillEntityToBill(BillEntity billEntity) {
 
 		Bill bill = new Bill(0, 0, 0);
 

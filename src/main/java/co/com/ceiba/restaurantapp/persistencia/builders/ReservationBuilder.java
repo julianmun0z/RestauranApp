@@ -18,7 +18,7 @@ public class ReservationBuilder {
 
 		ReservationEntity reservationEntity = new ReservationEntity();
 
-		BillEntity billEntity = new BillBuilder().converDtoToEntity(reservation.getBill());
+		BillEntity billEntity = new BillBuilder().converBillToBillEntity(reservation.getBill());
 
 		reservationEntity.setReservationDate(reservation.getReservationDate());
 		reservationEntity.setNumberPeople(reservation.getNumberPeople());
@@ -32,7 +32,7 @@ public class ReservationBuilder {
 	
 		Reservation reservation = new Reservation(null, 0, false, null);
 
-		Bill bill = new BillBuilder().convertEntityToDto(reservationEntity.getBillEntity());
+		Bill bill = new BillBuilder().convertBillEntityToBill(reservationEntity.getBillEntity());
 
 		reservation.setReservationDate(reservationEntity.getReservationDate());
 		reservation.setNumberPeople(reservationEntity.getNumberPeople());

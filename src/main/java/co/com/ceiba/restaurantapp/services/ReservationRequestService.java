@@ -37,7 +37,7 @@ public class ReservationRequestService {
 	public void addBillFull(ReservationRequest reservationRequest) {
 
 		Client client = reservationResquestBuilder.divisionDto(reservationRequest);
-		ClientEntity clientEntity = clientBuilder.convertDtoToEntity(client);
+		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
 		billDao.save(clientEntity.getReservationEntity().getBillEntity());
 		reservationDao.save(clientEntity.getReservationEntity());
 		clientDao.save(clientEntity);

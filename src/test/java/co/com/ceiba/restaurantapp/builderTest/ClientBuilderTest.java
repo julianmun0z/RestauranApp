@@ -93,7 +93,7 @@ public class ClientBuilderTest {
 		
 		//act
 		
-		ClientEntity resultClientEntity = clientBuilder.convertDtoToEntity(client);
+		ClientEntity resultClientEntity = clientBuilder.convertClientToRClientEntity(client);
 		
 		//assert
 		assertEquals(expectedClientId, resultClientEntity.getClientId(),0);
@@ -136,7 +136,7 @@ public class ClientBuilderTest {
 		Calendar expectedReservationDay = DATE_FOR_DIVISION_DTO;
 		
 		//act
-		Client resultClient = clientBuilder.convertEntityToDto(clientEntity);
+		Client resultClient = clientBuilder.convertClientEntityToClient(clientEntity);
 		
 		//assert
 		assertEquals(expectedClientId, resultClient.getClientId(),0);
