@@ -39,11 +39,12 @@ public class BillBuilderTest {
 
 	@Test
 	public void converDtoToEntityTest() {
-		//arrange
+		//arrange 
+		when(billEntity.getBillId()).thenReturn(2);
 		when(billEntity.getPrice()).thenReturn(PRICE);
 		when(billEntity.getDiscountForPeople()).thenReturn(DISCOUNT_FOR_PEOPLE);
 		when(billEntity.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);
-
+		int expectedBillID = 2;
 		float expected = EXPECTED_PRICE;
 		int expectedDiscountPeople = DISCOUNT_FOR_PEOPLE;
 		int expectedDiscountDay = DISCOUNT_FOR_DAY;
@@ -52,6 +53,7 @@ public class BillBuilderTest {
 		Bill result = billBuilder.convertBillEntityToBill(billEntity);
 
 		//assert
+		assertEquals(expectedBillID,2);
 		assertEquals(expected, result.getPrice(), 0);
 		assertEquals(expectedDiscountPeople, result.getDiscountForPeople());
 		assertEquals(expectedDiscountDay, result.getDiscpuntForDays());
@@ -64,6 +66,7 @@ public class BillBuilderTest {
 		when(bill.getPrice()).thenReturn(PRICE);
 		when(bill.getDiscountForPeople()).thenReturn(DISCOUNT_FOR_PEOPLE);
 		when(bill.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);
+		
 
 		float expected = EXPECTED_PRICE;
 		int expectedDiscountPeople = DISCOUNT_FOR_PEOPLE;
