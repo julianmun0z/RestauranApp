@@ -29,6 +29,10 @@ public class ClientController {
 		return clientService.getClients(); 
 	}
 
+	@PostMapping
+	public void add(@RequestBody Client client) {
+		clientService.addClient(client);
+	}
 
 	@GetMapping(path = { "/{id}" })
 	public Client getClientForId(@PathVariable("id") int id) {
