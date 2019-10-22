@@ -87,9 +87,11 @@ public class ReservationBuilderTest {
 	public void convertEntityToReservation() {
 		//arrange
 		when(reservationEntity.getBillEntity()).thenReturn(billEntity);
+		when(billEntity.getBillId()).thenReturn(2);
 		when(billEntity.getPrice()).thenReturn(PRICE);
 		when(billEntity.getDiscountForPeople()).thenReturn(DISCOUNT_FOR_PEOPLE);
 		when(billEntity.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);
+		when(reservationEntity.getIdReservation()).thenReturn(2);
 		when(reservationEntity.getReservationDate()).thenReturn(DATE_FOR_DIVISION_DTO);
 		when(reservationEntity.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
 		when(reservationEntity.isDecor()).thenReturn(DECOR);
