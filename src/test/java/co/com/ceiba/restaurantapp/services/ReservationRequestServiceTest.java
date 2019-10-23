@@ -16,6 +16,7 @@ import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
 import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
+import co.com.ceiba.restaurantapp.persistencia.entities.ClientEntity;
 
 public class ReservationRequestServiceTest {
 
@@ -70,6 +71,46 @@ public class ReservationRequestServiceTest {
 		MockitoAnnotations.initMocks(this);
 		reservationRequestService = new ReservationRequestService();
 	}
+	
+//	public void addBillFull(ReservationRequest reservationRequest) {
+//
+//		Client client = reservationResquestBuilder.divisionDto(reservationRequest);
+//		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
+//		billDao.save(clientEntity.getReservationEntity().getBillEntity());
+//		reservationDao.save(clientEntity.getReservationEntity());
+//		clientDao.save(clientEntity);
+//	} 
+	
+	
+@Test
+public void addBillFullTest() {
+	when(reservationRequest.getFirstName()).thenReturn(FIRSTNAME);
+	when(reservationRequest.getLastName()).thenReturn(LASTNAME);
+	when(reservationRequest.getEmail()).thenReturn(EMAIL);
+	when(reservationRequest.getPhoneNumber()).thenReturn(PHONENUMBER);
+	when(bill.getPrice()).thenReturn(PRICE);
+	when(reservationRequest.getReservationDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+	when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
+	when(reservationRequest.isDecor()).thenReturn(DECOR);
+	when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
+	when(reservationRequest.getReservationDate())
+			.thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY_FOR_ZERO_TEST_FOR_SATURDAY);
+	when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
+
+	String newMenssageForNull = null;
+	String other = " ";
+	
+	try {
+		reservationRequestService.addBillFull(reservationRequest);
+	} catch (Exception e) {
+		other = e.getMessage();
+	}
+	
+	assertEquals(newMenssageForNull, other);
+
+}
+	
+	
 	@Test
 	public void getCaculatePriceAndDiscountsTest() {
 		// arrange

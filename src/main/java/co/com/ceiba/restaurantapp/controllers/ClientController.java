@@ -43,7 +43,7 @@ public class ClientController {
 	@PutMapping(path = { "/{id}" })
 	public void editar(@RequestBody Client client, @PathVariable("id") int id) {
 		clientService.edit(client);
-	}
+	} 
 
 	@DeleteMapping(path = { "/{id}" })
 	public Client delete(@PathVariable("id") int id) {
