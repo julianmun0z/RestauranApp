@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
-import co.com.ceiba.restaurantapp.dominio.exception.error.ErrorHandler;
 import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 import co.com.ceiba.restaurantapp.persistencia.builders.ClientBuilder;
@@ -36,8 +35,6 @@ public class ReservationRequestService {
 	private static final String EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO = "EL NUMERO DE PERSONAS PARA LA RESERVA ES OBLIGATORIO";
 	private static final String LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
 
-	ErrorHandler errorHandler;
-	
 
 	@Autowired
 	private ReservationDao reservationDao;

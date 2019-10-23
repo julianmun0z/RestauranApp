@@ -34,7 +34,6 @@ public class ClientBuilderTest {
 	private static final int DISCOUNT_FOR_PEOPLE = 5000;
 	private static final int DISCOUNT_FOR_DAY = 6000;
 	private static final float PRICE = 350000;
-	private static final float EXPECTED_PRICE = 350000;
 
 	@Mock
 	private Client client;

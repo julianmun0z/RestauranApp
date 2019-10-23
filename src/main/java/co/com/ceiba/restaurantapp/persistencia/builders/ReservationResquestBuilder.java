@@ -1,7 +1,6 @@
 package co.com.ceiba.restaurantapp.persistencia.builders;
 
-import java.util.Calendar;
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -9,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
-import co.com.ceiba.restaurantapp.dominio.exception.error.ErrorHandler;
-import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
+
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 import co.com.ceiba.restaurantapp.services.ReservationRequestService;
 
@@ -20,9 +18,7 @@ public class ReservationResquestBuilder {
 	@Autowired
 	ReservationRequestService reservationRequestService;
 
-	/*
-	 * sending parameters from the Dto to the objects
-	 */
+	
 
 	public Client divisionDto(ReservationRequest reservationRequest) {
 
@@ -48,9 +44,7 @@ public class ReservationResquestBuilder {
 		return client; 
 
 	}
-	/*
-	 * method to define the price and discounts per day and people
-	 */
+
 
 
 	
