@@ -143,7 +143,6 @@ public class ClientBuilderTest {
 		
 		//assert
 		assertEquals(expectedClientId, resultClient.getClientId(),0);
-
 		assertEquals(expectedFirstname, resultClient.getFirstName());
 		assertEquals(expectedFiLastName, resultClient.getLastName());
 		assertEquals(expectedEmail, resultClient.getEmail());

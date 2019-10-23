@@ -11,7 +11,7 @@ import co.com.ceiba.restaurantapp.persistencia.entities.ReservationEntity;
 @Configuration
 public class ReservationBuilder {
 
-	@Autowired
+	@Autowired 
 	BillBuilder billBuilder;
 
 	public ReservationEntity convertDtoToEntity(Reservation reservation) {

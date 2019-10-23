@@ -13,18 +13,19 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import co.com.ceiba.restaurantapp.persistencia.builders.ReservationResquestBuilder;
+import co.com.ceiba.restaurantapp.services.ReservationRequestService;
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
 import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 
-public class ReservationResquestBuilderTest {
+public class ReservationResquestBuilderTest { 
 
 	private static final int NUMBER_PEOPLE = 5;
 	private static final int MINUS_NUMBER_PEOPLE = 2;
 	private static final float PRICE = 350000;
-	private static final float EXPECTED_PRICE = 293500;
+	private static final float EXPECTED_PRICE = 0;
 
 	private static final String FIRSTNAME = "juan";
 	private static final String LASTNAME = "gomez";
@@ -65,6 +66,9 @@ public class ReservationResquestBuilderTest {
 	private Client client;
 	@Mock
 	private Reservation reservation;
+	
+	@Mock
+	private ReservationRequestService reservationRequestService;
 
 	@InjectMocks
 	private ReservationResquestBuilder reservationResquestBuilder;
@@ -72,8 +76,7 @@ public class ReservationResquestBuilderTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		reservationResquestBuilder = new ReservationResquestBuilder();
-
+		reservationRequestService = new ReservationRequestService();
 	}
 
 	@Test
@@ -101,8 +104,8 @@ public class ReservationResquestBuilderTest {
 		int expecteNumberPeople = NUMBER_PEOPLE;
 		boolean expedtedDecor = DECOR;
 		float expectedPrice = EXPECTED_PRICE;
-		int expetedDiscountPeople = 44025;
-		int expetedDiscountDays = 44025;
+		int expetedDiscountPeople = EXPECTED_DISCOUNT;
+		int expetedDiscountDays = EXPECTED_DISCOUNT;
 		// act
 
 		Client result = reservationResquestBuilder.divisionDto(reservationRequest);
@@ -142,7 +145,7 @@ public class ReservationResquestBuilderTest {
 		int expectedDiscounForDays = EXPECTED_DISCOUNT;
 
 		// act
-		Bill result = reservationResquestBuilder.getCaculatePriceAndDiscounts(reservationRequest, bill);
+		Bill result = reservationRequestService.getCaculatePriceAndDiscounts(reservationRequest, bill);
 
 		// assert
 		assertEquals(expectedPrice, result.getPrice(), 0);
@@ -161,7 +164,7 @@ public class ReservationResquestBuilderTest {
 		float price = 60000;
 
 		// act
-		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationRequestService.daysWithRestriction(reservationRequest, price);
 		// assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction, 0);
 	}
@@ -177,7 +180,7 @@ public class ReservationResquestBuilderTest {
 		float newDaysWithRestriction = 0;
 		float price = 60000;
 		// act
-		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationRequestService.daysWithRestriction(reservationRequest, price);
 		// assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction, 0);
 	}
@@ -191,7 +194,7 @@ public class ReservationResquestBuilderTest {
 		float newDaysWithRestriction = 0;
 		float price = 60000;
 		// act
-		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationRequestService.daysWithRestriction(reservationRequest, price);
 		// assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction, 0);
 	}
@@ -203,7 +206,7 @@ public class ReservationResquestBuilderTest {
 		float newDaysWithRestriction = 60000;
 		float price = 60000;
 		// act
-		float expectanDaysWithRestriction = reservationResquestBuilder.daysWithRestriction(reservationRequest, price);
+		float expectanDaysWithRestriction = reservationRequestService.daysWithRestriction(reservationRequest, price);
 		// assert
 		assertEquals(newDaysWithRestriction, expectanDaysWithRestriction, 0);
 	}
@@ -215,7 +218,7 @@ public class ReservationResquestBuilderTest {
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
 		// act
-		float expectangetDiscuntForSpecialDays = reservationResquestBuilder.getDiscuntForSpecialDays(reservationRequest,
+		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscuntForSpecialDays(reservationRequest,
 				price);
 
 		// assert
@@ -229,7 +232,7 @@ public class ReservationResquestBuilderTest {
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
 		// act
-		float expectangetDiscuntForSpecialDays = reservationResquestBuilder.getDiscuntForSpecialDays(reservationRequest,
+		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscuntForSpecialDays(reservationRequest,
 				price);
 
 		// assert
@@ -243,7 +246,7 @@ public class ReservationResquestBuilderTest {
 		float newGetDiscuntForSpecialDays = 0;
 		float price = 60000;
 		// act
-		float expectangetDiscuntForSpecialDays = reservationResquestBuilder.getDiscuntForSpecialDays(reservationRequest,
+		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscuntForSpecialDays(reservationRequest,
 				price);
 
 		// assert
@@ -259,7 +262,7 @@ public class ReservationResquestBuilderTest {
 		float price = 50000;
 		// act
 
-		float expectangetDiscuontPerPeople = reservationResquestBuilder.getDiscuontPerPeople(reservationRequest, price);
+		float expectangetDiscuontPerPeople = reservationRequestService.getDiscuontPerPeople(reservationRequest, price);
 
 		// assert
 		assertEquals(newgetDiscuontPerPeople, expectangetDiscuontPerPeople, 0);
@@ -274,7 +277,7 @@ public class ReservationResquestBuilderTest {
 		float price = 50000;
 		// act
 
-		float expectangetDiscuontPerPeople = reservationResquestBuilder.getDiscuontPerPeople(reservationRequest, price);
+		float expectangetDiscuontPerPeople = reservationRequestService.getDiscuontPerPeople(reservationRequest, price);
 
 		// assert
 		assertEquals(newgetDiscuontPerPeople, expectangetDiscuontPerPeople, 0);
@@ -286,7 +289,7 @@ public class ReservationResquestBuilderTest {
 		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
 		float newExtraPerson = 250000;
 		// act
-		float expectanExtraPersona = reservationResquestBuilder.getExtraPerson(reservationRequest);
+		float expectanExtraPersona = reservationRequestService.getExtraPerson(reservationRequest);
 
 		// assert
 		assertEquals(newExtraPerson, expectanExtraPersona, 0);
@@ -299,7 +302,7 @@ public class ReservationResquestBuilderTest {
 		when(bill.getPrice()).thenReturn(FIXED_PRICE);
 		float newSetFixedPrice = 60000;
 		// act
-		float expectanSetFixedPrice = reservationResquestBuilder.giveValueToThePrice(reservationRequest);
+		float expectanSetFixedPrice = reservationRequestService.giveValueToThePrice(reservationRequest);
 
 		// assert
 		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
@@ -312,7 +315,7 @@ public class ReservationResquestBuilderTest {
 		bill.setPrice(FIXED_PRICE);
 		float newSetFixedPrice = 0;
 		// act
-		float expectanSetFixedPrice = reservationResquestBuilder.giveValueToThePrice(reservationRequest);
+		float expectanSetFixedPrice = reservationRequestService.giveValueToThePrice(reservationRequest);
 
 		// assert
 		assertEquals(newSetFixedPrice, expectanSetFixedPrice, 0);
@@ -325,7 +328,7 @@ public class ReservationResquestBuilderTest {
 		float newFixedDecor = 0;
 
 		// act
-		float expectantFixedDecor = reservationResquestBuilder.fixedDecor(reservationRequest);
+		float expectantFixedDecor = reservationRequestService.fixedDecor(reservationRequest);
 
 		// assert
 
@@ -340,7 +343,7 @@ public class ReservationResquestBuilderTest {
 		float newFixedDecor = 30000;
 
 		// act
-		float expectantFixedDecor = reservationResquestBuilder.fixedDecor(reservationRequest);
+		float expectantFixedDecor = reservationRequestService.fixedDecor(reservationRequest);
 
 		// assert
 
@@ -356,7 +359,7 @@ public class ReservationResquestBuilderTest {
 		when(reservationRequest.getCurrentDate()).thenReturn(DATE_TO_PROVE_DIFFERENCE_BETWEEN_DAYS_TWO);
 		long newDifferenceDays = 4;
 		// act
-		long newDiferens = reservationResquestBuilder
+		long newDiferens = reservationRequestService
 				.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
 		// assert
 		assertEquals(newDifferenceDays, newDiferens);
@@ -371,7 +374,7 @@ public class ReservationResquestBuilderTest {
 		when(reservationRequest.getCurrentDate()).thenReturn(DATE_WITH_TUESDAY_AND_WENESDAY);
 		long newDifferenceDays = 15;
 		// act
-		long newDiferens = reservationResquestBuilder
+		long newDiferens = reservationRequestService
 				.differenceBetweenCurrentDateAndReservationDate(reservationRequest);
 		// assert
 		assertEquals(newDifferenceDays, newDiferens);
@@ -389,7 +392,7 @@ public class ReservationResquestBuilderTest {
 		String other = "";
 		// act
 		try {
-			reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+			reservationRequestService.firstNameFieldValidation(reservationRequest);
 
 		} catch (Exception e) {
 			other = e.getMessage();
@@ -408,7 +411,7 @@ public class ReservationResquestBuilderTest {
 		String other = " ";
 		// act
 		try {
-			reservationResquestBuilder.firstNameFieldValidation(reservationRequest);
+			reservationRequestService.firstNameFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -452,7 +455,7 @@ public class ReservationResquestBuilderTest {
 		String other = "";
 		// act
 		try {
-			reservationResquestBuilder.lastNameFieldValidation(reservationRequest);
+			reservationRequestService.lastNameFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -471,7 +474,7 @@ public class ReservationResquestBuilderTest {
 
 		// act
 		try {
-			reservationResquestBuilder.lastNameFieldValidation(reservationRequest);
+			reservationRequestService.lastNameFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -513,7 +516,7 @@ public class ReservationResquestBuilderTest {
 
 		// act
 		try {
-			reservationResquestBuilder.emailFieldValidation(reservationRequest);
+			reservationRequestService.emailFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -536,7 +539,7 @@ public class ReservationResquestBuilderTest {
 
 		// act
 		try {
-			reservationResquestBuilder.reservationDateFieldValidation(reservationRequest);
+			reservationRequestService.reservationDateFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -554,7 +557,7 @@ public class ReservationResquestBuilderTest {
 
 		// act
 		try {
-			reservationResquestBuilder.reservationDateFieldValidation(reservationRequest);
+			reservationRequestService.reservationDateFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -573,7 +576,7 @@ public class ReservationResquestBuilderTest {
 
 		// act
 		try {
-			reservationResquestBuilder.numberPeopleFieldValidation(reservationRequest);
+			reservationRequestService.numberPeopleFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -590,7 +593,7 @@ public class ReservationResquestBuilderTest {
 
 		// act
 		try {
-			reservationResquestBuilder.numberPeopleFieldValidation(reservationRequest);
+			reservationRequestService.numberPeopleFieldValidation(reservationRequest);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
@@ -606,7 +609,7 @@ public class ReservationResquestBuilderTest {
 		String other = "hay precio";
 
 		try {
-			reservationResquestBuilder.validationForFridatAndSaturday(PRICE);
+			reservationRequestService.validationForFridatAndSaturday(PRICE);
 		} catch (Exception e) {
 			other = e.getMessage();
 		}
