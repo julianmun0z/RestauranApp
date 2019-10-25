@@ -16,7 +16,6 @@ import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
 import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
-import co.com.ceiba.restaurantapp.persistencia.entities.ClientEntity;
 
 public class ReservationRequestServiceTest {
 
@@ -72,15 +71,6 @@ public class ReservationRequestServiceTest {
 		reservationRequestService = new ReservationRequestService();
 	}
 	
-//	public void addBillFull(ReservationRequest reservationRequest) {
-//
-//		Client client = reservationResquestBuilder.divisionDto(reservationRequest);
-//		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
-//		billDao.save(clientEntity.getReservationEntity().getBillEntity());
-//		reservationDao.save(clientEntity.getReservationEntity());
-//		clientDao.save(clientEntity);
-//	} 
-	
 	
 @Test
 public void addBillFullTest() {
@@ -101,7 +91,7 @@ public void addBillFullTest() {
 	String other = " ";
 	
 	try {
-		reservationRequestService.addBillFull(reservationRequest);
+		reservationRequestService.addReservationResquest(reservationRequest);
 	} catch (Exception e) {
 		other = e.getMessage();
 	}
@@ -205,7 +195,7 @@ public void addBillFullTest() {
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
 		// act
-		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscuntForSpecialDays(reservationRequest,
+		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscountForDaysTuesdayAndWednesday(reservationRequest,
 				price);
 
 		// assert
@@ -219,7 +209,7 @@ public void addBillFullTest() {
 		float newGetDiscuntForSpecialDays = 12000;
 		float price = 60000;
 		// act
-		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscuntForSpecialDays(reservationRequest,
+		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscountForDaysTuesdayAndWednesday(reservationRequest,
 				price);
 
 		// assert
@@ -233,7 +223,7 @@ public void addBillFullTest() {
 		float newGetDiscuntForSpecialDays = 0;
 		float price = 60000;
 		// act
-		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscuntForSpecialDays(reservationRequest,
+		float expectangetDiscuntForSpecialDays = reservationRequestService.getDiscountForDaysTuesdayAndWednesday(reservationRequest,
 				price);
 
 		// assert
@@ -276,7 +266,7 @@ public void addBillFullTest() {
 		when(reservationRequest.getNumberPeople()).thenReturn(NUMBER_PEOPLE);
 		float newExtraPerson = 250000;
 		// act
-		float expectanExtraPersona = reservationRequestService.getExtraPerson(reservationRequest);
+		float expectanExtraPersona = reservationRequestService.getValueForPerson(reservationRequest);
 
 		// assert
 		assertEquals(newExtraPerson, expectanExtraPersona, 0);
@@ -315,7 +305,7 @@ public void addBillFullTest() {
 		float newFixedDecor = 0;
 
 		// act
-		float expectantFixedDecor = reservationRequestService.fixedDecor(reservationRequest);
+		float expectantFixedDecor = reservationRequestService.getFixedValueDecor(reservationRequest);
 
 		// assert
 
@@ -324,13 +314,13 @@ public void addBillFullTest() {
 	}
 
 	@Test
-	public void FixedDecorTest() {
+	public void getFixedValueDecorTest() {
 		// arrange
 		when(reservationRequest.isDecor()).thenReturn(DECOR);
 		float newFixedDecor = 30000;
 
 		// act
-		float expectantFixedDecor = reservationRequestService.fixedDecor(reservationRequest);
+		float expectantFixedDecor = reservationRequestService.getFixedValueDecor(reservationRequest);
 
 		// assert
 

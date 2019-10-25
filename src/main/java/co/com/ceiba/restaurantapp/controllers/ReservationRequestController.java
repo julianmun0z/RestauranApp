@@ -19,7 +19,8 @@ public class ReservationRequestController {
 
 	@PostMapping
 	public void add(@RequestBody ReservationRequest reservationRequest) {
-		reservationRequestService.addBillFull(reservationRequest);
+		reservationRequestService.addReservationResquest(reservationRequest);
 	}
 
 }
+ 

@@ -20,7 +20,7 @@ import co.com.ceiba.restaurantapp.persistencia.entities.ClientEntity;
 
 @Service
 public class ReservationRequestService {
-	
+
 	private static final int PERCENT_DAYS = 20;
 	private static final int PERCENT_FOR_PEOPLE = 15;
 	private static final int DISCOUNT_SPLITTER = 100;
@@ -34,7 +34,6 @@ public class ReservationRequestService {
 	private static final String LA_FECHA_ES_OBLIGATORIA = "LA FECHA ES OBLIGATORIA";
 	private static final String EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO = "EL NUMERO DE PERSONAS PARA LA RESERVA ES OBLIGATORIO";
 	private static final String LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION = "LA RESERVA PARA LOS DIAS VIERNES Y SABADOS DEBEN TENER 15 DIAS DE ANTICIPACION";
-
 
 	@Autowired
 	private ReservationDao reservationDao;
@@ -53,42 +52,37 @@ public class ReservationRequestService {
 
 	@Autowired
 	ClientBuilder clientBuilder;
-	
-	
-	
 
-	public void addBillFull(ReservationRequest reservationRequest) {
+	public void addReservationResquest(ReservationRequest reservationRequest) {
 
 		Client client = reservationResquestBuilder.divisionDto(reservationRequest);
 		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
-		billDao.save(clientEntity.getReservationEntity().getBillEntity());
-		reservationDao.save(clientEntity.getReservationEntity());
 		clientDao.save(clientEntity);
-	} 
-	
-	
-	
+		reservationDao.save(clientEntity.getReservationEntity());
+		billDao.save(clientEntity.getReservationEntity().getBillEntity());
+
+	}
 
 	public Bill getCaculatePriceAndDiscounts(ReservationRequest reservationRequest, Bill bill) {
 		float price = 0;
 
 		validations(reservationRequest);
 		price = giveValueToThePrice(reservationRequest);
-		price += getExtraPerson(reservationRequest);
+		price += getValueForPerson(reservationRequest);
 		price -= getDiscuontPerPeople(reservationRequest, price);
-		price -= getDiscuntForSpecialDays(reservationRequest, price);
-		price += fixedDecor(reservationRequest);
+		price -= getDiscountForDaysTuesdayAndWednesday(reservationRequest, price);
+		price += getFixedValueDecor(reservationRequest);
 		price = daysWithRestriction(reservationRequest, price);
 		bill.setDiscountForPeople((int) getDiscuontPerPeople(reservationRequest, price));
-		bill.setDiscpuntForDays((int) getDiscuntForSpecialDays(reservationRequest, price));
+		bill.setDiscpuntForDays((int) getDiscountForDaysTuesdayAndWednesday(reservationRequest, price));
 		validationForFridatAndSaturday(price);
 		bill.setPrice(price);
 		return bill;
 	}
-	
-	
-	/*
-	 * method to assign initial price.
+
+
+	/**
+	 *  method to assign initial price.
 	 */
 	public float giveValueToThePrice(ReservationRequest reservationRequest) {
 		float newPrice = 0;
@@ -98,7 +92,53 @@ public class ReservationRequestService {
 		return newPrice;
 	}
 
-	/*
+	/**
+	 *  method to calculate the value of the price by the number of people
+	 */
+	public float getValueForPerson(ReservationRequest reservationRequest) {
+		float priceForPerson = 0;
+		priceForPerson = VALUE_FOR_PERSON * reservationRequest.getNumberPeople();
+		return priceForPerson;
+	}
+
+	/**
+	 *  method to obtain a 15% discount if the reservation is for 5 people or more.
+	 */
+	public float getDiscuontPerPeople(ReservationRequest reservationRequest, float price) {
+		float discuont = 0;
+		if (reservationRequest.getNumberPeople() >= 5) {
+			discuont = price * PERCENT_FOR_PEOPLE / DISCOUNT_SPLITTER;
+		}
+		return discuont;
+	}
+
+	/**
+	 * method to get a 20% discount for Tuesday and Wednesday.
+	 */
+
+	public float getDiscountForDaysTuesdayAndWednesday(ReservationRequest reservationRequest, float price) {
+		float discountDay = 0;
+		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
+
+		if (day == 3 || day == 4) {
+			discountDay = price * PERCENT_DAYS / DISCOUNT_SPLITTER;
+
+		}
+		return discountDay;
+	}
+
+	/**
+	 *  method to give value if decoration is desired
+	 */
+	public float getFixedValueDecor(ReservationRequest reservationRequest) {
+		float valueDecor = 0;
+		if (reservationRequest.isDecor()) {
+			valueDecor = FIXED_DECOR;
+		}
+		return valueDecor;
+	} 
+
+	/**
 	 * method to place a 15-day restriction for reservations made on Saturdays or
 	 * Sundays.
 	 */
@@ -115,53 +155,7 @@ public class ReservationRequestService {
 		return restriction;
 	}
 
-	/*
-	 * method to get a 20% discount for Tuesday and Wednesday.
-	 */
-
-	public float getDiscuntForSpecialDays(ReservationRequest reservationRequest, float price) {
-		float discountDay = 0;
-		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
-
-		if (day == 3 || day == 4) {
-			discountDay = price * PERCENT_DAYS / DISCOUNT_SPLITTER;
-
-		}
-		return discountDay;
-	}
-
-	/*
-	 * method to obtain a 15% discount if the reservation is for 5 people or more.
-	 */
-	public float getDiscuontPerPeople(ReservationRequest reservationRequest, float price) {
-		float discuont = 0;
-		if (reservationRequest.getNumberPeople() >= 5) {
-			discuont = price * PERCENT_FOR_PEOPLE / DISCOUNT_SPLITTER;
-		}
-		return discuont;
-	}
-
-	/*
-	 * method to calculate the value of the price by the number of people
-	 */
-	public float getExtraPerson(ReservationRequest reservationRequest) {
-		float priceExtraPerson = 0;
-		priceExtraPerson = VALUE_FOR_PERSON * reservationRequest.getNumberPeople();
-		return priceExtraPerson;
-	}
-
-	/*
-	 * method to give value if decoration is desired
-	 */
-	public float fixedDecor(ReservationRequest reservationRequest) {
-		float valueDecor = 0;
-		if (reservationRequest.isDecor()) {
-			valueDecor = FIXED_DECOR;
-		}
-		return valueDecor;
-	}
-
-	/*
+	/**
 	 * method to calculate difference between the current date and the reservation
 	 * date for restrictions
 	 */
@@ -172,8 +166,17 @@ public class ReservationRequestService {
 		daysDifference = (fechaEntrada.getTime() - fechaHoy.getTime()) / 86400000;
 		return daysDifference;
 	}
+	
+	
+	/**
+	 * method that evaluates if the price ends in zero
+	 */
+	public void validationForFridatAndSaturday(float price) {
+		ArgumentsValidator.restrictionForValueZero(price,
+				LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION);
+	}
 
-	/*
+	/**
 	 * method to validate the fields
 	 */
 	public void validations(ReservationRequest reservationRequest) {
@@ -184,7 +187,7 @@ public class ReservationRequestService {
 		numberPeopleFieldValidation(reservationRequest);
 	}
 
-	/*
+	/**
 	 * firstName field validation is not empty
 	 */
 	public void firstNameFieldValidation(ReservationRequest reservationRequest) {
@@ -192,7 +195,7 @@ public class ReservationRequestService {
 		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
 	}
 
-	/*
+	/**
 	 * The validation of the lastName field is not empty
 	 */
 	public void lastNameFieldValidation(ReservationRequest reservationRequest) {
@@ -200,7 +203,7 @@ public class ReservationRequestService {
 		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
 	}
 
-	/*
+	/**
 	 * The validation of the email field is not empty
 	 */
 	public void emailFieldValidation(ReservationRequest reservationRequest) {
@@ -208,7 +211,7 @@ public class ReservationRequestService {
 		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
 	}
 
-	/*
+	/**
 	 * The validation of the reservationDate field is not empty
 	 */
 	public void reservationDateFieldValidation(ReservationRequest reservationRequest) {
@@ -216,7 +219,7 @@ public class ReservationRequestService {
 		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
 	}
 
-	/*
+	/**
 	 * The validation of the numberPeople field is not empty
 	 */
 	public void numberPeopleFieldValidation(ReservationRequest reservationRequest) {
@@ -224,13 +227,6 @@ public class ReservationRequestService {
 				EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO);
 	}
 
-	/*
-	 * method that evaluates if the price ends in zero
-	 */
-	public void validationForFridatAndSaturday(float price) {
-		ArgumentsValidator.restrictionForValueZero(price,
-				LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION);
-	}
 	
 
 }

@@ -18,10 +18,6 @@ public class ClientService {
 	@Autowired
 	private ClientDao clientDao;
 
-	public void addClient(Client client) {
-		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
-		clientDao.save(clientEntity);
-	}
 
 	public List<Client> getClients() {
 		List<Client> clients = new ArrayList<>();

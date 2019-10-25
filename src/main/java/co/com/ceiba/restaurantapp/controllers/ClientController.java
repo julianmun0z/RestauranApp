@@ -19,7 +19,7 @@ import co.com.ceiba.restaurantapp.services.ClientService;
 @RestController
 @RequestMapping(value = "/client")
 
-public class ClientController {
+public class ClientController { 
 
 	@Autowired
 	ClientService clientService;
@@ -29,16 +29,11 @@ public class ClientController {
 		return clientService.getClients();
 	}
 
-	@PostMapping
-	public void add(@RequestBody Client client) {
-		clientService.addClient(client);
-	}
-
 	@GetMapping(path = { "/{id}" })
 	public Client getClientForId(@PathVariable("id") int id) {
 		return clientService.getClientById(id);
 
-	}
+	} 
 
 	@PutMapping(path = { "/{id}" })
 	public void editar(@RequestBody Client client, @PathVariable("id") int id) {
