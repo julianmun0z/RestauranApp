@@ -14,8 +14,8 @@ public class ReservationBuilder {
 	@Autowired 
 	BillBuilder billBuilder;
 
-	public ReservationEntity convertDtoToEntity(Reservation reservation) {
-
+	public ReservationEntity convertReservationToReservationEntity(Reservation reservation) {
+ 
 		ReservationEntity reservationEntity = new ReservationEntity();
 
 		BillEntity billEntity = new BillBuilder().converBillToBillEntity(reservation.getBill());

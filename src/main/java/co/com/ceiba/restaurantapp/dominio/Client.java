@@ -1,5 +1,7 @@
 package co.com.ceiba.restaurantapp.dominio;
 
+
+
 public class Client {
 
 	private Integer clientId;
@@ -69,5 +71,7 @@ public class Client {
 
 	public Client() {
 	}
+
+
 
 }

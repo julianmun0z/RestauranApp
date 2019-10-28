@@ -1,5 +1,8 @@
 package co.com.ceiba.restaurantapp.dominio;
 
+
+
+
 public class Bill {
 
 	private float price;

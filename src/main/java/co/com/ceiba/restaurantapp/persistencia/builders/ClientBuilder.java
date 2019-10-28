@@ -17,7 +17,7 @@ public class ClientBuilder {
 
 		ClientEntity clientEntity = new ClientEntity();
 
-		ReservationEntity reservationEntity = new ReservationBuilder().convertDtoToEntity(client.getReservation());
+		ReservationEntity reservationEntity = new ReservationBuilder().convertReservationToReservationEntity(client.getReservation());
 		clientEntity.setClientId(client.getClientId());
 		clientEntity.setFirstName(client.getFirstName());
 		clientEntity.setLastName(client.getLastName());

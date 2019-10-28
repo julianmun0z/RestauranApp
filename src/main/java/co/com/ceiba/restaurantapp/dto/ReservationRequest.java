@@ -92,4 +92,5 @@ public class ReservationRequest {
 	public ReservationRequest() {
 	}
 
+
 }

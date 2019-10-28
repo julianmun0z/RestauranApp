@@ -74,7 +74,7 @@ public class ReservationBuilderTest {
 		int expectedPeople = NUMBER_PEOPLE;
 		
 		//act
-		ReservationEntity resultReservationEntity = reservationBuilder.convertDtoToEntity(reservation);
+		ReservationEntity resultReservationEntity = reservationBuilder.convertReservationToReservationEntity(reservation);
 
 		//assert
 		assertEquals(expectedReservationDay, resultReservationEntity.getReservationDate());

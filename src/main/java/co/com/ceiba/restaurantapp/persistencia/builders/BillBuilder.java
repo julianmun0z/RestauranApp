@@ -15,7 +15,7 @@ public class BillBuilder {
 
 		BillEntity billEntity = new BillEntity();
 
-		billEntity.setPrice(bill.getPrice());
+		billEntity.setPrice(bill.getPrice()); 
 		billEntity.setDiscountForPeople(bill.getDiscountForPeople());
 		billEntity.setDiscpuntForDays(bill.getDiscpuntForDays());
 
