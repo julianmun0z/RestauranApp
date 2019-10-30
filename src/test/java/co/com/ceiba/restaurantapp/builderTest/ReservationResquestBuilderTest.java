@@ -86,7 +86,7 @@ public class ReservationResquestBuilderTest {
 		int expetedDiscountDays = EXPECTED_DISCOUNT;
 		// act
 
-		Client result = reservationResquestBuilder.divisionDto(reservationRequest);
+		Client result = reservationResquestBuilder.divisionReservationRequest(reservationRequest);
 
 		// assert
 		assertEquals(expectedFisrtName, result.getFirstName());

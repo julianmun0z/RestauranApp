@@ -18,9 +18,9 @@ public class ReservationResquestBuilder {
 	@Autowired
 	ReservationRequestService reservationRequestService;
 
-	
+	Bill bill;
 
-	public Client divisionDto(ReservationRequest reservationRequest) {
+	public Client divisionReservationRequest(ReservationRequest reservationRequest) {
 
 		Bill bill = new Bill(0, 0, 0);
 

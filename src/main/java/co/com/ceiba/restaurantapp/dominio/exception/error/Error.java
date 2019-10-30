@@ -9,7 +9,7 @@ public class Error {
 		this.exceptionName = excepcionName;
 		this.message = mensaje;
 	}
-
+ 
 	public String getExceptionName() {
 		return exceptionName;
 	}

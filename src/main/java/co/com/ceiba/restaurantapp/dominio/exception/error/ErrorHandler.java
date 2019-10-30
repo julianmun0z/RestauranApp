@@ -19,7 +19,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
 	public ErrorHandler() {
 		CODIGOS_ESTADO.put(ExceptionsForRstrictions.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
 
-	}
+	} 
 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Error> handleAllExceptions(Exception exception) {

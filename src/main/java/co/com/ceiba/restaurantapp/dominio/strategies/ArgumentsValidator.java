@@ -9,7 +9,7 @@ public class ArgumentsValidator {
 			throw new ExceptionsForRstrictions(mensaje);
 		}
 	}
-
+ 
 	public static void restrictionForValueEmpty(Object valor, String mensaje) {
 		if (valor == "") {
 			throw new ExceptionsForRstrictions(mensaje);

@@ -55,7 +55,7 @@ public class ReservationRequestService {
 
 	public void addReservationResquest(ReservationRequest reservationRequest) {
 
-		Client client = reservationResquestBuilder.divisionDto(reservationRequest);
+		Client client = reservationResquestBuilder.divisionReservationRequest(reservationRequest);
 		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
 		clientDao.save(clientEntity);
 		reservationDao.save(clientEntity.getReservationEntity());
@@ -66,7 +66,7 @@ public class ReservationRequestService {
 	public Bill getCaculatePriceAndDiscounts(ReservationRequest reservationRequest, Bill bill) {
 		float price = 0;
 
-		validations(reservationRequest);
+		validationsFields(reservationRequest);
 		price = giveValueToThePrice(reservationRequest);
 		price += getValueForPerson(reservationRequest);
 		price -= getDiscuontPerPeople(reservationRequest, price);
@@ -80,10 +80,39 @@ public class ReservationRequestService {
 		return bill;
 	}
 
+	public void validationsFields(ReservationRequest reservationRequest) {
+		firstNameFieldValidation(reservationRequest);
+		lastNameFieldValidation(reservationRequest);
+		emailFieldValidation(reservationRequest);
+		reservationDateFieldValidation(reservationRequest);
+		numberPeopleFieldValidation(reservationRequest);
+	}
 
-	/**
-	 *  method to assign initial price.
-	 */
+	public void firstNameFieldValidation(ReservationRequest reservationRequest) {
+		ArgumentsValidator.restrictionForNull(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
+	}
+
+	public void lastNameFieldValidation(ReservationRequest reservationRequest) {
+		ArgumentsValidator.restrictionForNull(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
+	}
+
+	public void emailFieldValidation(ReservationRequest reservationRequest) {
+		ArgumentsValidator.restrictionForNull(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
+	}
+
+	public void reservationDateFieldValidation(ReservationRequest reservationRequest) {
+		ArgumentsValidator.restrictionForNull(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
+		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
+	}
+
+	public void numberPeopleFieldValidation(ReservationRequest reservationRequest) {
+		ArgumentsValidator.restrictionForValueZero(reservationRequest.getNumberPeople(),
+				EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO);
+	}
+
 	public float giveValueToThePrice(ReservationRequest reservationRequest) {
 		float newPrice = 0;
 		if (reservationRequest.getFirstName() != null) {
@@ -92,18 +121,12 @@ public class ReservationRequestService {
 		return newPrice;
 	}
 
-	/**
-	 *  method to calculate the value of the price by the number of people
-	 */
 	public float getValueForPerson(ReservationRequest reservationRequest) {
 		float priceForPerson = 0;
 		priceForPerson = VALUE_FOR_PERSON * reservationRequest.getNumberPeople();
 		return priceForPerson;
 	}
 
-	/**
-	 *  method to obtain a 15% discount if the reservation is for 5 people or more.
-	 */
 	public float getDiscuontPerPeople(ReservationRequest reservationRequest, float price) {
 		float discuont = 0;
 		if (reservationRequest.getNumberPeople() >= 5) {
@@ -111,10 +134,6 @@ public class ReservationRequestService {
 		}
 		return discuont;
 	}
-
-	/**
-	 * method to get a 20% discount for Tuesday and Wednesday.
-	 */
 
 	public float getDiscountForDaysTuesdayAndWednesday(ReservationRequest reservationRequest, float price) {
 		float discountDay = 0;
@@ -127,26 +146,19 @@ public class ReservationRequestService {
 		return discountDay;
 	}
 
-	/**
-	 *  method to give value if decoration is desired
-	 */
 	public float getFixedValueDecor(ReservationRequest reservationRequest) {
 		float valueDecor = 0;
 		if (reservationRequest.isDecor()) {
 			valueDecor = FIXED_DECOR;
 		}
 		return valueDecor;
-	} 
-
-	/**
-	 * method to place a 15-day restriction for reservations made on Saturdays or
-	 * Sundays.
-	 */
+	}
 
 	public float daysWithRestriction(ReservationRequest reservationRequest, float price) {
 		float restriction = 0;
 		int day = reservationRequest.getReservationDate().get(Calendar.DAY_OF_WEEK);
-		if ((day == 6 || day == 7) && (differenceBetweenCurrentDateAndReservationDate(reservationRequest) <= 15)) {
+		long differenceBetweenDates = differenceBetweenCurrentDateAndReservationDate(reservationRequest);
+		if ((day == 6 || day == 7) && (differenceBetweenDates <= 15)) {
 			restriction = 0;
 		} else {
 			restriction = price;
@@ -155,10 +167,6 @@ public class ReservationRequestService {
 		return restriction;
 	}
 
-	/**
-	 * method to calculate difference between the current date and the reservation
-	 * date for restrictions
-	 */
 	public long differenceBetweenCurrentDateAndReservationDate(ReservationRequest reservationRequest) {
 		long daysDifference = 0;
 		Date fechaEntrada = reservationRequest.getReservationDate().getTime();
@@ -166,67 +174,10 @@ public class ReservationRequestService {
 		daysDifference = (fechaEntrada.getTime() - fechaHoy.getTime()) / 86400000;
 		return daysDifference;
 	}
-	
-	
-	/**
-	 * method that evaluates if the price ends in zero
-	 */
+
 	public void validationForFridatAndSaturday(float price) {
 		ArgumentsValidator.restrictionForValueZero(price,
 				LA_RESERERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACIONRERVA_PARA_VIERNES_SABADO_DEBE_TENER_15_DIAS_ANTICIPACION);
 	}
-
-	/**
-	 * method to validate the fields
-	 */
-	public void validations(ReservationRequest reservationRequest) {
-		firstNameFieldValidation(reservationRequest);
-		lastNameFieldValidation(reservationRequest);
-		emailFieldValidation(reservationRequest);
-		reservationDateFieldValidation(reservationRequest);
-		numberPeopleFieldValidation(reservationRequest);
-	}
-
-	/**
-	 * firstName field validation is not empty
-	 */
-	public void firstNameFieldValidation(ReservationRequest reservationRequest) {
-		ArgumentsValidator.restrictionForNull(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
-		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getFirstName(), EL_NOMBRE_ES_OBLIGATORIO);
-	}
-
-	/**
-	 * The validation of the lastName field is not empty
-	 */
-	public void lastNameFieldValidation(ReservationRequest reservationRequest) {
-		ArgumentsValidator.restrictionForNull(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
-		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getLastName(), EL_APELLIDO_ES_OBLIGATORIO);
-	}
-
-	/**
-	 * The validation of the email field is not empty
-	 */
-	public void emailFieldValidation(ReservationRequest reservationRequest) {
-		ArgumentsValidator.restrictionForNull(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
-		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getEmail(), EL_EMAIL_ES_OBLIGATORIO);
-	}
-
-	/**
-	 * The validation of the reservationDate field is not empty
-	 */
-	public void reservationDateFieldValidation(ReservationRequest reservationRequest) {
-		ArgumentsValidator.restrictionForNull(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
-		ArgumentsValidator.restrictionForValueEmpty(reservationRequest.getReservationDate(), LA_FECHA_ES_OBLIGATORIA);
-	}
-
-	/**
-	 * The validation of the numberPeople field is not empty
-	 */
-	public void numberPeopleFieldValidation(ReservationRequest reservationRequest) {
-		ArgumentsValidator.restrictionForValueZero(reservationRequest.getNumberPeople(),
-				EL_NUMERO_DE_PERSONAS_PARA_LA_RESERVA_ES_OBLIGATORIO);
-	}
-
-	
 
 }
