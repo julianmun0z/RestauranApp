@@ -17,30 +17,24 @@ public class ClientBuilder {
 
 		ClientEntity clientEntity = new ClientEntity();
 
-		ReservationEntity reservationEntity = new ReservationBuilder().convertReservationToReservationEntity(client.getReservation());
+		ReservationEntity reservationEntity = new ReservationBuilder()
+				.convertReservationToReservationEntity(client.getReservation());
 		clientEntity.setClientId(client.getClientId());
 		clientEntity.setFirstName(client.getFirstName());
 		clientEntity.setLastName(client.getLastName());
 		clientEntity.setEmail(client.getEmail());
 		clientEntity.setPhoneNumber(client.getPhoneNumber());
 		clientEntity.setReservationEntity(reservationEntity);
-
 		return clientEntity;
 	}
 
 	public Client convertClientEntityToClient(ClientEntity clientEntity) {
-
-		Client client = new Client(null, null, null, null, null, null);
-
+		
 		Reservation reservation = new ReservationBuilder()
 				.convertReservationEntityToReservation(clientEntity.getReservationEntity());
 
-		client.setClientId(clientEntity.getClientId());
-		client.setFirstName(clientEntity.getFirstName());
-		client.setLastName(clientEntity.getLastName());
-		client.setEmail(clientEntity.getEmail());
-		client.setPhoneNumber(clientEntity.getPhoneNumber());
-		client.setReservation(reservation);
+		Client client = new Client(clientEntity.getClientId(), clientEntity.getFirstName(), clientEntity.getLastName(),
+				clientEntity.getEmail(), clientEntity.getPhoneNumber(), reservation);
 
 		return client;
 	}

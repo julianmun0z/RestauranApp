@@ -1,6 +1,5 @@
 package co.com.ceiba.restaurantapp.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,48 +7,34 @@ import org.springframework.stereotype.Service;
 import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.persistencia.builders.ClientBuilder;
 import co.com.ceiba.restaurantapp.persistencia.dao.ClientDao;
-import co.com.ceiba.restaurantapp.persistencia.entities.ClientEntity;
+import co.com.ceiba.restaurantapp.persistencia.repositories.ClientRepository;
 
 @Service
 public class ClientService {
 
 	@Autowired
 	ClientBuilder clientBuilder;
+
 	@Autowired
-	private ClientDao clientDao;
+	ClientRepository clientRepository;
 
-
+	@Autowired
+	ClientDao clientDao;
+	
 	public List<Client> getClients() {
-		List<Client> clients = new ArrayList<>();
-		List<ClientEntity> entities = clientDao.findAll();
-		for (ClientEntity clientEntity : entities) {
-			Client clientDto = clientBuilder.convertClientEntityToClient(clientEntity);
-			clients.add(clientDto);
-		}
-		return clients;
-	}
+		return clientDao.getClients();
+	} 
 
 	public Client getClientById(int id) {
-		ClientEntity clientEntity = clientDao.findById(id);
-		 Client client = clientBuilder.convertClientEntityToClient(clientEntity);
-		return client;
+		return clientDao.getClientById(id);
 	}
 
 	public void edit(Client client) {
-		ClientEntity clientEntity = clientBuilder.convertClientToRClientEntity(client);
-		clientDao.save(clientEntity);
-
+		clientDao.edit(client);
 	}
-
-	public Client delete(int id) {
-		ClientEntity clientEntity = clientDao.findById(id);
-		Client client = clientBuilder.convertClientEntityToClient(clientEntity);
-		if (client != null) {
-			clientDao.delete(clientEntity);
-
-		}
-		return client;
-
+ 
+	public Client delete(int id) { 
+		return clientDao.delete(id);
 	}
 
 }

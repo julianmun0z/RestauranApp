@@ -16,11 +16,12 @@ public class ReservationRequestTestDataBuilder {
 	private static final Calendar RESERVATIONDATE = new GregorianCalendar(2029, 02, 02);
 	private static final int NUMBERPEOPLE = 5;
 	private static final boolean DECOR = true;
+	private static final int  ID =89;
 	
-
+	private int id;
 	private String firstName;
 	private String lastName;
-	private String Email;
+	private String email;
 	private String phoneNumber;
 	private Calendar reservationDate;
 	private int numberPeople;
@@ -28,10 +29,11 @@ public class ReservationRequestTestDataBuilder {
 	
 	
 	public ReservationRequestTestDataBuilder() {
-	
+		
+		this.id = ID;
 		this.firstName = FIRSTNAME;
 		this.lastName = LASTNAME;
-		this.Email = EMAIL;
+		this.email = EMAIL;
 		this.phoneNumber = PHONENUMBER;
 		this.reservationDate = RESERVATIONDATE;
 		this.numberPeople = NUMBERPEOPLE;
@@ -56,7 +58,7 @@ public class ReservationRequestTestDataBuilder {
 	 * @param email
 	 */
 	public ReservationRequestTestDataBuilder whiteEmail(String email) {
-		Email = email;
+		this.email = email;
 		return this;
 	}
 
@@ -97,7 +99,7 @@ public class ReservationRequestTestDataBuilder {
 	}
 	
 	public ReservationRequest build() {
-		return new ReservationRequest(firstName,lastName , Email, phoneNumber, reservationDate, decor, numberPeople);
+		return new ReservationRequest(id,firstName, lastName, email, phoneNumber, reservationDate, decor, numberPeople, reservationDate);
 }
 	
 

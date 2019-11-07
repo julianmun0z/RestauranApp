@@ -1,8 +1,12 @@
 package co.com.ceiba.restaurantapp.dominio;
 
-
+import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 
 public class Client {
+
+	private static final String EL_NOMBRE_ES_OBLIGATORIO = "EL NOMBRE ES OBLIGATORIO";
+	private static final String EL_APELLIDO_ES_OBLIGATORIO = "EL APELLIDO ES OBLIGATORIO";
+	private static final String EL_EMAIL_ES_OBLIGATORIO = "EL EMAIL ES OBLIGATORIO";
 
 	private Integer clientId;
 	private String firstName;
@@ -13,6 +17,14 @@ public class Client {
 
 	public Client(Integer clientId, String firstName, String lastName, String email, String phoneNumber,
 			Reservation reservation) {
+
+		ArgumentsValidator.restrictionForNull(firstName, EL_NOMBRE_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(firstName, EL_NOMBRE_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForNull(lastName, EL_APELLIDO_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(lastName, EL_APELLIDO_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForNull(email, EL_EMAIL_ES_OBLIGATORIO);
+		ArgumentsValidator.restrictionForValueEmpty(email, EL_EMAIL_ES_OBLIGATORIO);
+
 		this.clientId = clientId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -68,10 +80,5 @@ public class Client {
 	public Reservation getReservation() {
 		return reservation;
 	}
-
-	public Client() {
-	}
-
-
 
 }

@@ -14,24 +14,15 @@ public class BillBuilder {
 	public BillEntity converBillToBillEntity(Bill bill) {
 
 		BillEntity billEntity = new BillEntity();
-
 		billEntity.setPrice(bill.getPrice()); 
 		billEntity.setDiscountForPeople(bill.getDiscountForPeople());
 		billEntity.setDiscpuntForDays(bill.getDiscpuntForDays());
-
 		return billEntity;
 	}
 
 	public Bill convertBillEntityToBill(BillEntity billEntity) {
 
-		Bill bill = new Bill(0, 0, 0);
-
-		bill.setPrice(billEntity.getPrice());
-		bill.setDiscountForPeople(billEntity.getDiscountForPeople());
-		bill.setDiscpuntForDays(billEntity.getDiscpuntForDays());
-
+		Bill bill = new Bill(billEntity.getPrice(), billEntity.getDiscountForPeople(), billEntity.getDiscpuntForDays());
 		return bill;
-
 	}
-
 }

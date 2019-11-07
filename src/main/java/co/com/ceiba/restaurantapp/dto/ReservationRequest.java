@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 public class ReservationRequest {
 
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -12,8 +13,9 @@ public class ReservationRequest {
 	private boolean decor;
 	private int numberPeople;
 
-	public ReservationRequest(String firstName, String lastName, String email, String phoneNumber,
-			Calendar reservationDate, boolean decor, int numberPeople) {
+	public ReservationRequest(int id, String firstName, String lastName, String email, String phoneNumber,
+			Calendar reservationDate, boolean decor, int numberPeople, Calendar currentDate) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -21,6 +23,18 @@ public class ReservationRequest {
 		this.reservationDate = reservationDate;
 		this.decor = decor;
 		this.numberPeople = numberPeople;
+		this.currentDate = currentDate;
+	}
+	
+	public ReservationRequest() {
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -88,9 +102,5 @@ public class ReservationRequest {
 	public void setCurrentDate(Calendar currentDate) {
 		this.currentDate = currentDate;
 	}
-
-	public ReservationRequest() {
-	}
- 
 
 }

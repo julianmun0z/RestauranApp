@@ -23,21 +23,20 @@ public class ClientController {
 	@Autowired
 	ClientService clientService;
 
-	@GetMapping
+	@GetMapping 
 	public List<Client> getClient() {
 		return clientService.getClients();
 	}
  
 	@GetMapping(path = { "/{id}" })
 	public Client getClientForId(@PathVariable("id") int id) {
-		return clientService.getClientById(id);
- 
-	} 
+		return clientService.getClientById(id); 
+	}
 
 	@PutMapping(path = { "/{id}" })
 	public void editar(@RequestBody Client client, @PathVariable("id") int id) {
 		clientService.edit(client);
-	} 
+	}  
 
 	@DeleteMapping(path = { "/{id}" })
 	public Client delete(@PathVariable("id") int id) {

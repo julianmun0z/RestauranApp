@@ -100,7 +100,7 @@ public class ReservationBuilderTest {
 		when(bill.getDiscpuntForDays()).thenReturn(DISCOUNT_FOR_DAY);
 
 		Calendar expectedReservationDay = DATE_FOR_DIVISION_DTO;
-		boolean expectedDecor = DECOR;
+		boolean expectedDecor = DECOR; 
 		int expectedPeople = NUMBER_PEOPLE;
 
 		//act

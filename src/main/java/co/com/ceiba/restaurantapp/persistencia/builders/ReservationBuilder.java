@@ -11,11 +11,11 @@ import co.com.ceiba.restaurantapp.persistencia.entities.ReservationEntity;
 @Configuration
 public class ReservationBuilder {
 
-	@Autowired 
+	@Autowired
 	BillBuilder billBuilder;
 
 	public ReservationEntity convertReservationToReservationEntity(Reservation reservation) {
- 
+
 		ReservationEntity reservationEntity = new ReservationEntity();
 
 		BillEntity billEntity = new BillBuilder().converBillToBillEntity(reservation.getBill());
@@ -29,14 +29,10 @@ public class ReservationBuilder {
 
 	public Reservation convertReservationEntityToReservation(ReservationEntity reservationEntity) {
 
-		Reservation reservation = new Reservation(null, 0, false, null);
-
 		Bill bill = new BillBuilder().convertBillEntityToBill(reservationEntity.getBillEntity());
 
-		reservation.setReservationDate(reservationEntity.getReservationDate());
-		reservation.setNumberPeople(reservationEntity.getNumberPeople());
-		reservation.setDecor(reservationEntity.isDecor());
-		reservation.setBill(bill);
+		Reservation reservation = new Reservation(reservationEntity.getReservationDate(),
+				reservationEntity.getNumberPeople(), reservationEntity.isDecor(), bill);
 
 		return reservation;
 	}

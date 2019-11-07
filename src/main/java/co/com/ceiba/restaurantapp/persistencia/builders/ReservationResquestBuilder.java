@@ -1,49 +1,45 @@
 package co.com.ceiba.restaurantapp.persistencia.builders;
 
-
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
 import co.com.ceiba.restaurantapp.dominio.Reservation;
 
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
-import co.com.ceiba.restaurantapp.services.ReservationRequestService;
 
 @Configuration
 public class ReservationResquestBuilder {
-
-	@Autowired
-	ReservationRequestService reservationRequestService;
-
-	Bill bill;
 
 	public Client divisionReservationRequest(ReservationRequest reservationRequest) {
 
 		Bill bill = new Bill(0, 0, 0);
 
-		reservationRequestService.getCaculatePriceAndDiscounts(reservationRequest, bill);
+		bill.getCaculatePriceAndDiscounts(reservationRequest, bill);
 
-		Reservation reservation = new Reservation(null, 0, false, bill);
+		Reservation reservation = new Reservation(reservationRequest.getReservationDate(),
+				reservationRequest.getNumberPeople(), reservationRequest.isDecor(), bill);
 
-		reservation.setReservationDate(reservationRequest.getReservationDate());
-		reservation.setNumberPeople(reservationRequest.getNumberPeople());
-		reservation.setDecor(reservationRequest.isDecor());
-		reservation.setBill(bill);
+		Client client = new Client(reservationRequest.getId(), reservationRequest.getFirstName(), reservationRequest.getLastName(),
+				reservationRequest.getEmail(), reservationRequest.getPhoneNumber(), reservation);
 
-		Client client = new Client(null, null, null, null, null, reservation);
-
-		client.setFirstName(reservationRequest.getFirstName());
-		client.setLastName(reservationRequest.getLastName());
-		client.setEmail(reservationRequest.getEmail());
-		client.setPhoneNumber(reservationRequest.getPhoneNumber());
-		client.setReservation(reservation);
-
-		return client; 
+		return client;
 
 	}
- 
 	
+	public ReservationRequest getClientObjectReservationRequest(Client client) {
+	
+		ReservationRequest reservationRequest = new ReservationRequest();
+		
+		reservationRequest.setId(client.getClientId());
+		reservationRequest.setFirstName(client.getFirstName());
+		reservationRequest.setLastName(client.getLastName());
+		reservationRequest.setEmail(client.getEmail());
+		reservationRequest.setPhoneNumber(client.getPhoneNumber());
+		reservationRequest.setReservationDate(client.getReservation().getReservationDate());
+		reservationRequest.setDecor(client.getReservation().isDecor());
+		reservationRequest.setNumberPeople(client.getReservation().getNumberPeople());
+		
+		return reservationRequest;
+	}
+
 }

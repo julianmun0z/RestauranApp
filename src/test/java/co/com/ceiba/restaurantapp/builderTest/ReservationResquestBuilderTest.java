@@ -16,15 +16,13 @@ import co.com.ceiba.restaurantapp.persistencia.builders.ReservationResquestBuild
 import co.com.ceiba.restaurantapp.services.ReservationRequestService;
 import co.com.ceiba.restaurantapp.dominio.Bill;
 import co.com.ceiba.restaurantapp.dominio.Client;
-import co.com.ceiba.restaurantapp.dominio.Reservation;
-import co.com.ceiba.restaurantapp.dominio.strategies.ArgumentsValidator;
 import co.com.ceiba.restaurantapp.dto.ReservationRequest;
 
 public class ReservationResquestBuilderTest { 
 
 	private static final int NUMBER_PEOPLE = 5;
 	private static final float PRICE = 350000;
-	private static final float EXPECTED_PRICE = 0;
+	private static final float EXPECTED_PRICE = 293500;
 
 	private static final String FIRSTNAME = "juan";
 	private static final String LASTNAME = "gomez";
@@ -32,7 +30,8 @@ public class ReservationResquestBuilderTest {
 	private static final String PHONENUMBER = "123456789";
 
 	private static final boolean DECOR = true;
-	private static final int EXPECTED_DISCOUNT = 0;
+	private static final int EXPECTED_DISCOUNT_PEOPLE = 44025;
+	private static final int EXPECTED_DISCOUNT_DAY = 0;
 	private static final Calendar DATE_WITH_TUESDAY_AND_WENESDAY = new GregorianCalendar(2019, 8, 01);
 
 	private static final Calendar DATE_FOR_DIVISION_DTO  = new GregorianCalendar(
@@ -81,9 +80,9 @@ public class ReservationResquestBuilderTest {
 		Calendar expectedReservationDate = DATE_FOR_DIVISION_DTO;
 		int expecteNumberPeople = NUMBER_PEOPLE;
 		boolean expedtedDecor = DECOR;
-		float expectedPrice = EXPECTED_PRICE;
-		int expetedDiscountPeople = EXPECTED_DISCOUNT;
-		int expetedDiscountDays = EXPECTED_DISCOUNT;
+		float expectedPrice = EXPECTED_PRICE; 
+		int expetedDiscountPeople = EXPECTED_DISCOUNT_PEOPLE;
+		int expetedDiscountDays = EXPECTED_DISCOUNT_DAY;
 		// act
 
 		Client result = reservationResquestBuilder.divisionReservationRequest(reservationRequest);
@@ -98,7 +97,7 @@ public class ReservationResquestBuilderTest {
 		assertEquals(expedtedDecor, result.getReservation().isDecor());
 		assertEquals(expectedPrice, result.getReservation().getBill().getPrice(), 0);
 		assertEquals(expetedDiscountPeople,result.getReservation().getBill().getDiscountForPeople());
-		assertEquals(expetedDiscountDays,result.getReservation().getBill().getDiscountForPeople());
+		assertEquals(expetedDiscountDays,result.getReservation().getBill().getDiscpuntForDays());
 
 	}
 
